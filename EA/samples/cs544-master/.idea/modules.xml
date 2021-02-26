@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/project/2017-01/water/code/attendance/attendance.iml" filepath="$PROJECT_DIR$/project/2017-01/water/code/attendance/attendance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/checkingattendance/checkingattendance.iml" filepath="$PROJECT_DIR$/project/checkingattendance/checkingattendance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/cs544-master.iml" filepath="$PROJECT_DIR$/.idea/cs544-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example00-hibernate-1/example00-hibernate-1.iml" filepath="$PROJECT_DIR$/examples/example00-hibernate-1/example00-hibernate-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example01-entitymapping-1/example01-entitymapping-1.iml" filepath="$PROJECT_DIR$/examples/example01-entitymapping-1/example01-entitymapping-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example02-persistence/example02-persistence.iml" filepath="$PROJECT_DIR$/examples/example02-persistence/example02-persistence.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example02-persistence-1/example02-persistence-1.iml" filepath="$PROJECT_DIR$/examples/example02-persistence-1/example02-persistence-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example03-associations-1/example03-associations-1.iml" filepath="$PROJECT_DIR$/examples/example03-associations-1/example03-associations-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example03-associations-2/example03-associations-2.iml" filepath="$PROJECT_DIR$/examples/example03-associations-2/example03-associations-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example03-associations-3/example03-associations-3.iml" filepath="$PROJECT_DIR$/examples/example03-associations-3/example03-associations-3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example03-associations-4/example03-associations-4.iml" filepath="$PROJECT_DIR$/examples/example03-associations-4/example03-associations-4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example03-associations-5/example03-associations-5.iml" filepath="$PROJECT_DIR$/examples/example03-associations-5/example03-associations-5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example03-associations-6/example03-associations-6.iml" filepath="$PROJECT_DIR$/examples/example03-associations-6/example03-associations-6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example05-inheritance-1/example05-inheritance-1.iml" filepath="$PROJECT_DIR$/examples/example05-inheritance-1/example05-inheritance-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example05-inheritance-2/example05-inheritance-2.iml" filepath="$PROJECT_DIR$/examples/example05-inheritance-2/example05-inheritance-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example05-inheritance-3/example05-inheritance-3.iml" filepath="$PROJECT_DIR$/examples/example05-inheritance-3/example05-inheritance-3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example07-hql-1/example07-hql-1.iml" filepath="$PROJECT_DIR$/examples/example07-hql-1/example07-hql-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example07-hql-2/example07-hql-2.iml" filepath="$PROJECT_DIR$/examples/example07-hql-2/example07-hql-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example07-hql-3/example07-hql-3.iml" filepath="$PROJECT_DIR$/examples/example07-hql-3/example07-hql-3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example07-hql-4/example07-hql-4.iml" filepath="$PROJECT_DIR$/examples/example07-hql-4/example07-hql-4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example07-hql-5/example07-hql-5.iml" filepath="$PROJECT_DIR$/examples/example07-hql-5/example07-hql-5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example10-spring-1/example10-spring-1.iml" filepath="$PROJECT_DIR$/examples/example10-spring-1/example10-spring-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example10-spring-2/example10-spring-2.iml" filepath="$PROJECT_DIR$/examples/example10-spring-2/example10-spring-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example10-spring-3/example10-spring-3.iml" filepath="$PROJECT_DIR$/examples/example10-spring-3/example10-spring-3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example11-di-1/example11-di-1.iml" filepath="$PROJECT_DIR$/examples/example11-di-1/example11-di-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example11-di-2/example11-di-2.iml" filepath="$PROJECT_DIR$/examples/example11-di-2/example11-di-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example11-di-3/example11-di-3.iml" filepath="$PROJECT_DIR$/examples/example11-di-3/example11-di-3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example11-di-4/example11-di-4.iml" filepath="$PROJECT_DIR$/examples/example11-di-4/example11-di-4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example11-di-5/example11-di-5.iml" filepath="$PROJECT_DIR$/examples/example11-di-5/example11-di-5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example13-aop-1/example13-aop-1.iml" filepath="$PROJECT_DIR$/examples/example13-aop-1/example13-aop-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example13-aop-2/example13-aop-2.iml" filepath="$PROJECT_DIR$/examples/example13-aop-2/example13-aop-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example13-aop-3/example13-aop-3.iml" filepath="$PROJECT_DIR$/examples/example13-aop-3/example13-aop-3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example13-aop-4/example13-aop-4.iml" filepath="$PROJECT_DIR$/examples/example13-aop-4/example13-aop-4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example14-spring-tx-1/example14-spring-tx-1.iml" filepath="$PROJECT_DIR$/examples/example14-spring-tx-1/example14-spring-tx-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example15-async-1/example15-async-1.iml" filepath="$PROJECT_DIR$/examples/example15-async-1/example15-async-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example15-scheduling-1/example15-scheduling-1.iml" filepath="$PROJECT_DIR$/examples/example15-scheduling-1/example15-scheduling-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example15-scheduling-2/example15-scheduling-2.iml" filepath="$PROJECT_DIR$/examples/example15-scheduling-2/example15-scheduling-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example15-scheduling-3/example15-scheduling-3.iml" filepath="$PROJECT_DIR$/examples/example15-scheduling-3/example15-scheduling-3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example15-scheduling-4/example15-scheduling-4.iml" filepath="$PROJECT_DIR$/examples/example15-scheduling-4/example15-scheduling-4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example16-hibernate-intgration-1/example16-hibernate-integration-1.iml" filepath="$PROJECT_DIR$/examples/example16-hibernate-intgration-1/example16-hibernate-integration-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example17-springhibernate-1/example17-springhibernate-1.iml" filepath="$PROJECT_DIR$/examples/example17-springhibernate-1/example17-springhibernate-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example19-springmvc-1/example19-springmvc-1.iml" filepath="$PROJECT_DIR$/examples/example19-springmvc-1/example19-springmvc-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example19-springmvc-2/example19-springmvc-2.iml" filepath="$PROJECT_DIR$/examples/example19-springmvc-2/example19-springmvc-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example19-springmvc-3/example19-springmvc-3.iml" filepath="$PROJECT_DIR$/examples/example19-springmvc-3/example19-springmvc-3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example20-servlet-1/example20-servlet-1.iml" filepath="$PROJECT_DIR$/examples/example20-servlet-1/example20-servlet-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example21-springsecurity-1/example21-springsecurity-1.iml" filepath="$PROJECT_DIR$/examples/example21-springsecurity-1/example21-springsecurity-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example22-springvalildation-1/example22-springvalidation-1.iml" filepath="$PROJECT_DIR$/examples/example22-springvalildation-1/example22-springvalidation-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example23-rmi-2/example23-rmi-2.iml" filepath="$PROJECT_DIR$/examples/example23-rmi-2/example23-rmi-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example24-jms-receiver-1/example24-jms-receiver-1.iml" filepath="$PROJECT_DIR$/examples/example24-jms-receiver-1/example24-jms-receiver-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example24-jms-sender-1/example24-jms-sender-1.iml" filepath="$PROJECT_DIR$/examples/example24-jms-sender-1/example24-jms-sender-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/examples/example25-restdemo-1/example25-restdemo-1.iml" filepath="$PROJECT_DIR$/examples/example25-restdemo-1/example25-restdemo-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise00_1/exercise00_1.iml" filepath="$PROJECT_DIR$/exercises/exercise00_1/exercise00_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise02_1/exercise02_1.iml" filepath="$PROJECT_DIR$/exercises/exercise02_1/exercise02_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise02_2/exercise02_2.iml" filepath="$PROJECT_DIR$/exercises/exercise02_2/exercise02_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise07_1/exercise07_1.iml" filepath="$PROJECT_DIR$/exercises/exercise07_1/exercise07_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise09_1/exercise09_1.iml" filepath="$PROJECT_DIR$/exercises/exercise09_1/exercise09_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise11_2/exercise11_2.iml" filepath="$PROJECT_DIR$/exercises/exercise11_2/exercise11_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise11_3/exercise11_3.iml" filepath="$PROJECT_DIR$/exercises/exercise11_3/exercise11_3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise12_1/exercise12_1.iml" filepath="$PROJECT_DIR$/exercises/exercise12_1/exercise12_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise13_1/exercise13_1.iml" filepath="$PROJECT_DIR$/exercises/exercise13_1/exercise13_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise15_1/exercise15_1.iml" filepath="$PROJECT_DIR$/exercises/exercise15_1/exercise15_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise16_1/exercise16_1.iml" filepath="$PROJECT_DIR$/exercises/exercise16_1/exercise16_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise16_2/exercise16_2.iml" filepath="$PROJECT_DIR$/exercises/exercise16_2/exercise16_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise19.1/exercise19.1.iml" filepath="$PROJECT_DIR$/exercises/exercise19.1/exercise19.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise23_1-client/exercise23_1-client.iml" filepath="$PROJECT_DIR$/exercises/exercise23_1-client/exercise23_1-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise23_1-server/exercise23_1-server.iml" filepath="$PROJECT_DIR$/exercises/exercise23_1-server/exercise23_1-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise24_1-receiver/exercise24_1-receiver.iml" filepath="$PROJECT_DIR$/exercises/exercise24_1-receiver/exercise24_1-receiver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise24_1-sender/exercise24_1-sender.iml" filepath="$PROJECT_DIR$/exercises/exercise24_1-sender/exercise24_1-sender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise25_1-client/exercise25_1-client.iml" filepath="$PROJECT_DIR$/exercises/exercise25_1-client/exercise25_1-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise25_1-service/exercise25_1-service.iml" filepath="$PROJECT_DIR$/exercises/exercise25_1-service/exercise25_1-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise25_2-client/exercise25_2-client.iml" filepath="$PROJECT_DIR$/exercises/exercise25_2-client/exercise25_2-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercise25_2-service/exercise25_2-service.iml" filepath="$PROJECT_DIR$/exercises/exercise25_2-service/exercise25_2-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project/2017-01/water/code/timesheet/timesheet.iml" filepath="$PROJECT_DIR$/project/2017-01/water/code/timesheet/timesheet.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,59 @@
+.center {
+  margin: auto;
+  width: 70%;
+  border: 3px solid green;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.img-fit {
+  margin-left: 10px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.img-fit-post {
+  width: 90%;
+  height: 150px;
+  object-fit: cover;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.showusername {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.post-body {
+  margin-left: 10px;
+  font-size: large;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.timeplace {
+  text-align: right;
+  font-weight: 300;
+}
+
+.rounded {
+  width: 100%;
+  margin: 5px;
+}
+
+.img-fit-comment {
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.comment-body {
+  margin-left: 20px;
+}
+
+.comment-box {
+  margin: 10px;
+}

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="example02-persistence-1" />
+        <module name="exercise11_3" />
+        <module name="exercise11_2" />
+        <module name="example14-spring-tx-1" />
+        <module name="example07-hql-5" />
+        <module name="example07-hql-4" />
+        <module name="example07-hql-3" />
+        <module name="example07-hql-2" />
+        <module name="example07-hql-1" />
+        <module name="example19-springmvc-2" />
+        <module name="example19-springmvc-1" />
+        <module name="example21-springsecurity-1" />
+        <module name="example03-associations-6" />
+        <module name="example03-associations-5" />
+        <module name="example03-associations-4" />
+        <module name="example03-associations-3" />
+        <module name="example03-associations-2" />
+        <module name="example03-associations-1" />
+        <module name="exercise25_1-service" />
+        <module name="exercise12_1" />
+        <module name="example02-persistence" />
+        <module name="example24-jms-receiver-1" />
+        <module name="example15-async-1" />
+        <module name="example05-inheritance-3" />
+        <module name="exercise19.1" />
+        <module name="example05-inheritance-1" />
+        <module name="example15-scheduling-2" />
+        <module name="exercise23_1-client" />
+        <module name="exercise13_1" />
+        <module name="exercise25_2-client" />
+        <module name="example16-hibernate-integration-1" />
+        <module name="exercise24_1-sender" />
+        <module name="example01-entitymapping-1" />
+        <module name="example24-jms-sender-1" />
+        <module name="exercise07_1" />
+        <module name="checkingattendance" />
+        <module name="exercise15_1" />
+        <module name="attendance" />
+        <module name="example05-inheritance-2" />
+        <module name="example10-spring-2" />
+        <module name="example25-restdemo-1" />
+        <module name="example17-springhibernate-1" />
+        <module name="exercise16_2" />
+        <module name="exercise16_1" />
+        <module name="example13-aop-4" />
+        <module name="example13-aop-3" />
+        <module name="example13-aop-2" />
+        <module name="example13-aop-1" />
+        <module name="example23-rmi-2" />
+        <module name="exercise09_1" />
+        <module name="example15-scheduling-4" />
+        <module name="example15-scheduling-3" />
+        <module name="example00-hibernate-1" />
+        <module name="example15-scheduling-1" />
+        <module name="exercise00_1" />
+        <module name="example22-springvalidation-1" />
+        <module name="example11-di-5" />
+        <module name="example11-di-4" />
+        <module name="example11-di-3" />
+        <module name="example11-di-2" />
+        <module name="example11-di-1" />
+        <module name="exercise25_2-service" />
+        <module name="exercise23_1-server" />
+        <module name="example19-springmvc-3" />
+        <module name="exercise25_1-client" />
+        <module name="example20-servlet-1" />
+        <module name="exercise02_2" />
+        <module name="exercise02_1" />
+        <module name="example10-spring-1" />
+        <module name="example10-spring-3" />
+        <module name="exercise24_1-receiver" />
+        <module name="timesheet" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="attendance" target="1.5" />
+      <module name="checkingattendance" target="1.8" />
+      <module name="example00-hibernate-1" target="1.8" />
+      <module name="example01-entitymapping-1" target="1.8" />
+      <module name="example02-persistence" target="1.8" />
+      <module name="example02-persistence-1" target="1.8" />
+      <module name="example03-associations-1" target="1.8" />
+      <module name="example03-associations-2" target="1.8" />
+      <module name="example03-associations-3" target="1.8" />
+      <module name="example03-associations-4" target="1.8" />
+      <module name="example03-associations-5" target="1.8" />
+      <module name="example03-associations-6" target="1.8" />
+      <module name="example05-inheritance-1" target="1.8" />
+      <module name="example05-inheritance-2" target="1.8" />
+      <module name="example05-inheritance-3" target="1.8" />
+      <module name="example07-hql-1" target="1.8" />
+      <module name="example07-hql-2" target="1.8" />
+      <module name="example07-hql-3" target="1.8" />
+      <module name="example07-hql-4" target="1.8" />
+      <module name="example07-hql-5" target="1.8" />
+      <module name="example10-spring-1" target="1.8" />
+      <module name="example10-spring-2" target="1.8" />
+      <module name="example10-spring-3" target="1.8" />
+      <module name="example11-di-1" target="1.8" />
+      <module name="example11-di-2" target="1.8" />
+      <module name="example11-di-3" target="1.8" />
+      <module name="example11-di-4" target="1.8" />
+      <module name="example11-di-5" target="1.8" />
+      <module name="example13-aop-1" target="1.8" />
+      <module name="example13-aop-2" target="1.8" />
+      <module name="example13-aop-3" target="1.8" />
+      <module name="example13-aop-4" target="1.8" />
+      <module name="example14-spring-tx-1" target="1.8" />
+      <module name="example15-async-1" target="1.8" />
+      <module name="example15-scheduling-1" target="1.8" />
+      <module name="example15-scheduling-2" target="1.8" />
+      <module name="example15-scheduling-3" target="1.8" />
+      <module name="example15-scheduling-4" target="1.8" />
+      <module name="example16-hibernate-integration-1" target="1.8" />
+      <module name="example17-springhibernate-1" target="1.8" />
+      <module name="example19-springmvc-1" target="1.8" />
+      <module name="example19-springmvc-2" target="1.8" />
+      <module name="example19-springmvc-3" target="1.8" />
+      <module name="example20-servlet-1" target="1.8" />
+      <module name="example21-springsecurity-1" target="1.8" />
+      <module name="example22-springvalidation-1" target="1.8" />
+      <module name="example23-rmi-2" target="1.8" />
+      <module name="example24-jms-receiver-1" target="1.8" />
+      <module name="example24-jms-sender-1" target="1.8" />
+      <module name="example25-restdemo-1" target="1.8" />
+      <module name="exercise00_1" target="1.8" />
+      <module name="exercise02_1" target="1.5" />
+      <module name="exercise02_2" target="1.7" />
+      <module name="exercise07_1" target="1.5" />
+      <module name="exercise09_1" target="1.5" />
+      <module name="exercise11_2" target="1.5" />
+      <module name="exercise11_3" target="1.8" />
+      <module name="exercise12_1" target="1.5" />
+      <module name="exercise13_1" target="1.5" />
+      <module name="exercise15_1" target="1.5" />
+      <module name="exercise16_1" target="1.5" />
+      <module name="exercise16_2" target="1.6" />
+      <module name="exercise19.1" target="1.8" />
+      <module name="exercise23_1-client" target="1.5" />
+      <module name="exercise23_1-server" target="1.5" />
+      <module name="exercise24_1-receiver" target="1.5" />
+      <module name="exercise24_1-sender" target="1.5" />
+      <module name="exercise25_1-client" target="1.5" />
+      <module name="exercise25_1-service" target="1.8" />
+      <module name="exercise25_2-client" target="1.5" />
+      <module name="exercise25_2-service" target="1.6" />
+      <module name="timesheet" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="example22-springvalidation-1" options="-endorseddirs $PROJECT_DIR$/examples/example22-springvalildation-1/target/endorsed" />
+      <module name="exercise00_1" options="-endorseddirs $PROJECT_DIR$/exercises/exercise00_1/target/endorsed" />
+      <module name="exercise16_2" options="-endorseddirs $PROJECT_DIR$/exercises/exercise16_2/target/endorsed" />
+      <module name="exercise19.1" options="-endorseddirs $PROJECT_DIR$/exercises/exercise19.1/target/endorsed" />
+      <module name="exercise25_1-service" options="-endorseddirs $PROJECT_DIR$/exercises/exercise25_1-service/target/endorsed" />
+      <module name="exercise25_2-service" options="-endorseddirs $PROJECT_DIR$/exercises/exercise25_2-service/target/endorsed" />
+    </option>
+  </component>
+</project>

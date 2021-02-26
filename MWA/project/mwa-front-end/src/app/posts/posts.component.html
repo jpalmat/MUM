@@ -1,0 +1,89 @@
+<div *ngFor="let post of postsArr">
+  <div class="center">
+    <div class="row">
+      <div class="rounded-circle">
+        <img class="img-fit rounded-circle" [src]="post.user.photo" />
+      </div>
+      <div>
+        <h5>
+          <span class="showusername">
+            {{ post.user.username }}
+          </span>
+        </h5>
+
+        <span class="timeplace">{{ post.insertDate | date: "short" }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngIf="post.photo">
+        <!-- post image -->
+        <img [src]="post.photo" class="img-fit-post" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="border border-info rounded post-body">
+        <div class="post-body">
+          {{ post.body }}
+        </div>
+      </div>
+    </div>
+
+    <div>Likes:{{ post.likes.length }} Comments:{{ post.comments.length }}</div>
+    <div class="container">
+      <div class="input-group mb-3">
+        <input
+          class="form-control"
+          type="text"
+          name="comment"
+          #comment
+          placeholder="comment"
+        />
+        <div class="input-group-append">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="submitComment(comment.value, post._id)"
+          >
+            Send
+          </button>
+
+          <button
+            *ngIf="!post.liked"
+            type="button"
+            class="btn btn-primary"
+            (click)="submitLike(post._id)"
+          >
+            Like
+          </button>
+          <button
+            *ngIf="post.liked"
+            type="button"
+            class="btn btn-secondary"
+            (click)="submitUnlike(post._id)"
+          >
+            Unlike
+          </button>
+        </div>
+      </div>
+      <div *ngIf="post.commentError" class="alert alert-danger">
+        Comment is required
+      </div>
+    </div>
+
+    <!-- <div class="container"> -->
+    <!-- Comments section -->
+    Comments:
+    <div *ngFor="let comment of post.comments">
+      <div class="row">
+        <div class="border border-success rounded">
+          <img [src]="comment.commentedBy.photo" class="img-fit-comment" />
+          <b>{{ comment.commentedBy.username }}</b>
+          <div class="border border-primary comment-box">
+            <p class="comment-body">{{ comment.commentText }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+</div>

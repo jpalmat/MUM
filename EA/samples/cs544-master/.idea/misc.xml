@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/examples/example19-springmvc-1" />
+    <file type="web" url="file://$PROJECT_DIR$/examples/example19-springmvc-2" />
+    <file type="web" url="file://$PROJECT_DIR$/examples/example19-springmvc-3" />
+    <file type="web" url="file://$PROJECT_DIR$/examples/example20-servlet-1" />
+    <file type="web" url="file://$PROJECT_DIR$/examples/example21-springsecurity-1" />
+    <file type="web" url="file://$PROJECT_DIR$/examples/example22-springvalildation-1" />
+    <file type="web" url="file://$PROJECT_DIR$/examples/example25-restdemo-1" />
+    <file type="web" url="file://$PROJECT_DIR$/exercises/exercise00_1" />
+    <file type="web" url="file://$PROJECT_DIR$/exercises/exercise16_2" />
+    <file type="web" url="file://$PROJECT_DIR$/exercises/exercise19.1" />
+    <file type="web" url="file://$PROJECT_DIR$/exercises/exercise25_1-service" />
+    <file type="web" url="file://$PROJECT_DIR$/exercises/exercise25_2-service" />
+    <file type="web" url="file://$PROJECT_DIR$/project/2017-01/water/code/attendance" />
+    <file type="web" url="file://$PROJECT_DIR$/project/2017-01/water/code/timesheet" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/project/2017-01/water/code/timesheet/pom.xml" />
+        <option value="$PROJECT_DIR$/project/2017-01/water/code/attendance/pom.xml" />
+        <option value="$PROJECT_DIR$/project/checkingattendance/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example11-di-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example11-di-2/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example11-di-3/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example11-di-4/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example11-di-5/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example07-hql-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example07-hql-2/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example07-hql-3/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example07-hql-4/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example07-hql-5/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example13-aop-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example13-aop-2/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example13-aop-3/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example13-aop-4/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example23-rmi-2/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example15-async-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example10-spring-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example10-spring-2/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example10-spring-3/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example20-servlet-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example25-restdemo-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example00-hibernate-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example02-persistence/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example14-spring-tx-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example19-springmvc-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example19-springmvc-2/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example19-springmvc-3/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example15-scheduling-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example15-scheduling-2/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example15-scheduling-3/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example15-scheduling-4/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example24-jms-sender-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example02-persistence-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example05-inheritance-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example05-inheritance-2/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example05-inheritance-3/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example03-associations-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example03-associations-2/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example03-associations-3/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example03-associations-4/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example03-associations-5/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example03-associations-6/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example24-jms-receiver-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example01-entitymapping-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example21-springsecurity-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example17-springhibernate-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example22-springvalildation-1/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/example16-hibernate-intgration-1/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise00_1/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise02_1/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise02_2/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise07_1/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise09_1/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise11_2/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise11_3/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise12_1/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise13_1/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise15_1/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise16_1/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise16_2/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise19.1/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise23_1-client/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise23_1-server/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise24_1-sender/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise25_1-client/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise25_2-client/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise25_1-service/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise25_2-service/pom.xml" />
+        <option value="$PROJECT_DIR$/exercises/exercise24_1-receiver/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>

@@ -1,0 +1,25 @@
+body {
+    background-color: darkolivegreen;
+}
+.important {
+    font-weight: bold;
+    color: yellow;
+    font-style: italic;
+}
+
+.main_block {
+    height: 500px;
+}
+
+.inner_block {
+    display: inline-block;
+    font-size: 20px;
+}
+
+h1, h2 {
+    color: chartreuse
+}
+
+p, li {
+    color: white;
+}

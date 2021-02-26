@@ -1,0 +1,13 @@
+<div class="container bg-light">
+  <div class="row">
+    <div class="col-3">
+      <user-operation></user-operation>
+    </div>
+    <div [className]="getClass()">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-3" *ngIf="!isAdmin">
+      <advertise></advertise>
+    </div>
+  </div>
+</div>

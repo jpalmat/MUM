@@ -1,0 +1,27 @@
+INDEX VERSION 1.131
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/670943332.index
+/example21-springsecurity-1/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/282244989.index
+/example25-restdemo-1/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3197859409.index
+/example20-servlet-1/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2872707921.index
+/example19-springmvc-1/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1008058118.index
+/exercise00_1/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2536821975.index
+/exercise16_2/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3088200226.index
+/example19-springmvc-2/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3069565683.index
+/example19-springmvc-3/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2239232209.index
+/example19-springmvc-2/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/631079322.index
+/example22-springvalidation-1/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1127181429.index
+/example25-restdemo-1/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/4186688882.index
+/exercise19.1/src/main/java
+/Users/jimmypalma/Documents/mum/EA/samples/cs544-master/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/608862299.index
+/exercise00_1/src/main/java

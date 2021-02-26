@@ -1,0 +1,51 @@
+<div class="container">
+  <table class="table">
+    <tr>
+      <td>Avatar:</td>
+      <td>
+        <div *ngIf="userDetails != null">
+          <img class="img-fit" [src]="userDetails.photo" />
+        </div>
+        <br />
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="uploader.uploadAll()"
+          [disabled]="!uploader.getNotUploadedItems().length"
+        >
+          Upload
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td>Username:</td>
+      <td *ngIf="userDetails != null">{{ userDetails.username }}</td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td *ngIf="userDetails != null">{{ userDetails.email }}</td>
+    </tr>
+    <tr>
+      <td>Birthday:</td>
+      <td *ngIf="userDetails != null">
+        {{ userDetails.birthday.substr(0, 10) }}
+      </td>
+    </tr>
+    <tr>
+      <td>Country:</td>
+      <td *ngIf="userDetails != null">{{ userDetails.country }}</td>
+    </tr>
+    <tr>
+      <td>Admin:</td>
+      <td *ngIf="userDetails != null">{{ userDetails.isAdmin }}</td>
+    </tr>
+    <tr>
+      <td>Account status:</td>
+      <td *ngIf="userDetails != null">
+        <div *ngIf="userDetails.isEnabled">Enabled</div>
+        <div *ngIf="!userDetails.isEnabled">Disabled</div>
+      </td>
+    </tr>
+  </table>
+</div>
