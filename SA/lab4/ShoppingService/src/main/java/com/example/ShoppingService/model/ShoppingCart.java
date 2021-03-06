@@ -29,4 +29,17 @@ public class ShoppingCart {
     public void setCartlineList(ArrayList<CartLine> cartlineList) {
         this.cartlineList = cartlineList;
     }
+
+    public void addToCart(Product product, int quantity) {
+        for (CartLine cline : cartlineList) {
+            if (cline.getProduct().getProductnumber().equals(product.getProductnumber())) {
+                cline.setQuantity(cline.getQuantity()+quantity);
+                return;
+            }
+        }
+        CartLine cline = new CartLine();
+        cline.setProduct(product);
+        cline.setQuantity(quantity);
+        cartlineList.add(cline);
+    }
 }
