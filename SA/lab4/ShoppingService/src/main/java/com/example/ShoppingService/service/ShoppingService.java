@@ -18,12 +18,10 @@ public class ShoppingService {
     OrderService orderService;
 
     public void addToCart(String cartId, String productnumber, int quantity) {
-        Product productsproduct = productCatalogService.getProduct(productnumber);
-        //create a shopping product from a products product
-        Product product = new Product(productsproduct.getProductnumber(),productsproduct.getDescription(),productsproduct.getPrice());
-        Optional<ShoppingCart> cartOptional = shoppingCartRepository.findById(cartId);
-        if (cartOptional.isPresent() && product != null) {
-            ShoppingCart cart = cartOptional.get();
+        Product product = productCatalogService.getProduct(productnumber);
+        Optional<ShoppingCart> previousCart = shoppingCartRepository.findById(cartId);
+        if (previousCart.isPresent() && product != null) {
+            ShoppingCart cart = previousCart.get();
             cart.addToCart(product, quantity);
             shoppingCartRepository.save(cart);
         }

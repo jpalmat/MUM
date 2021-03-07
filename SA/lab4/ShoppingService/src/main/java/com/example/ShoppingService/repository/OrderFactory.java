@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class OrderFactory {
     public static Order createOrder(ShoppingCart cart) {
-        Order order = new Order(cart.getCartid(), new Date(),"placed");
+        Order order = new Order("1", cart.getCartid());
         return order;
     }
 }
