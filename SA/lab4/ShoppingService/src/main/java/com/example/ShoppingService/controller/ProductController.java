@@ -17,9 +17,9 @@ public class ProductController {
     @Autowired
     ProductCatalogService productCatalogService;
 
-    @GetMapping("/product/{productnumber}")
-    public ResponseEntity<?> getContact(@PathVariable String productnumber) {
-        Product product = productCatalogService.getProduct(productnumber);
+    @GetMapping("/product")
+    public ResponseEntity<?> getContact(@RequestBody Product product) {
+        Product productDb = productCatalogService.getProduct(product.getProductnumber());
         return new ResponseEntity<Product>(product, HttpStatus.OK);
     }
 
