@@ -1,0 +1,11 @@
+logging:
+  level:
+    root: ERROR
+    org: ERROR
+
+spring:
+   data:
+    mongodb: 
+      host: localhost
+      port: 27017
+      database: testdb
