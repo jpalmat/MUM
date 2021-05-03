@@ -1,0 +1,27 @@
+1. Explain why do we want sometimes to use setImmediate instead of using setTimeout?
+setTimeout callbacks are put in the Timer queue and are executed after I/O and Check callbacks. They are not executed immediately.
+On the contrary, setImmediate callbacks are called after I/O queue callbacks finished execution.
+
+Hence, we opt to use setImmediate if we want to execute callbacks without the need to wait for all other functions in I/O and Check queues to finish
+execution.
+
+2. Explain the difference between process.nextTick and setImmediate?
+The major difference according to my reading is that the setImmediate function queues its callbacks on the event loop but
+process.nextTick doesn't. Also, process.nextTick callbacks execute before going back to the event loop, thus, they run before
+the setImmediate.
+
+Callbacks passed to the process.nextTick are executed immediately after the end of the normal flow. However, the setImmediate callbacks
+are set on the queue per the order they are created and executed per the loop iteration.
+
+However, it feels like that the naming of the two APIs doesn't perfectly match what they do. Exchanging their names makes a lot of sense because
+process.nextTick executes immediately after the end of the normal flow, hence calling it setImmediate might make sense. The same is true for the
+setImmediate.
+
+3. Name 10 core modules that Node provides by default.
+The following are the core node modules that are available by default: 
+global          require         setImmediate
+console         fs              URL
+process         http            isNaN
+path
+ 
+           

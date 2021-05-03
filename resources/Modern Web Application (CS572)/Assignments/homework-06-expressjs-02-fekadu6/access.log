@@ -1,0 +1,8 @@
+::ffff:127.0.0.1 - - [08/Sep/2019:15:54:04 +0000] "GET /grades/api HTTP/1.1" 200 50 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
+::ffff:127.0.0.1 - - [08/Sep/2019:15:55:01 +0000] "GET /grades/api HTTP/1.1" 200 50 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
+::ffff:127.0.0.1 - - [08/Sep/2019:15:55:11 +0000] "GET /grades/api/1 HTTP/1.1" 200 50 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
+::ffff:127.0.0.1 - - [08/Sep/2019:16:08:06 +0000] "POST /grades/api HTTP/1.1" 200 35 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
+::ffff:127.0.0.1 - - [08/Sep/2019:16:09:03 +0000] "POST /grades/api HTTP/1.1" 200 35 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
+::ffff:127.0.0.1 - - [08/Sep/2019:17:16:07 +0000] "POST /grades/api HTTP/1.1" 200 35 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
+::ffff:127.0.0.1 - - [08/Sep/2019:17:16:20 +0000] "POST /grades/api HTTP/1.1" 200 35 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
+::ffff:127.0.0.1 - - [08/Sep/2019:17:16:46 +0000] "POST /grades/api HTTP/1.1" 200 35 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"

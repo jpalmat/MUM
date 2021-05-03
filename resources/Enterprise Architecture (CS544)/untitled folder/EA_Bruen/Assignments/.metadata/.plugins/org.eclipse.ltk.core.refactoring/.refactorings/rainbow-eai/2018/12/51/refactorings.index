@@ -1,0 +1,20 @@
+1545241849573	Copy files
+1545241867594	Copy files
+1545241967321	Copy compilation unit
+1545245027249	Delete element
+1545245064281	Rename package 'edu.mum'
+1545245131212	Delete elements
+1545245163337	Rename type 'OrderTransformer'
+1545245248852	Rename type 'OrderTransformerImpl'
+1545245646215	Rename local variable 'bookRouteOrder'
+1545245773156	Rename resource 'amqp-order-app-context.xml'
+1545245802415	Rename resource 'jms-warehouse-app-context.xml'
+1545245826424	Rename resource 'orderGateway.xml'
+1545245984737	Copy package
+1545246004498	Move compilation unit
+1545246022898	Move compilation unit
+1545246026401	Delete element
+1545246039392	Delete element
+1545246056499	Rename type 'WarehouseMessageListener'
+1545246565249	Move compilation units
+1545250777176	Delete element

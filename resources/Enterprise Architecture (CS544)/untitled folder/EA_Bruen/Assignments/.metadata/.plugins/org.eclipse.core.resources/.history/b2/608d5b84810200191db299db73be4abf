@@ -1,0 +1,17 @@
+package edu.mum.rainbow.business.service;
+
+import java.util.List;
+
+import edu.mum.rainbow.common.model.DailyTransaction;
+
+public interface DailyTransactionService {
+
+	List<DailyTransaction> fetchDailyTransactions();
+	
+	List<DailyTransaction> fetchDailyTransactionsByClient(String clientNo);
+	
+	void archiveDailyTransaction(DailyTransaction dailyTransaction);
+
+	List<String> listTranClientIds();
+
+}

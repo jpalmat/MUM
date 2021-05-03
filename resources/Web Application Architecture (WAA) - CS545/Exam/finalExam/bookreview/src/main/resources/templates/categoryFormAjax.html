@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Category Form</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script th:src="@{/js/ajax.js}" type="text/javascript"></script>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+    </tr>
+    </thead>
+    <tbody id="categoryData">
+    <!--    Upon successful submission of category using AJAX, the submitted category will
+    be displayed HERE!!!.
+    The way the category displayed is coded within the ajax.js file -->
+    </tbody>
+</table>
+<br><hr>
+<form method="post" id="categoryForm">
+    <input type="text" name="name">
+    <input type="button" value="Add Category" onclick="addCategory()">
+</form>
+<div id="errors"></div>
+</body>
+</html>

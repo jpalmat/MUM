@@ -1,0 +1,19 @@
+{
+  "folders": [
+	{
+		"path": "/Users/gladiator/Documents/Projects/angular_projects"
+	},
+	{
+		"path": "/Users/gladiator/Documents/MUM/MWA/Assignments"
+	},
+	{
+		"path": "/Users/gladiator/Documents/MUM/MWA/Exercise"
+	},
+	{
+		"path": "/Users/gladiator/Documents/MUM/MWA/Assignments/homework-03-nodejs-02-fekadu6"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Exercise"
+  }
+}

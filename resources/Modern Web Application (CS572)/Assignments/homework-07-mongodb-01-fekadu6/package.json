@@ -1,0 +1,24 @@
+{
+  "name": "homework-07-mongodb-01-fekadu6",
+  "version": "1.0.0",
+  "description": "Create a NoSQL design model for an application to manage a library, taking into consideration the following requirements: * Books have an `ISBN number` and are categorized by `author` and tagged by `keywords` to facilitate search * Books can be borrowed by students, so the librarian will be able to check all borrowed books and their `return date` so he may contact students who are late returning their books.",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://fekadu6:Admin_911@github.com/maharishi-university/homework-07-mongodb-01-fekadu6.git"
+  },
+  "author": "Fekadu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maharishi-university/homework-07-mongodb-01-fekadu6/issues"
+  },
+  "homepage": "https://github.com/maharishi-university/homework-07-mongodb-01-fekadu6#readme"
+}

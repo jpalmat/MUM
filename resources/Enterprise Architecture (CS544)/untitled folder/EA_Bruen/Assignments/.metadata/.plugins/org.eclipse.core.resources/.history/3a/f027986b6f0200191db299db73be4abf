@@ -1,0 +1,39 @@
+package edu.mum.rainbow.integration.dao.impl;
+
+import java.util.List;
+
+import javax.persistence.Query;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import edu.mum.rainbow.business.service.impl.$missing$;
+import edu.mum.rainbow.common.model.Account;
+import edu.mum.rainbow.common.model.DailyTransaction;
+import edu.mum.rainbow.integration.dao.AccountDAO;
+import edu.mum.rainbow.integration.dao.DailyTransactionDAO;
+
+@Repository
+public class DailyTransactionDAOImpl extends GenericDAOImpl<DailyTransaction> implements DailyTransactionDAO{
+
+	@Autowired
+	private AccountDAO accountDAO;
+	
+	public DailyTransactionDAOImpl() {
+		super.setDaoType(DailyTransaction.class);
+	}
+
+	@Override
+	public List<DailyTransaction> fetchDailyTransactionsByClient(String clientNo) {
+		Account account = accountDAO.findByClient(clientNo);
+		Query query = entityManager.createQuery("select tran from DailyTransaction tran where tran.client.clientNo = :clientNo and tran.account.accountNo = :accountNo");
+		query.setParameter("clientNo", clientNo).setParameter("accountNo", account.getAccountNo());
+		List tranList = (List<DailyTransaction>)query.getResultList();
+		return tranList;
+	}
+	
+	public List<String> listClientIds() {
+		Query query = entityManager.createQuery("select distinct tran.Client.clientNo from DailyTransaction tran");
+		return (List<String>)query.getResultList();
+	}
+}

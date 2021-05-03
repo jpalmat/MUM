@@ -1,0 +1,25 @@
+package edu.mum.rainbow.business.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import edu.mum.rainbow.business.service.TransactionService;
+import edu.mum.rainbow.common.model.Transaction;
+import edu.mum.rainbow.integration.dao.TransactionDAO;
+
+@Service
+@Transactional
+public class TransactionServiceImpl implements TransactionService {
+
+	@Autowired
+	private TransactionDAO transactionDAO;
+
+	@Override
+	public void createTransaction(Transaction transaction) {
+		transactionDAO.save(transaction);
+	}
+
+	
+
+}

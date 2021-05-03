@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.id}">1</td>
+                <td th:text="${book.title}">Long Walk to Freedom</td>
+                <td th:text="${book.author}">Nelson Mandela</td>
+                <td  th:text="${book.category.getName()}">Autobiography</td>
+                <td><a href="#" th:href="@{/comment/view/{id}(id=${book.id})}">View</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+
+    <div class="container">
+        <form action="#" th:object="${book}" method="post" th:action="@{/book/add}">
+            <div class="row">
+                <label for="title">Title</label>
+                <input type="text" th:field="*{title}" id="title" placeholder="Title">
+            </div>
+            <div class="row">
+                <label for="title">Author</label>
+                <input type="text" th:field="*{author}" id="title" placeholder="author">
+            </div>
+            <div class="row">
+                <label for="title">Category</label>
+                <select id="category" th:field="*{category}">
+                    <option th:each="category: ${categories}" th:value="${category.getId()}" th:text="${category.getName()}">Novel</option>
+                </select>
+            </div>
+            <div class="row">
+                <input type="submit" value="Add Book" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

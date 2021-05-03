@@ -1,0 +1,36 @@
+package edu.mum.rest.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import edu.mum.rainbow.common.model.Client;
+import edu.mum.rainbow.rest.RestHttpHeader;
+import edu.mum.rainbow.rest.service.ClientRestService;
+
+@Component
+public class ClientRestServiceImpl implements ClientRestService {
+
+	@Autowired
+	RestHttpHeader restHttpHeader;
+
+	@Override
+	public Client save(Client client) {
+		RestTemplate restTemplate = restHttpHeader.getRestTemplate();
+		HttpEntity<Client> httpEntity = new HttpEntity<Client>(client, restHttpHeader.getHttpHeaders());
+//		restTemplate.postForObject("http://localhost:8080/Mersal-RestService/mersalClients/add/", httpEntity, Client.class);
+		restTemplate.exchange("http://localhost:8080/rainbow-rest/clients/add/", HttpMethod.POST, httpEntity,Client.class);
+		return null;
+	}
+
+	@Override
+	public List<Client> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

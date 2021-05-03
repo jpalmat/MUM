@@ -1,0 +1,13 @@
+package edu.mum.rainbow.integration.dao;
+
+import java.util.List;
+
+import edu.mum.rainbow.common.model.DailyTransaction;
+
+public interface DailyTransactionDAO extends GenericDAO<DailyTransaction>{
+
+	List<DailyTransaction> fetchDailyTransactionsByClient(String clientNo);
+
+	List<String> listClientIds();
+
+}

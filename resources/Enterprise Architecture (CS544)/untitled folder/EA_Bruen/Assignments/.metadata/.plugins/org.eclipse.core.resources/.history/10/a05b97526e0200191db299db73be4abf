@@ -1,0 +1,39 @@
+package edu.mum.rainbow.business.service.impl;
+
+import java.util.List;
+
+import javax.persistence.Query;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import edu.mum.rainbow.business.service.DailyTransactionService;
+import edu.mum.rainbow.common.model.Account;
+import edu.mum.rainbow.common.model.DailyTransaction;
+import edu.mum.rainbow.integration.dao.DailyTransactionDAO;
+
+@Service
+@Transactional
+public class DailyTransactionServiceImpl implements DailyTransactionService {
+
+	@Autowired
+	private DailyTransactionDAO dailyTransactionDAO;
+
+	@Override
+	public List<DailyTransaction> fetchDailyTransactions() {
+		return dailyTransactionDAO.findAll();
+	}
+
+	@Override
+	public List<DailyTransaction> fetchDailyTransactionsByClient(String clientNo) {
+		return dailyTransactionDAO.fetchDailyTransactionsByClient(clientNo);
+	}
+	
+	@Override
+	public void archiveDailyTransaction(DailyTransaction dailyTransaction) {
+		dailyTransaction.setStatus("Archived");
+		dailyTransactionDAO.update(dailyTransaction);
+	}
+
+}

@@ -1,0 +1,8 @@
+div {
+  color: #ff7373;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  border: #ccc 1px dotted;
+  display: inline;
+  padding: 15px;
+}

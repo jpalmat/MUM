@@ -1,0 +1,25 @@
+package edu.mum.rainbow.test;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.authentication.AuthenticationManager;
+
+import edu.mum.rainbow.business.service.ClientService;
+import edu.mum.rainbow.main.Main;
+
+public class TestClientEntityMain {
+
+	@SuppressWarnings({ "resource", "unused" })
+	public static void main(String[] args) {
+		
+		ApplicationContext ctx = new ClassPathXmlApplicationContext(Main.configFiles, Main.class);
+
+		AuthenticationManager authenticationManager = (AuthenticationManager) ctx.getBean("authenticationManager");
+
+		ClientService clientServ = (ClientService) ctx.getBean("clientServiceImpl");
+
+		//TODO:
+		
+	}
+
+}

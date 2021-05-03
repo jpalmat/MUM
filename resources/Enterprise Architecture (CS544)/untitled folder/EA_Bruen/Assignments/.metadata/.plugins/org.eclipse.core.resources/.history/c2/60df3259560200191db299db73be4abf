@@ -1,0 +1,9 @@
+package edu.mum.rainbow.business.service;
+
+import edu.mum.rainbow.common.model.Transaction;
+
+public interface TransactionService {
+
+	void createTransaction(Transaction summary);
+
+}

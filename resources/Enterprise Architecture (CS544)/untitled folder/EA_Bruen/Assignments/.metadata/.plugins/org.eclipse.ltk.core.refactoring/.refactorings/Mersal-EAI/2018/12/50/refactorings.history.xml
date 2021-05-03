@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Main.java&apos; to &apos;rainbow-core/src/main/java/edu.mum.rainbow.business&apos;&#x0D;&#x0A;- Original project: &apos;Mersal-EAI&apos;&#x0D;&#x0A;- Destination element: &apos;rainbow-core/src/main/java/edu.mum.rainbow.business&apos;&#x0D;&#x0A;- Original element: &apos;edu.mum.mersal.main.Main.java&apos;" description="Copy compilation unit" destination="=rainbow-core/src\/main\/java&lt;edu.mum.rainbow.business" element1="/src\/main\/java&lt;edu.mum.mersal.main{Main.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1544508827729" units="1" version="1.0"/>
+</session>

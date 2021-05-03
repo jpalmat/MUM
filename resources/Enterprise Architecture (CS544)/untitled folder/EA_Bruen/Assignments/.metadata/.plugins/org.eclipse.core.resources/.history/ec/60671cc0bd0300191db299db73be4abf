@@ -1,0 +1,18 @@
+package edu.mum.rainbow.integration.transformer;
+
+import org.springframework.integration.annotation.Transformer;
+
+import edu.mum.rainbow.common.model.MonthlyStatment;
+
+public class StatementTransformerImpl implements StatementTransformer {
+
+    /**
+    * Transform Order from AMQP to RouteOrder for JMS
+     */
+	@Transformer(inputChannel="fromAmqpStatement", outputChannel="processStatement")
+	public MonthlyStatment transformOrder(MonthlyStatment monthlyStatment) {
+
+		return monthlyStatment;
+	}
+
+}

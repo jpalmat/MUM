@@ -1,0 +1,72 @@
+package edu.mum.rainbow.common.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class MonthlyStatment {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	
+	@Column
+	private String forMonth;
+	
+	@Column()
+	private String clientName;
+	
+	@Column
+	private String fullAccountNo;
+
+	@Column()
+	private double totalAmount = 0.0;
+
+	public MonthlyStatment() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getForMonth() {
+		return forMonth;
+	}
+
+	public void setForMonth(String forMonth) {
+		this.forMonth = forMonth;
+	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+	public String getFullAccountNo() {
+		return fullAccountNo;
+	}
+
+	public void setFullAccountNo(String fullAccountNo) {
+		this.fullAccountNo = fullAccountNo;
+	}
+
+	public double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+	
+}

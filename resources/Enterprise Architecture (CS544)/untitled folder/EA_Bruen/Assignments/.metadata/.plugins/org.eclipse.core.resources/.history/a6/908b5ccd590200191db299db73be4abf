@@ -1,0 +1,39 @@
+package edu.mum.rainbow.business.service.impl;
+
+import java.time.LocalDate;
+import java.util.Calendar;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import edu.mum.rainbow.business.service.TransactionService;
+import edu.mum.rainbow.common.model.DailyTransaction;
+import edu.mum.rainbow.common.model.Transaction;
+import edu.mum.rainbow.integration.dao.TransactionDAO;
+
+@Service
+@Transactional
+public class TransactionServiceImpl implements TransactionService {
+
+	@Autowired
+	private TransactionDAO transactionDAO;
+
+	@Override
+	public Transaction transferDailyToHistoricalTransaction(DailyTransaction dailyTransaction) {
+		Transaction transaction = new Transaction();
+		transaction.setAccountNo(dailyTransaction.getAccount().getAccountNo());
+		transaction.setClientNo(dailyTransaction.getClient().getClientNo());
+		transaction.setDescription(dailyTransaction.getDescription());
+		transaction.setTranTime(dailyTransaction.getTranTime());
+		transaction.setPostingTime(Calendar.getInstance().getTime());
+	}
+
+	@Override
+	public Transaction createTransaction(Transaction tran) {
+		transactionDAO.save(tran);
+		return tran;
+	}
+
+	
+}

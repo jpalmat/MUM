@@ -1,0 +1,25 @@
+package edu.mum.rainbow.integration.listener;
+
+public class StatementReportListener {
+
+	public void listen(ClientBill clientBill) {	
+			
+		System.out.println("AMQP Bill Report System: ");
+		System.out.println("===========================================================");
+		System.out.println("Bill:");
+		System.out.println("-----");
+		System.out.println("Name      : " + clientBill.getName());
+		System.out.println("Mobile No : " + clientBill.getMobileNo());
+		System.out.println("Total     : " + clientBill.getBillTotalAmount());
+		System.out.println("	Transactions:");
+		
+		String pattern = "MM/dd/yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		for(DailyCallSummary dailySummary: clientBill.getCallsSummaryList()) {
+			System.out.print("	- Date: " + simpleDateFormat.format(dailySummary.getDatetime()) + ", ");
+			System.out.println("	Duration: " + dailySummary.getDuration());
+		}
+		
+		System.out.println("===========================================================");
+	}
+}

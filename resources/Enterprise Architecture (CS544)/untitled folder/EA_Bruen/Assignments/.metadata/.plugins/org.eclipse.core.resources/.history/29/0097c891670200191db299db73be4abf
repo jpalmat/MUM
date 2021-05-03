@@ -1,0 +1,34 @@
+package edu.mum.rainbow.business.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import edu.mum.rainbow.business.service.ClientService;
+import edu.mum.rainbow.common.model.Client;
+import edu.mum.rainbow.integration.dao.ClientDAO;
+
+@Service
+@Transactional
+public class ClientServiceImpl implements ClientService {
+
+	@Autowired
+	private ClientDAO clientDAO;
+
+	@Override
+	public List<Client> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addClient(Client client) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+}

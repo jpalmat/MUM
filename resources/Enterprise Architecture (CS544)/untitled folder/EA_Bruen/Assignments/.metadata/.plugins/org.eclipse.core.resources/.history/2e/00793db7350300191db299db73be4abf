@@ -1,0 +1,13 @@
+package edu.mum.rainbow.business.service;
+
+import java.util.List;
+
+import edu.mum.rainbow.common.model.DailyTransaction;
+import edu.mum.rainbow.common.model.MonthlyStatment;
+
+public interface MonthlyStatmentService {
+
+	MonthlyStatment createMonthlyStatment(MonthlyStatment monthlyCost);
+
+	MonthlyStatment generateMonthlyStatment(List<DailyTransaction> transactionsByClient);
+}

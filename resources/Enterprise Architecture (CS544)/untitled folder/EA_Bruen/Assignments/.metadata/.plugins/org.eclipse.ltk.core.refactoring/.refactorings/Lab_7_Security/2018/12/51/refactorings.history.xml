@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 2 elements to &apos;amqp-context.xml&apos;&#x0D;&#x0A;- Original project: &apos;Lab_7_Security&apos;&#x0D;&#x0A;- Destination element: &apos;amqp-context.xml&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     applicationContext.xml&#x0D;&#x0A;     security-context.xml&#x0D;&#x0A;- Update references to refactored element" description="Move files" element1="src/main/resources/context/applicationContext.xml" element2="src/main/resources/context/security-context.xml" files="2" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1544974536736" target="/rainbow-core/src/main/resources/META-INF/spring/context/amqp-context.xml" units="0" version="1.0"/>
+</session>

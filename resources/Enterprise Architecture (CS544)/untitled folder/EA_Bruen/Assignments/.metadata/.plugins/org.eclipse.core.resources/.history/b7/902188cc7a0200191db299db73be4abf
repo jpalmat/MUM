@@ -1,0 +1,42 @@
+package edu.mum.rainbow.business.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import edu.mum.rainbow.business.service.MonthlyStatmentService;
+import edu.mum.rainbow.common.model.DailyTransaction;
+import edu.mum.rainbow.common.model.MonthlyStatment;
+import edu.mum.rainbow.integration.dao.MonthlyStatmentDAO;
+
+@Service
+@Transactional
+public class MonthlyStatmentServiceImpl implements MonthlyStatmentService {
+
+	@Autowired
+	private MonthlyStatmentDAO monthlyStatmentDAO;
+
+	@Override
+	public MonthlyStatment createMonthlyStatment(MonthlyStatment monthlyStatment) {
+		monthlyStatmentDAO.save(monthlyStatment);
+		return monthlyStatment;
+	}
+
+	@Override
+	public MonthlyStatment generateMonthlyStatment(List<DailyTransaction> transactionsByClient) {
+		MonthlyStatment statment = new MonthlyStatment();
+		for (DailyTransaction dailyTransaction : transactionsByClient) {
+			statment.setClientName(dailyTransaction.getClient().getFirstName()+ " "+dailyTransaction.getClient().getLastName());
+			statment.setFullAccountNo(dailyTransaction.getClient().getClientNo() +" - "+dailyTransaction.getAccount().getAccountNo());
+			statment.setTotalAmount(statment.getTotalAmount()+ dailyTransaction.getAmount());
+			
+			//TODO:
+			//statment.setForMonth(dailyTransaction.getTranTime());
+		}
+		monthlyStatmentDAO.save(statment);
+		return statment;
+	}
+
+}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1543166953538_0" label="Java Main Sources" name="Java Main Sources">
+<item elementID="=rainbow-api/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-api/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-core/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-core/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-reporting/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-reporting/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-rest/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-rest/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-rest/src\/sql" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-rest-client/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-rest-client/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Lab_8_ValidationSol/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Lab_8_ValidationSol/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-eai/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-eai/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-email/src\/main\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-email/src\/main\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-email/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-email/src\/test\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1543166953593_1" label="Java Test Sources" name="Java Test Sources">
+<item elementID="=rainbow-reporting/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-rest/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-rest/src\/test\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-rest-client/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-rest-client/src\/test\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Lab_8_ValidationSol/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=Lab_8_ValidationSol/src\/test\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-eai/src\/test\/java" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1543886395379_4" label="Labs" name="Labs">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_5_SubSetSelect" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_9_AMQPConsumer" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_12_MVC" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/HelloWorldLab" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_12_RestService" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_2_BasicOperations" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_5_Batch" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_10_AuctionProducer" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_5_JoinFetch" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_3_Associations" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_6_AOP" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_11_MVC" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_7_Security" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_8_ValidationGroupSol" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_9_AMQPProducer" type="4"/>
+<item elementID="=Lab_8_ValidationSol" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_4_JPQL" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Lab_10_AuctionConsumer" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1543886411114_5" label="Mersal" name="Mersal">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Mersal-api" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Mersal-Core" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Mersal-EAI" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Mersal-Reporting" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Mersal-Rest" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Mersal-RestClient" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1543886723204_7" label="rainbow" name="rainbow">
+<item elementID="=rainbow-reporting" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-rest-client" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-rest" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-api" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-core" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=rainbow-eai" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1543166982272_2" label="Window Working Set" name="Aggregate for window 1543166982272"/>
+<mruList name="Mersal"/>
+<mruList name="Labs"/>
+</workingSetManager>

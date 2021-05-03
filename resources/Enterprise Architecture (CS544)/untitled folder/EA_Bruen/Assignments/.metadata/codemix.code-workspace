@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "path": "E:\\MuM\\5-EA\\Assignments\\Lab_9_AMQPProducer"
+    }
+  ],
+  "settings": {
+    "javascript.referencesCodeLens.enabled": true,
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.referencesCodeLens.enabled": true
+  }
+}

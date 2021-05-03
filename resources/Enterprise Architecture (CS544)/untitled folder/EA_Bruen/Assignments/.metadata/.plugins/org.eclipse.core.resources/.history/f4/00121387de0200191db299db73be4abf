@@ -1,0 +1,22 @@
+package edu.mum.rainbow.integration.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import edu.mum.rainbow.common.model.Transaction;
+import edu.mum.rainbow.integration.dao.TransactionDAO;
+
+@Repository
+public class TransactionDAOImpl extends GenericDAOImpl<Transaction> implements TransactionDAO{
+
+	public TransactionDAOImpl() {
+		super.setDaoType(Transaction.class);
+	}
+
+	@Override
+	public List<Transaction> fetchTransactionsByClient(String clientNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

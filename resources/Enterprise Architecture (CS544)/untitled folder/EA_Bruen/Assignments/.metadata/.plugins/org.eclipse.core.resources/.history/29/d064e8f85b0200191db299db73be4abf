@@ -1,0 +1,5 @@
+INSERT INTO DailyTransaction (id,tranId,amount,description,tranTime,accountId,clientId) VALUES( '201812170001' , 50.30 ,'amazon' , '2018-01-01', 1 , 1 );
+INSERT INTO DailyTransaction (id,tranId,amount,description,tranTime,accountId,clientId) VALUES( '201812170001' , 10.20 ,'ebay' , '2018-01-01 05:13:08', 1 , 1 );
+INSERT INTO DailyTransaction (id,tranId,amount,description,tranTime,accountId,clientId) VALUES( '201812170001' , 30.15 ,'BestBuy' , '2018-01-01 05:13:08', 1 , 1 );
+INSERT INTO DailyTransaction (id,tranId,amount,description,tranTime,accountId,clientId) VALUES( '201812170001' , 7.10 ,'Walmart' , '2018-01-01 05:13:08', 1 , 1 );
+INSERT INTO DailyTransaction (id,tranId,amount,description,tranTime,accountId,clientId) VALUES( '201812170001' , 3.00 ,'MAC' , '2018-01-01 05:13:08', 1 , 1 );

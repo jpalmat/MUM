@@ -1,0 +1,10 @@
+INSERT INTO Account (id,accountNo,balance,currency,type,clientId) VALUES( 9001 ,10000,'100','USD','saving',1);
+INSERT INTO Account (id,accountNo,balance,currency,type,clientId) VALUES( 9002 ,10000,'50','USD','saving',2);
+INSERT INTO Account (id,accountNo,balance,currency,type,clientId) VALUES( 9003 ,10000,'250','USD','checking',3);
+INSERT INTO Account (id,accountNo,balance,currency,type,clientId) VALUES( 9004 ,10000,'150','USD','saving',4);
+INSERT INTO Account (id,accountNo,balance,currency,type,clientId) VALUES( 9005 ,10000,'650','USD','checking',5);
+INSERT INTO Account (id,accountNo,balance,currency,type,clientId) VALUES( 9006 ,10000,'550','USD','checking',6);
+INSERT INTO Account (id,accountNo,balance,currency,type,clientId) VALUES( 9007 ,10000,'350','USD','checking',7);
+INSERT INTO Account (id,accountNo,balance,currency,type,clientId) VALUES( 9008 ,10000,'350','USD','saving',8);
+INSERT INTO Account (id,accountNo,balance,currency,type,clientId) VALUES( 9009 ,10000,'850','USD','checking',9);
+INSERT INTO Account (id,accountNo,balance,currency,type,clientId) VALUES( 9010 ,10000,'440','USD','saving',10);

@@ -1,0 +1,17 @@
+//Students collection
+{
+    _id:, 
+    fname:,
+    lname:,
+    email:,
+    department:,
+    //additional properties of a student...
+
+    books_borrowed:[{
+        isbn:,
+        title:,
+        author:,
+        keywords:[key1, key2, key2, ...],
+        return_date:
+    }]
+}

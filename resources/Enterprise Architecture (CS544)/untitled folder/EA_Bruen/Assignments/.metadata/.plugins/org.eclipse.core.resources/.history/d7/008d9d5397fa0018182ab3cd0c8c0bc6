@@ -1,0 +1,54 @@
+package edu.mum.mersal.business.batch.monthlycallcost;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.NonTransientResourceException;
+import org.springframework.batch.item.ParseException;
+import org.springframework.batch.item.UnexpectedInputException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import edu.mum.mersal.business.service.DailyCallSummaryService;
+import edu.mum.mersal.business.service.MonthlyCallCostService;
+import edu.mum.mersal.common.model.DailyCallSummary;
+import edu.mum.mersal.common.model.MonthlyCallCost;
+
+@Component
+public class MonthlyCallCostBatchReader implements ItemReader<MonthlyCallCost> {
+
+	@Autowired
+	private DailyCallSummaryService dailyCallSummaryService;
+
+	@Autowired
+	private MonthlyCallCostService monthlyCallCostService;
+
+	private List<String> clientIds;
+	private int currentIndex = 0;
+
+	@PostConstruct
+	private void init() {
+		this.clientIds = dailyCallSummaryService.listAllClientIds();
+	}
+
+	@Override
+	public MonthlyCallCost read()
+			throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+		updateCurrentIndex();
+		String clientId = this.clientIds.get(currentIndex++);
+
+		List<DailyCallSummary> dailyClientSummaries = dailyCallSummaryService.getDailyCallSummaryForClient(clientId);
+		MonthlyCallCost clientMonthlyCost = monthlyCallCostService.generateMonthlyCallCost(dailyClientSummaries);
+		return clientMonthlyCost;
+	}
+
+	private void updateCurrentIndex() {
+		if (this.clientIds == null || this.clientIds.isEmpty())
+			this.currentIndex = 0;
+		if (currentIndex >= this.clientIds.size())
+			System.exit(0);
+	}
+
+}

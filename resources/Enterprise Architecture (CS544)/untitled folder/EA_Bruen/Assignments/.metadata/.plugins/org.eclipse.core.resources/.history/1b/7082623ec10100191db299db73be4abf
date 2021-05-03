@@ -1,0 +1,14 @@
+package edu.mum.mersal.rest.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+import edu.mum.mersal.common.model.Call;
+
+@Component
+public interface CallRestService {
+
+	public Call save(Call call);
+
+	public List<Call> getClientCalls(String mobileNumber);
+}

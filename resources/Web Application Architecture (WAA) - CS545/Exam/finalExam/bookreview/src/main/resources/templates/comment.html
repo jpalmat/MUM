@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Review a book</title>
+</head>
+<body>
+<h3>Book info:</h3>
+<p>Id:<span th:text="${book.getId()}">1</span></p>
+<p>Title:<span th:text="${book.getTitle()}">1</span></p>
+<p>Author:<span th:text="${book.getAuthor()}">1</span></p>
+<p>Category:<span th:text="${book.getCategory().getName()}">Cat name</span></p>
+
+<p>Comments:</p>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Comment</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="comment : ${comments}">
+        <td th:text="${comment.id}">1</td>
+        <td th:text="${comment.userComment}">Long Walk to Freedom</td>
+    </tr>
+    </tbody>
+</table>
+
+<br><hr>
+<form action="#" th:action="@{/comment/post}" method="get">
+    <input type="hidden" name="book.id" th:value="${book.getId()}">
+    <input type="text" name="userComment" placeholder="comment">
+    <input type="submit" value="Add Comment">
+</form>
+</body>
+</html>

@@ -1,0 +1,9 @@
+Exercise 1:
+
+The custom array method, removeNum, uses async & await to call the promise function that removes the specified array element. When the execution starts, the JavaScript engine pushes the promise function to the queue while executing the first and second console.log lines.
+Finally, when the result of the promise function is ready, and there are no other tasks on the stack, the event loop moves the promise function to the stack. Later the result of the promise function, the new array, is displayed.
+
+The event loop, therefore, is in charge of managing the call to the promise function and its execution.
+
+Exercise 2:
+All of the fetch functions perform asynchronously 

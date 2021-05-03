@@ -1,0 +1,16 @@
+package edu.mum.rainbow.rest.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import edu.mum.rainbow.common.model.Call;
+import edu.mum.rainbow.common.model.DailyTransaction;
+
+@Component
+public interface TransactionRestService {
+
+	public DailyTransaction save(DailyTransaction tran);
+
+	public List<DailyTransaction> getClientTran(String mobileNumber);
+}

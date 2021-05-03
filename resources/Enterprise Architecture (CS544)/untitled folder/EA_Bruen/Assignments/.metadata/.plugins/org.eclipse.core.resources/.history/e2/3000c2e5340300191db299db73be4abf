@@ -1,0 +1,26 @@
+package edu.mum.rainbow.business.batch.monthly;
+
+import java.util.List;
+
+import org.springframework.batch.item.ItemWriter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import edu.mum.rainbow.business.service.MonthlyStatmentService;
+import edu.mum.rainbow.common.model.MonthlyStatment;
+
+@Component
+public class MonthlyStatementBatchWriter implements ItemWriter<MonthlyStatment> {
+
+	@Autowired
+	private MonthlyStatmentService monthlyTransactionService;
+
+	@Override
+	public void write(List<? extends MonthlyStatment> statements) throws Exception {
+		for (MonthlyStatment  monthlyStatement: statements) {
+			monthlyTransactionService.createMonthlyStatment(monthlyStatement);
+			if(monthlyStatement!=null)
+				monthlyTransactionService.publishMonthlyStatement(bill);
+		}
+	}
+}

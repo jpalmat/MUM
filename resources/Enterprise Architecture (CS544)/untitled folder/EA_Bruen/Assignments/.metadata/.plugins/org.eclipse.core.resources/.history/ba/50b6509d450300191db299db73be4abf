@@ -1,0 +1,99 @@
+package edu.mum.rainbow.common.model;
+
+import java.io.Serializable;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class Client implements Serializable{
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+
+	@Column()
+	@NotNull(message= "{notNull}")
+	private String clientNo;
+
+	@Column()
+	@Size(min = 5, max = 50, message = "{size}")
+	private String firstName;
+
+	@Column()
+	@Size(min = 5, max = 50, message = "{size}")
+	private String lastName;
+
+	@Column()
+	@NotEmpty(message = "{notEmpty}")
+	private String email;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+	private Set<Account> accountList;
+	
+	public Client() {
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getClientNo() {
+		return clientNo;
+	}
+
+	public void setClientNo(String clientNo) {
+		this.clientNo = clientNo;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Set<Account> getAccountList() {
+		return accountList;
+	}
+
+	public void setAccountList(Set<Account> accountList) {
+		this.accountList = accountList;
+	}
+	
+	@Override
+	public String toString() {
+		return " Client No ["+clientNo+"] , FullName["+firstName+" "+lastName+"] , Email["+email+"]";
+	}
+}

@@ -1,0 +1,24 @@
+package edu.mum.rainbow.integration.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import edu.mum.rainbow.common.model.Account;
+import edu.mum.rainbow.common.model.DailyTransaction;
+import edu.mum.rainbow.integration.dao.DailyTransactionDAO;
+
+@Repository
+public class DailyTransactionDAOImpl extends GenericDAOImpl<DailyTransaction> implements DailyTransactionDAO{
+
+	public DailyTransactionDAOImpl() {
+		super.setDaoType(DailyTransaction.class);
+	}
+
+	@Override
+	public List<DailyTransaction> fetchDailyTransactionsByClient(String clientNo) {
+		Query query = entityManager.createQuery("select acc from Account acc where acc.client.clientNo = :clientNo");
+		return (Account)query.setParameter("clientNo", clientNo).getResultList().get(0);
+		return null;
+	}
+}

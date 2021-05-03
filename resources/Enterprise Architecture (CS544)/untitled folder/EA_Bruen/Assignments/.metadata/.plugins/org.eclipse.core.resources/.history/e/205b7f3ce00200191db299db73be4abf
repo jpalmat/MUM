@@ -1,0 +1,163 @@
+package edu.mum.rainbow.main;
+
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+
+import edu.mum.rainbow.common.model.Client;
+import edu.mum.rainbow.common.model.UserCredentials;
+import edu.mum.rainbow.rest.RestHttpHeader;
+import edu.mum.rainbow.rest.service.ClientRestService;
+import edu.mum.rainbow.rest.service.TransactionRestService;
+
+@Component
+public class RestClient {
+	@Autowired
+	RestHttpHeader remoteApi;
+
+	@Autowired
+	ClientRestService clientRestService;
+
+	@Autowired
+	TransactionRestService transactionRestService;
+
+	public static void main(String[] args) {
+		final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("context/applicationContext.xml");
+
+		applicationContext.getBean(RestClient.class).mainInternal(applicationContext);
+	}
+
+	@SuppressWarnings("unused")
+	private void mainInternal(ApplicationContext applicationContext) {
+
+		System.out.println("\n****************** Welcome to Rainbow-Rest Client ******************\n");
+
+		Scanner sc = new Scanner(System.in);
+
+		String[] options = { "Login as Different User", "Create New Client", "Add Transaction", "Exit" };
+
+		String selectedOption = null;
+
+		System.out.print("Enter username: ");
+		String username = sc.nextLine();
+		System.out.print("Enter password: ");
+		String password = sc.nextLine();
+
+		do {
+
+			System.out.println("\nSelect One of the Following Options By Index: ");
+
+			for (int i = 0; i < options.length; i++) {
+				System.out.println("\t" + i + ". " + options[i]);
+			}
+
+			System.out.print("Enter option Index: ");
+			String option = sc.nextLine();
+			System.out.println("");
+
+			int index = -1;
+
+			try {
+				index = Integer.parseInt(option);
+			} catch (Exception e) {
+				index = -1;
+			}
+
+			if (index >= 0 && index < options.length) {
+				selectedOption = options[index];
+			} else {
+				selectedOption = null;
+				System.out.println("Invalid Option!");
+			}
+
+			if (selectedOption != null) {
+
+				switch (selectedOption) {
+				case "Login as Different User":
+
+					System.out.print("Enter username: ");
+					username = sc.nextLine();
+					System.out.print("Enter password: ");
+					password = sc.nextLine();
+
+					break;
+				case "Create New Client":
+
+					System.out.print("Enter First Name: ");
+					String firstName = sc.nextLine();
+					System.out.print("Enter Last Name: ");
+					String lastName = sc.nextLine();
+					System.out.print("Enter Mobile Number: ");
+					String mobileNumber = sc.nextLine();
+					System.out.print("Enter Email: ");
+					String email = sc.nextLine();
+					System.out.print("Enter Credit Card: ");
+					String creditCard = sc.nextLine();
+					// Intialize default user credentials
+
+					UserCredentials tmpCred = new UserCredentials();
+					tmpCred.setEnabled(false);
+					tmpCred.setUsername(email);
+					tmpCred.setPassword("12345");
+
+					Client client = new Client();
+					client.setFirstName(firstName);
+					client.setLastName(lastName);
+					client.setEmail(email);
+					
+					//tmpClient.setUserCredentials(tmpCred);
+
+					try {
+						clientRestService.save(client);
+						System.out.println("Client Created Successfully!");
+					} catch (Exception e) {
+						System.out.println("Failed to Create Client!");
+//		        		e.printStackTrace();
+					}
+
+					break;
+				case "Add Daily Transaction Record":
+
+					System.out.print("Enter ClientId: ");
+					String tranClientId = sc.nextLine();
+					System.out.print("Enter AccountId: ");
+					String tranAccountId = sc.nextLine();
+					System.out.print("Enter Call Duration: ");
+					String duration = sc.nextLine();
+					// Intialize Call DateTime as CurrentDate
+					int durationVal = 0;
+
+					try {
+						durationVal = Integer.parseInt(duration);
+					} catch (Exception e) {
+						durationVal = 0;
+					}
+
+					/*DailyTransaction tran = new DailyTransaction();
+					tran.setFromNumber(tranClientId);
+					tran.setToNumber(tranAccountId);
+					tran.setDuration(durationVal);
+					tran.setCallDatetime(new Date());
+
+					try {
+						callService.save(tmpCall);
+						System.out.println("Call Intiated Successfully!");
+					} catch (Exception e) {
+						System.out.println("Failed to Intiate Call!");
+//		        			e.printStackTrace();
+					}*/
+
+					break;
+				}
+			}
+
+		} while (!"Exit".equalsIgnoreCase(selectedOption));
+
+		System.out.println("\nTerminated !");
+		sc.close();
+
+	}
+}

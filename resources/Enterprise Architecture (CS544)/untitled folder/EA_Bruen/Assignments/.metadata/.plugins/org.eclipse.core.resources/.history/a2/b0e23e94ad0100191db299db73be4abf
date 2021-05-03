@@ -1,0 +1,22 @@
+package edu.mum.mersal.main;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+public class Main {
+
+	@SuppressWarnings({ "resource", "unused" })
+	public static void main(String[] args) {
+
+		ApplicationContext context = new GenericXmlApplicationContext(
+				"classpath:META-INF/spring/integration/statement-report-context.xml");
+
+		// Used for testing BillReportListener
+		// RabbitTemplate directTemplate = context.getBean("directTemplate",
+		// RabbitTemplate.class);
+		// BillReportPublisher directService = new BillReportPublisher();
+		// directService.publish(directTemplate);
+
+	}
+
+}

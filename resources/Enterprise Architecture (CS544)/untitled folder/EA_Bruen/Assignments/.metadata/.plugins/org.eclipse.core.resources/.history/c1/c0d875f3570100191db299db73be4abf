@@ -1,0 +1,19 @@
+package edu.mum.rainbow.integration.dao.impl;
+
+ 
+
+import org.springframework.stereotype.Repository;
+
+import edu.mum.rainbow.common.model.Group;
+import edu.mum.rainbow.integration.dao.GroupDAO;
+
+
+@Repository
+public class GroupDAOImpl extends GenericDAOImpl<Group> implements GroupDAO {
+
+	public GroupDAOImpl() {
+		super.setDaoType(Group.class );
+		}
+
+ 
+ }

@@ -1,0 +1,8 @@
+package edu.mum.rainbow.business.service;
+
+import edu.mum.rainbow.common.model.MonthlyStatment;
+
+public interface MonthlyStatmentService {
+
+	void createMonthlyStatment(MonthlyStatment monthlyCost);
+}

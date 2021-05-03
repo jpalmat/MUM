@@ -1,0 +1,32 @@
+package edu.mum.mersal.business.batch.monthlycallcost;
+
+import java.util.List;
+
+import org.springframework.batch.item.ItemWriter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import edu.mum.mersal.business.service.BillService;
+import edu.mum.mersal.business.service.MonthlyCallCostService;
+import edu.mum.mersal.common.model.ClientBill;
+import edu.mum.mersal.common.model.MonthlyCallCost;
+
+@Component
+public class MonthlyCallCostBatchWriter implements ItemWriter<MonthlyCallCost> {
+
+	@Autowired
+	private MonthlyCallCostService monthlyCallCostService;
+
+	@Autowired
+	private BillService billService;
+
+	@Override
+	public void write(List<? extends MonthlyCallCost> items) throws Exception {
+		for (MonthlyCallCost monthlyCost : items) {
+			this.monthlyCallCostService.addMonthlyCallCost(monthlyCost);
+			ClientBill bill = this.billService.generateMonthlyBill(monthlyCost.getMobileNumber());
+			if (bill != null)
+				this.billService.publishMonthlyBill(bill);
+		}
+	}
+}

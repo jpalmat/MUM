@@ -1,0 +1,107 @@
+package edu.mum.mersal.common.model;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class Client {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "client_id")
+	private long id;
+	@Size(min = 5, max = 50, message = "{client.firstName}")
+	@Column
+	private String firstName;
+	@Size(min = 5, max = 50, message = "{client.lastName}")
+	@Column
+	private String lastName;
+//	@Pattern(regexp = "[1-9]\\d{9}")
+//	@Size(min = 10, max = 10, message = "{client.mobileNumber}")
+	@Column
+	private String mobileNumber;
+	@Pattern(regexp = "[1-9]\\d{15}")
+	@Size(min = 16, max = 16, message = "{client.creditCard}")
+	@Column
+	private String creditCard;
+
+	@NotEmpty(message = "{email.notempty}")
+	@Email
+	@Column
+	private String email;
+
+	@Valid
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "credentialId")
+	UserCredentials userCredentials;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public UserCredentials getUserCredentials() {
+		return userCredentials;
+	}
+
+	public void setUserCredentials(UserCredentials userCredentials) {
+		this.userCredentials = userCredentials;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCreditCard() {
+		return creditCard;
+	}
+
+	public void setCreditCard(String creditCard) {
+		this.creditCard = creditCard;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+}

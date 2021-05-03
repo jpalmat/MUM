@@ -1,0 +1,32 @@
+package edu.mum.rainbow.business.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import edu.mum.rainbow.business.service.GroupService;
+import edu.mum.rainbow.common.model.Group;
+import edu.mum.rainbow.integration.dao.GroupDAO;
+
+@Service
+@Transactional
+public class GroupServiceImpl implements GroupService {
+
+	@Autowired
+	private GroupDAO groupDAO;
+
+	public void save(Group group) {
+		groupDAO.save(group);
+	}
+
+	public Group update(Group group) {
+		return groupDAO.update(group);
+	}
+
+	public List<Group> findAll() {
+		return (List<Group>) groupDAO.findAll();
+	}
+
+}

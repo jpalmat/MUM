@@ -1,0 +1,17 @@
+POST http://localhost:3000/locations/add HTTP/1.1
+Content-Type: application/json
+
+//{ "name" :"Logli's Store", "category": "Store", "location": [-91.9738196,41.0173883]},
+//{ "name" :"Pizza Ranch", "category": "Restaurant", "location": [-91.9734474,41.015338]}
+//{ "name" :"Waterworks Park", "category": "Park", "location": [-91.9772066,41.0182551]}
+//{ "name" :"Everybody's Whole Foods", "category": "Restaurant", "location": [-91.9772066,41.0182551]}
+//{ "name" :"Revelations Cafe", "category": "Cafe", "location": [-91.9772066,41.0182551]}
+//{ "name" :"Carnegie Historical Museum", "category": "Museum", "location": [-91.9675069,41.0099451]}
+
+###
+
+//restaurant, cafe, store, park, museum, etc... are categories
+GET  http://localhost:3000/locations/find/Restaurant HTTP/1.1
+
+###
+

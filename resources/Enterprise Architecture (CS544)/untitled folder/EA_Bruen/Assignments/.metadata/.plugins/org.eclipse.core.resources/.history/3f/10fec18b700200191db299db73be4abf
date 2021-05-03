@@ -1,0 +1,54 @@
+package edu.mum.rainbow.business.batch.monthly;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.NonTransientResourceException;
+import org.springframework.batch.item.ParseException;
+import org.springframework.batch.item.UnexpectedInputException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import edu.mum.rainbow.business.service.DailyTransactionService;
+import edu.mum.rainbow.business.service.MonthlyStatmentService;
+import edu.mum.rainbow.common.model.DailyTransaction;
+import edu.mum.rainbow.common.model.MonthlyStatment;
+
+@Component
+public class MonthlyStatementBatchReader implements ItemReader<MonthlyStatment> {
+
+	@Autowired
+	private DailyTransactionService dailyTransactionService;
+
+	@Autowired
+	private MonthlyStatmentService monthlyTransactionService;
+
+	private List<String> clients;
+	private int currentIndex = 0;
+	
+	@PostConstruct
+	private void init() {
+		this.clients = dailyTransactionService.listTranClientIds();
+		
+	}
+
+	@Override
+	public MonthlyStatment read()
+			throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+		updateCurrentIndex();
+		String clientNo = this.clients.get(currentIndex++);
+		List<DailyTransaction> transactionsByClient = this.dailyTransactionService.fetchDailyTransactionsByClient(clientNo);
+		monthlyTransactionService.createMonthlyStatment(transactionsByClient);
+		return summary;
+	}
+
+	private void updateCurrentIndex() {
+		if (this.clients == null || this.clients.isEmpty())
+			this.currentIndex = 0;
+		if (currentIndex >= this.clients.size())
+			System.exit(0);
+	}
+
+}

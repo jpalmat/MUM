@@ -1,0 +1,13 @@
+package edu.mum.rainbow.business.service;
+
+import java.util.List;
+
+import edu.mum.rainbow.common.model.Client;
+
+public interface ClientService {
+
+	List<Client> findAll();
+
+	void addClient(Client client);
+
+}

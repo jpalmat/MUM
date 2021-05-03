@@ -1,0 +1,5 @@
+#Tomcat publish data
+#Thu Dec 20 12:03:20 CST 2018
+org.eclipse.jst.j2ee.server\:rainbow-api=WEB-INF/lib/rainbow-api-0.0.1-SNAPSHOT.jar
+org.eclipse.jst.j2ee.server\:rainbow-core=WEB-INF/lib/rainbow-core-0.0.1-SNAPSHOT.jar
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\HoBa\\.m2\\repository\\org\\springframework\\spring-web\\4.2.4.RELEASE\\spring-web-4.2.4.RELEASE.jar=WEB-INF/lib/spring-web-4.2.4.RELEASE.jar

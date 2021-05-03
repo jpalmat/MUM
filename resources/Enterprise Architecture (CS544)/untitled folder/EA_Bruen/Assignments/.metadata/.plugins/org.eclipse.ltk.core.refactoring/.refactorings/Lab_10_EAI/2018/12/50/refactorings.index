@@ -1,0 +1,7 @@
+1544474801113	Rename type 'OrderTransformer'
+1544474817805	Rename type 'OrderTransformerImpl'
+1544474828007	Rename type 'Item4TransformerImpl'
+1544478103914	Rename resource 'amqp-order-app-context.xml'
+1544478123029	Rename resource 'jms-warehouse-app-context.xml'
+1544480159010	Delete element
+1544480193965	Delete elements

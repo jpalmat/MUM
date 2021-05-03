@@ -1,0 +1,10 @@
+INSERT INTO Client (clientNo,email,firstName,lastName) VALUES ('1001', 'ehabfoua.ibm@gmail.com','Ehab','Abdelhamid');
+INSERT INTO Client (clientNo,email,firstName,lastName) VALUES ('1002','hoba.fci@gmail.com','Ehab','Tarek');
+INSERT INTO Client  (clientNo,email,firstName,lastName) VALUES ('1003','messam@gmail.com','Mohamed','Essam');
+INSERT INTO Client (clientNo,email,firstName,lastName)  VALUES('1004','sara@gmail.com','Sara','Fahmy');
+INSERT INTO Client  (clientNo,email,firstName,lastName) VALUES('1005','bethel99@gmail.com','Melania','Kailey');
+INSERT INTO Client  (clientNo,email,firstName,lastName) VALUES('1006','jada07@gmail.com','Mela','Hadgu');
+INSERT INTO Client  (clientNo,email,firstName,lastName) VALUES('1007','jaron99@gmail.com','Carole','Estevan');
+INSERT INTO Client  (clientNo,email,firstName,lastName) VALUES('1008','krista51@gmail.com','Melat','Pouros');
+INSERT INTO Client (clientNo,email,firstName,lastName)  VALUES('1009','wmorar@gmail.com','Leon','Myrna');
+INSERT INTO Client  (clientNo,email,firstName,lastName) VALUES('1010','prosacco.ocie@gmail.com','Jed','Bertha');

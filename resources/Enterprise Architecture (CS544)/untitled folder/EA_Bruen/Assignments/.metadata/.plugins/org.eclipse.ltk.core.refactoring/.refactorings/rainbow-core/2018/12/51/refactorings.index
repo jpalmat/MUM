@@ -1,0 +1,29 @@
+1544974523191	Delete elements
+1544974581487	Move folder
+1544974695678	Delete element
+1544974745011	Delete element
+1544974821193	Delete element
+1544975076583	Move folder
+1544975106650	Delete elements
+1544975200248	Move folder
+1544975206409	Delete element
+1544975567106	Delete element
+1544975579575	Delete element
+1544975583222	Move file
+1545080961859	Delete element
+1545080965317	Delete element
+1545080973022	Delete element
+1545081009231	Rename resource '01_credentials_insert.sql'
+1545081017370	Rename resource '02_client_insert.sql'
+1545081050006	Copy file
+1545083267429	Rename resource '03_call_details_insert.sql'
+1545087777594	Delete element
+1545087782794	Delete element
+1545093422210	Rename type 'TestDailyCallSummaryBatch'
+1545105688561	Rename type 'TestMonthlyCallCostBatch'
+1545186095050	Rename local variable 'monthlyCost'
+1545188433183	Rename resource 'populate.sql'
+1545188459977	Copy file
+1545188469712	Rename resource 'securityDML.sql'
+1545241795489	Delete element
+1545246454970	Delete element

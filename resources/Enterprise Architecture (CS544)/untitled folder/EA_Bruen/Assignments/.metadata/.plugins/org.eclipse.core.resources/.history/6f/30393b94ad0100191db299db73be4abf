@@ -1,0 +1,23 @@
+package edu.mum.mersal.integration.publisher;
+
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+
+public class StatementReportPublisher {
+
+	public void publish(RabbitTemplate rabbitTemplate) {
+
+		/*ClientBill clientBill = new ClientBill();
+		clientBill.setName("Amr");
+		clientBill.setMobileNo("12345");
+		clientBill.setBillTotalAmount(150.0);
+		List<DailyCallSummary> callsSummaryList = new ArrayList<>();
+		DailyCallSummary ds = new DailyCallSummary();
+		ds.setDatetime(new Date());
+		ds.setDuration(20);
+		ds.setMobileNumber("1212134");
+		callsSummaryList.add(ds);
+		clientBill.setCallsSummaryList(callsSummaryList);
+		rabbitTemplate.convertAndSend(clientBill);*/
+
+	}
+}

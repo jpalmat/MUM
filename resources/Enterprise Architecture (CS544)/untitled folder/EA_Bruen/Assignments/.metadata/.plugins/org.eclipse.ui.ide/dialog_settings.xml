@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="CleanDialogSettings">
+		<item value="500" key="DIALOG_WIDTH"/>
+		<item value="true" key="TOGGLE_SELECTED"/>
+		<item value="402" key="DIALOG_HEIGHT"/>
+		<item value="710" key="DIALOG_X_ORIGIN"/>
+		<item value="252" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="ExternalProjectImportWizard">
+		<item value="true" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value=""/>
+			<item value="E:\MuM\5-EA\Assignments\Lab_9_AMQPConsumer"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value="E:\MUM Study Material\8-EA\lab solutions\bck 10-11-12\Lesson 12\Lab_12_MVC.zip"/>
+			<item value="E:\MUM Study Material\8-EA\lab solutions\bck 10-11-12\Lesson 12\Lab_12_RestService.zip"/>
+			<item value="E:\MuM\5-EA\Assignments\Lab_11_MVC.zip"/>
+			<item value="C:\Users\HoBa\Downloads\MemberMVC.zip"/>
+			<item value="C:\Users\HoBa\Downloads\MemberRest.zip"/>
+			<item value="E:\MUM Study Material\8-EA\lab solutions\lesson 12\Lab_12_RestService.zip"/>
+			<item value="E:\MUM Study Material\8-EA\lab solutions\lesson 12\Lab_12_MVC.zip"/>
+			<item value="E:\MuM\5-EA\Assignments\Lab_12_MVC.zip"/>
+			<item value="C:\Users\HoBa\Downloads\MemberSpringMVC.zip"/>
+			<item value="C:\Users\HoBa\Downloads\Lab_11_MVC.zip"/>
+			<item value="C:\Users\HoBa\Downloads\mersal\Mersal-Core.zip"/>
+			<item value="C:\Users\HoBa\Downloads\mersal\Mersal-Billing.zip"/>
+			<item value="C:\Users\HoBa\Downloads\mersal\Mersal-EAI.zip"/>
+			<item value="E:\MUM Study Material\8-EA\Labs\Lab10\Lab_10_AuctionConsumer.zip"/>
+			<item value="E:\MUM Study Material\8-EA\Labs\Lab10\Lab_10_AuctionProducer.zip"/>
+			<item value="E:\MUM Study Material\8-EA\lab solutions\bck 10-11-12\Lesson 10\Lab_10_EAIBusSol.zip"/>
+			<item value="C:\Users\HoBa\Downloads\EAIBusAmqpJms.zip"/>
+			<item value="C:\Users\HoBa\Downloads\mersal\Mersal-RestClient.zip"/>
+			<item value="C:\Users\HoBa\Downloads\mersal\Mersal-Rest.zip"/>
+			<item value="C:\Users\HoBa\Downloads\mersal\Mersal-Reporting.zip"/>
+		</list>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item value="false" key="FilterByLocation"/>
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode/&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;" key="WorkingSet"/>
+		<item value="false" key="ShowDerived"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="668" key="DIALOG_X_ORIGIN"/>
+			<item value="195" key="DIALOG_Y_ORIGIN"/>
+		</section>
+	</section>
+</section>

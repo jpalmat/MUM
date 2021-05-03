@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="O. Kalu">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-EmRcsPP774S9MOi4ywB+JXUWjYnBdyInMzG2XsC5siZEUpexqxOMJW358dCYEjPu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+    <title> eRegistrar - a spring boot webApp</title>
+    <style>
+    
+  .input-short{
+	width:44%;
+	float:left;
+	margin-left:3%;
+	margin-right:3%;
+	margin-bottom:0%;
+	margin-top:0%;
+	}
+
+    </style>
+</head>
+<body>
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a style="padding-right: 2em;" class="navbar-brand" href="/eRegistrar/home"> Addisu's eRegistrar : : : a basic demo webapp using Spring Boot</a>       
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" style="border-left: white 1px solid; padding-left: 2em; padding-right: 2em;">
+                    <a class="nav-link" href="/eRegistrar/student/list">Browse Registration Forms</a>
+                </li>
+                
+                <li class="nav-item" style="border-left: white 1px solid; padding-left: 2em; padding-right: 2em;">
+                    <a class="nav-link" href="/eRegistrar/student/edit">Register new Student</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+            </form>
+        </div>
+    </nav>
+    
+   <!-- end of navigation bar -->
+    <div class="container">
+        <h3>Fill in the form with student details</h3>        
+        <hr/>
+        <form  method ="post" action="/eRegistrar/student/save" th:object="${student}">        
+        <fieldset>        
+         <input type="hidden" name="studentId" th:value="${student.id}"/>      
+                             
+                <div class="row input-short">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="title">Student Number </label>
+                            <input id="stdNo" required name="studentNumber" type="text" class="form-control"
+                                   th:value="${student.studentNumber}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row input-short">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="title">First Name </label>
+                            <input id="fname" name="firstName" type="text" class="form-control"
+                                   th:value="${student.firstName}">
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="row input-short">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="title">Middle Name </label>
+                            <input id="mname" name="middleName" type="text" class="form-control"
+                                   th:value="${student.middleName}">
+                        </div>
+                    </div>
+                </div>
+                
+                  <div class="row input-short">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="title">Last Name </label>
+                            <input id="lname" required name="lastName" type="text" class="form-control"
+                                   th:value="${student.lastName}">
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="row input-short">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="title">CGPAe </label>
+                            <input id="cgpa" required name="cgpa" type="text" class="form-control"
+                                   th:value="${student.cgpa}">
+                        </div>
+                    </div>
+                </div>
+                
+                  <div class="row input-short">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="title">Enrollment Date </label>
+                            <input id="enro" required name="enrollmentDate" type="date" class="form-control"
+                                   th:value="${student.enrollmentDate}">
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="row input-short">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="title">International? </label>
+                            <Select name="isInternational" required class="form-control" th:value="${student.isInternational}">
+                            	<option value="Yes">Yes</option>
+                            	<option value="No">No</option>
+                            </Select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-md" type="submit">Submit</button>
+                <button  class="btn btn-primary btn-md"type ="reset">Clear</button>        
+        
+        </fieldset>    
+               
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+127.0.0.1 - - [20/Dec/2018:12:04:13 -0600] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [20/Dec/2018:12:04:29 -0600] "GET /rainbow-rest/ HTTP/1.1" 404 1047
+0:0:0:0:0:0:0:1 - - [20/Dec/2018:12:04:29 -0600] "GET /favicon.ico HTTP/1.1" 404 1085
+127.0.0.1 - - [20/Dec/2018:12:06:19 -0600] "GET /rainbow-rest/clients/all HTTP/1.1" 200 1160
+127.0.0.1 - - [20/Dec/2018:12:06:47 -0600] "POST /rainbow-rest/clients/add HTTP/1.1" 500 9184
+127.0.0.1 - - [20/Dec/2018:12:07:32 -0600] "POST /rainbow-rest/clients/add HTTP/1.1" 500 9186

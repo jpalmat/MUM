@@ -1,0 +1,2 @@
+Creating indexes on books' isbn, title, and author can greatly improve and fine tune searching the library items. 
+Similarly, creating an index on student document using id can enhance searching student documents.

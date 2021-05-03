@@ -1,0 +1,7 @@
+package edu.mum.rainbow.integration.dao;
+
+import edu.mum.rainbow.common.model.Transaction;
+
+public interface TransactionDAO extends GenericDAO<Transaction>{
+
+}

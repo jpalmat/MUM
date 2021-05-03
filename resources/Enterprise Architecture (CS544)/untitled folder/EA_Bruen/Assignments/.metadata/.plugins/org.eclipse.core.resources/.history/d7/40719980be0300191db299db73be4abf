@@ -1,0 +1,18 @@
+ 
+package edu.mum.rainbow.integration;
+
+import org.springframework.core.annotation.Order;
+
+import edu.mum.rainbow.common.model.MonthlyStatment;
+import edu.mum.rainbow.domain.RouteOrder;
+
+/**
+ * Routes order based on order type.
+ * 
+ */
+
+public interface StatementTransformer {
+
+	public MonthlyStatment transformOrder(MonthlyStatment statment);
+
+}

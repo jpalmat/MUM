@@ -1,0 +1,22 @@
+1543890836998	Delete element
+1543901882529	Delete elements
+1543901952025	Delete elements
+1543901959467	Delete elements
+1543902045360	Rename type 'AcccountDao'
+1543902056824	Rename type 'CredentialsDao'
+1543902067387	Rename type 'GroupDao'
+1543902076722	Rename type 'SampleIntegrationDao'
+1543902236922	Rename type 'AccountServie'
+1544068977295	Rename type 'AccountEB'
+1544068990118	Rename type 'ClientEB'
+1544068998837	Rename type 'DailyTransactionEB'
+1544069014714	Rename type 'TransactionEB'
+1544070676971	Rename type 'GenericDao'
+1544071178925	Rename type 'AcccountDAO'
+1544238985800	Copy compilation unit
+1544239483084	Rename type 'MonthlyTransactionSummary'
+1544239533601	Copy compilation unit
+1544239633062	Copy compilation unit
+1544241003578	Rename type 'MonthlyTransactionService'
+1544241037385	Rename type 'MonthlyTransaction'
+1544241074110	Rename type 'MonthlyTransactionDAO'

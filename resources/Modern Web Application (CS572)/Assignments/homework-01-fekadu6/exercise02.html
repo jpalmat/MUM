@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Exercise 02</title>
+    <script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script>
+  </head>
+  <body>
+    <button onclick="promiseFetch()">Promise Fetch</button>
+    <button onclick="asyncWaitFetch()">Async/Await Fetch</button>
+    <button onclick="reactiveFetch()">Reactive Fetch</button>
+  </body>
+</html>
+
+<script>
+  const URL = "https://randomuser.me/api/";
+
+  function promiseFetch() {
+    console.log("Fetching data using promise");
+
+    fetch(URL)
+      .then(data => data.json())
+      .then(data => {
+        console.log("Name:", data.results[0].name);
+        console.log("Location:", data.results[0].location);
+      })
+      .catch(error => console.log(error));
+  }
+
+  async function asyncWaitFetch() {
+    console.log("Fetching data using async/wait");
+    const data = await getPromise();
+    console.log("Name:", data.results[0].name);
+    console.log("Location:", data.results[0].location);
+  }
+
+  function getPromise() {
+    return new Promise((resolve, reject) => {
+      const result = fetch(URL).then(data => data.json());
+
+      resolve(result.then(data => data));
+    });
+  }
+
+  function reactiveFetch() {
+    const { from, Observable } = rxjs;
+    const { map } = rxjs.operators;
+
+    console.log("Fetching data using reactive fetch");
+
+    from(fetch(URL))
+      .pipe(map(response => response.json()))
+      .subscribe(data =>
+        data.then(d => {
+          console.log("Name:", d.results[0].name);
+          console.log("Location:", d.results[0].location);
+        })
+      );
+  }
+</script>

@@ -1,0 +1,12 @@
+package edu.mum.rainbow.business.service;
+
+import edu.mum.rainbow.common.model.DailyTransaction;
+import edu.mum.rainbow.common.model.Transaction;
+
+public interface TransactionService {
+
+	Transaction transferDailyToHistoricalTransaction(DailyTransaction dailyTransaction);
+
+	Transaction createTransaction(Transaction tran);
+
+}
