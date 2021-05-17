@@ -1,0 +1,86 @@
+[cloudera@quickstart ~]$ hdfs dfs -mkdir a
+[cloudera@quickstart ~]$ hdfs dfs -put input a
+[cloudera@quickstart ~]$ hadoop jar hybrid.jar  a/input a/output
+15/12/10 23:28:19 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+15/12/10 23:28:21 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+15/12/10 23:28:22 INFO input.FileInputFormat: Total input paths to process : 1
+15/12/10 23:28:22 INFO mapreduce.JobSubmitter: number of splits:1
+15/12/10 23:28:23 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1449764837543_0010
+15/12/10 23:28:24 INFO impl.YarnClientImpl: Submitted application application_1449764837543_0010
+15/12/10 23:28:24 INFO mapreduce.Job: The url to track the job: http://quickstart.cloudera:8088/proxy/application_1449764837543_0010/
+15/12/10 23:28:24 INFO mapreduce.Job: Running job: job_1449764837543_0010
+15/12/10 23:28:49 INFO mapreduce.Job: Job job_1449764837543_0010 running in uber mode : false
+15/12/10 23:28:49 INFO mapreduce.Job:  map 0% reduce 0%
+15/12/10 23:29:06 INFO mapreduce.Job:  map 100% reduce 0%
+15/12/10 23:29:33 INFO mapreduce.Job:  map 100% reduce 50%
+15/12/10 23:29:34 INFO mapreduce.Job:  map 100% reduce 100%
+15/12/10 23:29:35 INFO mapreduce.Job: Job job_1449764837543_0010 completed successfully
+15/12/10 23:29:36 INFO mapreduce.Job: Counters: 49
+	File System Counters
+		FILE: Number of bytes read=306
+		FILE: Number of bytes written=335236
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=181
+		HDFS: Number of bytes written=438
+		HDFS: Number of read operations=9
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=4
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=2
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=15071
+		Total time spent by all reduces in occupied slots (ms)=49030
+		Total time spent by all map tasks (ms)=15071
+		Total time spent by all reduce tasks (ms)=49030
+		Total vcore-seconds taken by all map tasks=15071
+		Total vcore-seconds taken by all reduce tasks=49030
+		Total megabyte-seconds taken by all map tasks=15432704
+		Total megabyte-seconds taken by all reduce tasks=50206720
+	Map-Reduce Framework
+		Map input records=4
+		Map output records=21
+		Map output bytes=252
+		Map output materialized bytes=306
+		Input split bytes=118
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=21
+		Reduce shuffle bytes=306
+		Reduce input records=21
+		Reduce output records=9
+		Spilled Records=42
+		Shuffled Maps =2
+		Failed Shuffles=0
+		Merged Map outputs=2
+		GC time elapsed (ms)=525
+		CPU time spent (ms)=2450
+		Physical memory (bytes) snapshot=463859712
+		Virtual memory (bytes) snapshot=4516007936
+		Total committed heap usage (bytes)=287117312
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=63
+	File Output Format Counters 
+		Bytes Written=438
+[cloudera@quickstart ~]$ hdfs dfs -cat a/output/part-r-00000
+422	[(435,1.0)]
+425	[(466,0.3333333333333333)(471,0.3333333333333333)(450,0.3333333333333333)]
+440	[(435,0.5)(422,0.5)]
+450	[(466,0.5)(471,0.5)]
+466	[(471,1.0)]
+472	[(522,0.3333333333333333)(475,0.3333333333333333)(525,0.3333333333333333)]
+[cloudera@quickstart ~]$ hdfs dfs -cat a/output/part-r-00001
+522	[(475,0.5)(525,0.5)]
+525	[(475,1.0)]
+545	[(522,0.16666666666666666)(435,0.16666666666666666)(440,0.16666666666666666)(475,0.16666666666666666)(525,0.16666666666666666)(422,0.16666666666666666)]
+
+

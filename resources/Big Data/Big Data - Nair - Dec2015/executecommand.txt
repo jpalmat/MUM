@@ -1,0 +1,23 @@
+
+
+                     excute command for the hybridApproach 
+
+
+///  
+hadoop jar hApp.jar Driver "hApp/user/cloudera/file1.txt" /user/cloudera/output333
+ 
+
+
+       
+                    excute command for the stripApproach
+ 
+
+///// hadoop jar stripApp.jar Driver "stripApp/user/cloudera/file1.txt" /user/cloudera/output222 
+
+
+
+                     excute command for the pairApproach
+
+
+
+///  hadoop jar pairsApp.jar Driver "pairsApp/user/cloudera/file1.txt" /user/cloudera/output11

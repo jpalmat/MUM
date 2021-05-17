@@ -1,0 +1,6 @@
+my project is about counting hashtags in batch of tweets then desplay every hashtage count and the tweets which contains this hashtage.
+
+to run the code:
+1- put the the tweets.txt file on hadoop HDFS.
+2- excute the commands and scala code in scalacode.txt file in the terminal (update the file path)
+3- the output will be printed in the terminal.

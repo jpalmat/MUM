@@ -1,0 +1,10 @@
+$ hadoop fs -mkdir /user/cloudera/project/stripe /user/cloudera/project/stripe/input
+$ echo "18 34 56 29 12 34 56 92 29 34 12" > file0
+$ echo "92 29 18 12 34 79 29 56 12 34 18" > file1
+$ hadoop fs -put file* /user/cloudera/project/stripe/input
+
+$ hadoop fs -rm -r /user/cloudera/project/stripe/output
+$ hadoop jar stripes.jar /user/cloudera/project/stripe/input /user/cloudera/project/stripe/output
+$ hadoop fs -cat /user/cloudera/project/stripe/outpu/*
+
+

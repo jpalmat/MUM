@@ -1,0 +1,56 @@
+Input Split 1: (Doc ID 101) [ cherry plum mango radish cherry kiwi ]
+Input Split 2: (Doc ID 201) [ plum mango radish plum mango kiwi ]
+Input Split 3: (Doc ID 301) [ radish mango cherry plum kiwi mango ]
+
+Mapper output:
+Mapper 1:
+<(cherry, 101) , 2>
+<(kiwi,101), 1>
+<(mango, 101), 1>
+<(plum, 101), 1>
+<(radish,101),1>
+
+Mapper 2:
+<(kiwi,201), 1>
+<(mango, 201) , 2>
+<(plum, 201) , 2>
+<(radish,201),1>
+
+Mapper 3:
+<(cherry, 301) , 1>
+<(kiwi,301), 1>
+<(mango, 301), 2>
+<(plum, 301), 1>
+<(radish,301),1>
+
+
+Reducer input:
+Reducer 1:
+<(cherry, 101) , [2]>
+<(cherry, 201) , [0]>
+<(cherry, 301) , [1]>
+<(mango, 101) , [1]>
+<(mango, 201) , [2]>
+<(mango, 301) , [2]>
+
+Reducer2:
+<(kiwi,101), 1>
+<(kiwi,201), 1>
+<(kiwi,301), 1>
+<(plum, 101), 1>
+<(plum, 201) , 2>
+<(plum, 301), 1>
+<(radish,101),1>
+<(radish,201),1>
+<(radish,301),1>
+
+
+Reducer output:
+Reducer 1:
+cherry -> (101,2),(301,1)
+mango -> (101,1),(201,2),(301,2)
+
+Reducer 2:
+kiwi -> (101,1),(201,1),(301,1)
+plum -> (101,1),(201,2),(301,1)
+radish -> (101,1),(201,1),(301,1)

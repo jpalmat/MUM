@@ -1,0 +1,11 @@
+hadoop fs -put tweets.txt /user/cloudera/spark/
+spark-shell
+
+val inputfile = sc.textFile("/user/cloudera/spark/tweets.txt")
+val counts = inputfile.flatMap(line => line.split(" ")).filter(_.startsWith("#")).map(word => (word.replace("#",""), 1)).reduceByKey(_+_);
+var out ="";
+counts.collect().foreach(a => {
+       out += "\n"  + a + "\n"
+       inputfile.filter(_.contains("#"+a._1)).collect().foreach(e => {out = out + e +"\n"});
+     })
+print(out)
