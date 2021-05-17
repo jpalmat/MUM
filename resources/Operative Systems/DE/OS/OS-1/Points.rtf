@@ -1,0 +1,84 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf370
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww17640\viewh11880\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs48 \cf0 Program counter: next instruction to be executed\
+\
+Quantum: Max amount of time (Time slice) assigned to a process for execution\
+\
+stack frame: a stack to organize the calls between multiple instructions\
+\
+clock interrupt: send interrupt to the CPU to do a context switch to get another process\
+\
+process table: each entry for different process, to record the state of each process\
+\
+interrupt vector: at the bottom of the memory which contains service routines\
+"when interrupt happen, the OS goes to the interrupt vector find the address of the routine that is needed in order to serve this interrupt\
+\
+Address space: the range of memory address that the process located\
+\
+Threads are lighter weight than processes, so creating a new thread is faster than creating new process\
+\
+dispatcher thread and worker thread\
+\
+Posix Threads: standards for thread\
+\
+Thread table: keep track of the threads and their state inside a process\
+\
+Pop-up thread: a thread that is created exactly when it is needed. its fast because it doesn't have a history\
+\
+the operating system allows multiple processes to run seemingly in parallel. OS doing context switching going very quickly and very fast from one process to another, each process get a quantum of 10 ms\
+\
+\
+----------------------------------------------------------------------------\
+Lesson 3\
+Interprocess communication\
+\
+Daemon: process runs in background.\
+\
+Race Condition: Is a condition where the final result depends on who run precisely when.\
+\
+Critical Region: Area of code that access the shared memory between multiple processes.\
+\
+Mutual exclusion: accessible by only one process at a time. \
+	1- Disable interrupt: the process may not enable the interrupt again, not secure, take much power\
+	2- Lock variables: not usually works because race condition :)\
+	can be solved by TSL(test and set lock)\
+	3- Strict alternation\
+	4- Peterson Code\
+	5- XCHG\
+all these solutions do busy waiting\
+\
+Producer Consumer problem\
+solved by wakeup waiting bit -> semaphore\
+Mutex: 0 or 1, like lock\
+\
+Condition Variables: another sync mechanism\
+Monitor: To avoid low level mistakes\
+--------------------------------------------------------------------------\
+Lesson 5\
+CPU burst: when the CPU is busy or working\
+\
+Compute-bound (CPU bound) vs IO bound: CPU is doing processes more than IO\
+\
+Context switch, process switch: when the CPU switches to another process\
+\
+When to schedule: \
+1- Process created\
+2- Process exits\
+3- Process blocks on I/O\
+4- I/O interrupt occurs\
+5- Clock interrupt\
+\
+Types of scheduling \
+1- non preemptive: let process run (this happens in Batch system "Processes running in the background, no user interaction")\
+2- Preemptive: process runs for a quantum\
+\
+Categories of scheduling\
+1- Batch: Bank system.\
+2- Interactive: People in the terminal, they need to have the highest priority to run\
+3- Real time: Time is very important: automobile assembly line. we have to guarantee time deadline.\
+\
+Thread switching is faster than run time systems}

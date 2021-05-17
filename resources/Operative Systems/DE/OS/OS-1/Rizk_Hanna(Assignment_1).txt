@@ -1,0 +1,28 @@
+Rizk Hanna
+
+1- I think the transition from Blocked to Running may happen in case the processor was idle, so no need for the process to wait in the ready state but it will transit to Running directly.
+Ready to Block i think it is not applicable as the process in the Ready state is only waiting to get the chance and be selected to execute its instructions.
+
+3- Yes, because the high level programming languages don't have the capability to control and execute low level operations to control the hardware, another thing to be taken in account is the speed.
+
+4- For security reason, as data in the user space can be accessed by malicious processes easily, On the other hand, Kernel space is not accessible by these processes.
+
+6- Multiple cache architecture will bring up to the table the consistency problem, it will be difficult to make all the caches copies updated with the same version. an analogous problem for this problem is the consistency problem in the multicomputers architecture (which consists of multiple processors with their own caches).
+
+7- No, because the process has only one thread, once the process is blocked, it cannot fork at the block state.
+
+8- If a user level threads are being used, the whole process will be blocked when the worker thread does I/O which distort the idea of multi-threading, on the other hand, if the kernel level threads are being used, the working thread will be blocked without blocking the whole process, which will give the chance to the other threads to execute
+(In this case, user - level threads are being used because in user level threads, blocking system calls are implemented where a blocking system call has to be processed completely before another call can be executed. In fact, this is one of the major problem associated with user-level thread implementation).
+
+9- Servers are usually computers which supposed to handle tons of requests at the same time, and the multithreaded architecture will play a tremendous role here to maximize the CPU utilization, So i think there is no possible way that the other two architecture are going to help in this area.
+
+10- Because each thread is responsible to execute different instructions than the others, and once the OS changes one of these threads state, this thread should save its state and the next point of the instruction to be executed when it get the chance back to the running state.
+
+11- As there is no clock interrupt to enforce multiprogramming as there is with processes, it is important for threads to coordinate and communicate with each other by surrender the CPU from time to time to give other threads the chance to run, otherwise the value of multithreading will vanish.
+
+14- The biggest advantage is allowing multithreading in computers that doesn't support multiprogramming and also the efficiency of switching between threads.
+The biggest disadvantage is when one thread blocks, the whole process will block.
+
+15- I think it is possible through using pthread_join, so after creating a thread we use this function to force the current thread to wait until the previous completes it's work.
+
+21- Each thread has its own stack either a user or kernel level threads are used, because each thread executes a totally different instructions than the others, so it must has its own space to store its own instructions that will be executed.

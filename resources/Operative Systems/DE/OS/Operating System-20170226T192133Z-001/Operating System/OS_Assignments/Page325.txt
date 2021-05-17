@@ -1,0 +1,43 @@
+Page 325
+
+Q 1.
+Technically the file is just a sequence of bytes and  operating system will only execute a file if it has the proper format and each file have five sections: 
+header, text, data, relocation bits and symbol table. 
+The header starts with a so-called magic number, identifying the file as an executable file to prevent the accidental execution of a file not in this format. 
+To avoid trying to execute the header as code, the magic number was a instruction with a target address just above the header. 
+In this way it was possible to read the binary file directly into the new process’ address space and run it at 0, without even knowing how big the header was.
+
+
+2. 
+The operating system cares about record length so that it can search for the key as record length, key position and key lenght provide the information required to find the keys.
+
+
+3. 
+Yes, it is better to have open system call in Unix because with open system call on every read we need not to specify the name of the file to be opened as the system will fetch the i-node of it.
+The main problem is while flushing the i-node back to disk which can be time out.
+
+
+4. 
+System that support sequential files always have an operation to re-wind files like tape cassets.
+No, system that supports random access files does not need this.
+
+
+5. 
+Yes, there is difference between rename to give a file a new name and copying the file to a new file with the new name, followed by deleting the old one. Rename call does not change the creation time or the time of last modification, but creating a new file causes it to get the current time as both the creation time and the time of last modification.
+
+
+6.
+Restrictions to be imposed in systems to map part of a file into memory is that the mapped portion of the file must start at a page boundary and be an integral number of pages in length. 
+
+
+Partial mapping is implemented by mapping each mapped page uses the file itself as backing store and unmapped memory uses a scratch file or partition as backing store.
+
+
+7.
+As it supports long name and special characters then we can use file names like \home\user\mainfilename. This will helps us to maintain hierarchical path name and help us to get the right one.
+
+
+8. 
+An alternative way to do random access without having system call is by adding extra parameter to the read system call that tells what address to read from which then read everyone for doing a seek within the files.
+The disadvantages of this scheme are (1) an extra parameter in every read call, and (2) requiring the user to keep track of where the file pointer is.
+

@@ -1,0 +1,138 @@
+A. Hand in the following from text book: 
+ 
+Pages 606-608: 2, 8, 13, 20, 22, 25, 26, 28, 29, 32, 38.
+-------------------------------------------------------------------------------------------------------
+
+
+2. What happens if two CPUs in a multiprocessor attempt to access exactly the same
+word of memory at exactly the same instant?
+A2. Depending on the details of how CPUs are connected to memory, one of them gets through first, for example, seizes the bus first. 
+It completes its memory operation, then the other one happens. 
+It is not predictable which one goes first, but if the system has been designed for sequential consistency, it should not matter. 
+
+
+
+8. Are critical regions on code sections really necessary in an SMP operating system to
+avoid race conditions or will mutexes on data structures do the job as well?
+A8. Probably locks on data structures are enough. 
+It is hard to imagine anything a piece of code could do that is critical and does not involve some kernel data structure. 
+All resource acquisition and release uses data structures, for example. 
+While it cannot be proven, it is very likely that locks on data structures are sufficient.
+
+
+A11. It is just as good as TSL. It is used by preloading a 1 into the register to be
+used. Then that register and the memory word are atomically swapped. After
+the instruction, the memory word is locked (i.e., has a value of 1). Its previous
+value is now contained in the register. If it was previously locked, the word has 
+not been changed and the caller must loop. If it was previously
+unlocked, it is now locked..
+
+
+13. Fig. 8-12 was said to depict a timesharing environment. Why is only one process (A)
+shown in part (b)?
+=> In the Fig. 8-12, the CPU 4, finish its work first then locks the scheduling queues and selects the highest-priority thread (A).
+   Since, the thread (A) has the highest priority, the CPU 4 selects A.
+A13. A is the process just selected. There may well be others on the same CPU.
+
+20. How must the implementation of send and receive differ between a shared memory
+multiprocessor system and a multicomputer, and how does this affect performance?
+A20. On a shared-memory machine it suffices to pass the pointer to the message
+from the CPU executing the send to the CPU executing the receive, with possible
+translations between virtual and physical memory addresses. On a
+multicomputer without shared memory, an address in one CPU’s address
+space has no meaning to another CPU, so the actual contents of the send buffer
+have to be transmitted as packets and then reassembled in the buffer of the
+receiving process. To the programmer the processes look identical, but the
+time required will be much longer on the multicomputer.
+
+
+22. When a procedure is scooped up from one machine and placed on another to be called
+by RPC, some problems can occur. In the text, we pointed out four of these: pointers,
+unknown array sizes, unknown parameter types, and global variables. An issue not
+discussed is what happens if the (remote) procedure executes a system call. What
+problems might that cause and what might be done to handle them?
+A22. Clearly, the wrong thing happens if a system call is executed remotely. Trying
+to read a file on the remote machine will not work if the file is not there.
+Also, setting an alarm on the remote machine will not send a signal back to
+the calling machine. One way to handle remote system calls is to trap them
+and send them back to the originating site for execution.
+
+A23. First, on a broadcast network, a broadcast request could be made. Second, a
+centralized database of who has which page could be maintained. Third, each
+page could have a home base, indicated by the upper k bits of its virtual address;
+the home base could keep track of the location of each of its pages.
+
+
+25. Some multicomputers allow running processes to be migrated from one node to another.
+Is it sufficient to stop a process, freeze its memory image, and just ship that off to
+a different node? Name two nontrivial problems that have to be solved to make this
+work
+A25. The table of open files is kept in the kernel, so if a process has open files,
+when it is unfrozen and tries to use one of its files, the new kernel does not
+know about them. A second problem is the signal mask, which is also stored
+on the original kernel. A third problem is that if an alarm is pending, it will
+go off on the wrong machine. In general, the kernel is full of bits and pieces
+of information about the process, and they have to be successfully migrated as
+well.
+
+
+
+26. Consider a type 1 hypervisor that can support up to n virtual machines at the same
+time. PCs can have a maximum of four disk primary partitions. Can n be larger than
+4? If so, where can the data be stored?
+A26. Virtual machines have nothing to do with disk partitions. The hypervisor can
+take a single disk partition and divide it up into subpartitions and give each
+virtual machine one of them. In principle, there can be hundreds of them. It
+can either statically partition the disk into n pieces or do this on demand as
+blocks are requested.
+
+
+28. VMware does binary translation one basic block at a time, then it executes the block
+and starts translating the next one. Could it translate the entire program in advance
+and then execute it? If so, what are the advantages and disadvantages of each technique?
+A28. It could translate the entire program in advance. The reason for not doing that
+is that many programs have large pieces of code that are never executed. By
+ translating basic blocks on demand, no unused code is ever translated. A
+ potential disadvantage of on-demand translation is that it might be slightly
+ less efficient to keep starting and stopping the translator, but this effect is
+probably small.
+
+29. Does it make sense to paravirtualize an operating system if the source code is available?
+What if it is not?
+=> It is impractical to do paravirtualization an operating system if the source code is not available because OS need to be modified.
+   In many situations, paravirtualization may perform better. If the source code is available, 
+   it is sufficient to replace sensitive instructions with calls to VMM APIs, then re-compile the OS and use the new binaries
+A29. Yes of course. Linux has been paravirtualized precisely because the source
+code is available. Windows has not been paravirtualized because the source
+code is not available.
+
+32. Running multiple virtual machine on a PC is known to require large amounts of memory.
+Why? Can you think of any ways to reduce the memory usage? Explain.
+A32. Not only does the machine need memory for the normal (guest) operating system
+and all its applications, but it also needs memory for the hypervisor functions
+and data structures needed to execute sensitive instructions on behalf of
+the guest OS. Type 2 hypervisors have the added cost of the host operating
+system. Moreover, each virtual machine will have its own operating system,
+so there will be N operating system copies stored in memory. One way to reduce
+memory usage would be to identified "shared code" and only keep one
+copy of this code in memory. For example, a web hosting company may run
+multiple VMs, each running an identical version of the Linux operating system
+code and an identical copy of the Apache web server code. In this case,
+the code segment can be shared across VMs, even though the data regions
+must be private.
+
+A33. The middleware runs on different operating systems, so the code is clearly
+different because the embedded system calls are different. What they have in
+common is producing a common interface to the application layer above
+them. If the application layer only makes calls to the Middleware layer and
+no system calls, then all the versions of it can have the same source code. If
+they also make true system calls, these will differ.
+
+38. Can the URLs used in the Web exhibit location transparency? Explain your answer.
+=>  The user accesses a resource by its URL. It does not know where this resource is actually located. 
+    means that the path name gives no hint as to where the file is located. 
+    A path like /server1/dir1/dir2/x tells everyone that x is located on server 1, but it does not tell where that server is located.
+
+
+
+

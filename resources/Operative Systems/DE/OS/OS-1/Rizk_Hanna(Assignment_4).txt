@@ -1,0 +1,77 @@
+Rizk Hanna
+
+A)
+1- Swapping is a technique to deal with memory overloading by fetching an idle process from the disk to the memory, running it for a while, then swap it out back to the disk to free up a space for another one.
+
+
+
+2- The clue for the MMU to map from virtual to physical address, basically it stores in each page the page frame number besides some other important information like Protection, Referenced, etc.
+
+
+
+3- The Virtual memory is the invention to run very large programs that hardly fit in the main memory by dividing the programs into small pieces called Pages, each page is a contagious range of addresses, and load the referenced Pages only onto the memory instead of bringing the whole program at once.
+
+
+
+4- Mapping from virtual to physical address.
+
+
+
+5- Speed up the process of paging specially with large virtual address space.
+
+
+
+6- TLB is located inside the MMU.
+
+
+
+
+B)
+1- It is an accident, because in this example, the program was loaded in 16the base register means the starting address of this program is 16384 and the program length is 16384, but it could be any other numbers.
+
+
+
+4- 	First Fit	: 20KB, 10KB, 18KB
+	
+	Best Fit	: 12KB, 10KB, 9KB
+	
+	Worst Fit	: 20KB, 18KB, 15KB
+	
+	Next Fit	: 20KB, 18KB, 9KB
+
+
+
+6- They built the MMU unit in between the CPU and the Bus, so all requests passing through the MMU will be mapped to a physical address.
+
+
+
+8- 	No. of Processes = n
+	
+	bytes of Ram = r
+	
+	bytes of virtual address space = v
+	
+	Then Total virtual address space required = vn because each process has it's own address space
+	
+	Worst-case disk space = vn - r because the RAM will holds some pages of the program.
+
+
+
+11(a)- The secret to the multilevel page table is to avoid keeping all the page tables in memory all the time like what the one level page table does.
+
+
+
+12- 	9 top-level + 11 second-level = 20 bit
+	
+	Page size = 32 - 20 = 12 which means 2^12 = 4K Page
+	
+	Address space = 2^20 = 1M 
+
+
+
+16- TLB contains only referenced pages, so there is no need for the R bit.
+
+
+
+18- No. of entries = 2^48 / 2^13 = 2^35
+	

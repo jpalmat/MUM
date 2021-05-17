@@ -1,0 +1,146 @@
+Qus
+There are four principal events that cause processes to be created:
+1. System initialization.
+2. Execution of a process creation system call by a running process.
+3. A user request to create a new process.
+4. Initiation of a batch job.
+
+After a process has been created, it starts running and does whatever its job is.
+However, nothing lasts forever, not even processes. Sooner or later the new process
+will terminate, usually due to one of the following conditions:
+1. Normal exit (voluntary).
+2. Error exit (voluntary).
+3. Fatal error (involuntary).
+4. Killed by another process (involuntary).
+
+Qus
+Deadlocks can happen even after using Semaphores. Explain.
+Deadlock is one area where there is a strong theory, but it is almost completely ignored in practice.
+Reason: solutions are expensive and/or require predicting the future.
+Ans
+A simple deadlock example with semaphores, for two processes:
+
+
+    Initialization
+    --------------
+    sem1 = new Semaphore(1);
+    sem2 = new Semaphore(1);
+
+    Process A        Process B
+    ---------        ---------
+     P(sem1)          P(sem2)
+     P(sem2)          P(sem1)
+
+Define deadlock: a situation wherein each of a collection of processes is waiting for something from other 
+processes in the collection. Since all are waiting, none can provide any of the things being waited for.
+Deadlock can occur over separate resources, as in above example, or even over separate copies of a single resource.
+Block building contest: suppose each of a collection of processes is trying to produce a result by acquiring a number of resources one after the other.
+
+    P processes.
+    N blocks needed by each process.
+    T total blocks. 
+	
+Qus	
+b.   In which environment is non-preemptive scheduling algorithm generally used?  Why?
+
+(1) Batch Systems   (2) Interactive Systems     (3) Real Time Systems
+Ans
+In real-time environments, such as embedded systems for automatic control in industry (for example robotics), the scheduler also must ensure that 
+processes can meet deadlines; this is crucial for keeping the system stable. Scheduled tasks can also be distributed to remote devices across a
+network and managed through an administrative back end.
+
+Qus
+c.    Out of the following, which items are shared by all threads in a process?
+Ans
+(1) Open files  (2) Stack  (3) Pending alarms  (4) Program counter  (5) Address
+ Ans: 1) A thread is a lightweight process (LWP) is a basic unit of CPU 
+         utilization.
+      2) Items shared by all threads:
+        o address space
+        o global variables
+        o open files
+        o child processes
+        o pending alarms
+        o signals and signal handlers
+        o accounting infromation
+
+      Items that are private to each thread:
+       o program counter
+       o registers
+       o stack
+       o state
+
+
+      3) The benefits of using threads are as follows:
+       o responsiveness: Multiple activities can be done at same time. 
+         They can speed up the application.
+       o Resource Sharing: Threads share the memory and the resources of 
+         the process to which they belong.
+       o Economy: They are easy to create and destroy.
+       o Utilization of MP (multiprocessor) Architectures: They are useful 
+         on multiple CPU systems.
+
+Qus		 
+d.   Segmentation may cause fragmentation. Explain.		 
+Ans
+Segmentation - use segments that occur naturally in a program - code, stack, data, . . .  or artificially introduce the segments. Segments are different sized. 
+Each segment code is contiguous in memory but the separate segments need not be contiguous. This allows flexability in placement of code. There can be external
+fragmentation in this case. External fragmentation occurs when there are lots of little spots in memory that are not large enough to be used by any program
+
+Qus
+Modern timesharing systems use a method called _________ in which entire processes are moved from main memory to disk and back again. Explain this method in brief.
+Ans
+A common form of multitasking is time-sharing. Time-sharing is a method to allow fast response for interactive user applications. 
+In time-sharing systems, context switches are performed rapidly. 
+This makes it seem like multiple processes are being executed simultaneously on the same processor. 
+The execution of multiple processes seemingly simultaneously is called concurrency.
+For security and reliability, most modern operating systems prevent direct communication between independent processes, 
+providing strictly mediated and controlled inter-process communication functionality.
+
+Qus
+f. Explain why conditional variables are necessary in addition to the mutex synchronization mechanism?  Explain how they are implemented in Pthreads.
+Ans
+2. Overview of POSIX Condition Variables
+Condition variables are a powerful synchronization mechanism defined in the POSIX Pthreads specification. 
+They provide a different type of synchronization than locking mechanisms like mutexes. For instance, a mutex is used to cause other threads to 
+wait while the thread holding the mutex executes code in a critical section. In contrast, a condition variable is typically used by a thread to make 
+itself wait until an expression involving shared data attains a particular state.
+
+In general, condition variables are more appropriate than mutexes for situations involving complex condition expressions or scheduling behaviors. 
+For instance, condition variables are often used to implement thread-safe message queues [Schmidt], which provide a ``producer/consumer'' communication
+ mechanism for passing messages between multiple threads. In this use-case, condition variables block producer threads 
+ when a message queue is ``full'' and block consumer threads when the queue is ``empty.'' 
+  
+2.2. Using Condition Variables to Implement Counting Semaphores
+The expression waited upon by a condition variable can be arbitrarily complex. For instance, a thread may need to block until a certain expression involving one or more data 
+items shared by other threads becomes true. To illustrate how this works, we'll implement a counting semaphore abstraction below using condition variables.
+
+Counting semaphores are a synchronization mechanism commonly used to serialize or coordinate multiple threads of control. 
+Conceptually, counting semaphores are non-negative integers that can be incremented and decremented atomically. 
+If a thread tries to decrement a semaphore whose value equals 0 this thread is suspended waiting for another thread to increment the semaphore count above 0.
+
+Counting semaphores are often used to keep track of changes in the state of objects shared by multiple threads in a process. For instance, 
+they can record the occurrence of a particular event. Unlike condition variables, semaphores maintain state. 
+Therefore, they allow threads to make decisions based upon this state, even if the event has occurred in the past.
+
+The standard POSIX Pthreads interface doesn't contain a counting semaphore abstraction. However, it's straightforward to create one
+ using mutexes and condition variables, as shown below. 
+ 
+Qus
+How can the Test and Set Lock instruction be used to prevent race condition. 
+Ans
+A lock is just a variable, and thus to use one, you must declare a
+lock variable of some kind (such as mutex above). This lock variable (or just
+“lock” for short) holds the state of the lock at any instant in time. I
+t is either available(or unlocked or free) and thus no thread holds the lock, or
+acquired(or locked or held ), and thus exactly one thread holds the lock
+and presumably is in a critical section
+To avoid race conditions, only one thread should be allowed to access a shared resource at a time. Enforcing this condition is known as mutual exclusion. 
+If a thread is in its critical section, any other thread that wants to access the shared resource must wait (be blocked).
+
+Qus
+A system call does not require context switching. Explain whether true or false
+Ans
+A system call does not generally require a context switch to another process; instead, it is processed in the context of whichever process invoked it
+
++880031721340 725857 01720150752 01819965159 01791779327

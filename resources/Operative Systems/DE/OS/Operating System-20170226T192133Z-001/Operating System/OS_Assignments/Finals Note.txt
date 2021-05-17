@@ -1,0 +1,48 @@
+File Systems
++ Why do we need files? - INTRO
++ Naming conventions - INTRO
++ Structure - IMP
++ Types - IMP
++ Attributes - IMP
++ Operations - IMP
++ Directories - IMP
++ Implementing Files - layout, types of allocation - INTRO
++ Implementing Dir - SKIP
++ Shared files - INTRO
++ Virtual FS - INTRO
+
+I/O
++ Devices - SKIP
++ Memory Mapped i/o - IMP
++ DMA - IMP
++ Interrupts - SKIP, as already covered in 1st term
++ Programmed i/o - IMP
++ Interrupt driven i/o - IMP
++ i/o using DMA - IMP
++ i/p layers - INTRO
++ Interrupt driven handlers - SKIP
++ Device drivers - INTRO
++ Clocks - SKIP
+
+Deadlocks
++ Resource acquisition - IMP
++ Intro - IMP
++ Conditions - IMP
++ Modelling - resource graphs - IMP
++ Detection and Recovery - IMP
++ Prevention - IMP
++ Safe / unsafe states - IMP
++ Bankers algoritm - INTRO
++ Starvation, livelock, 2-phase locking - INTRO
+
+Multi Processors
++ Intro - IMP
++ SKIP details of any individual type of multi-procesor
++ Remote Procedure Call - IMP
++ Virtualization & Paravirtualization - INTRO
+
+Distributed Systems
++ INTRO to various implementation types
++ Ethernet, Internet, Protocol - SKIP
++ Middleware - INTRO
++ Publish/Subscribe - IMP

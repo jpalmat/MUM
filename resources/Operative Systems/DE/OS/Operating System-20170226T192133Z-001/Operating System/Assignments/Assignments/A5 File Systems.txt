@@ -1,0 +1,192 @@
+A. In your own words, please answer the following questions as well:
+ 
+1) What is a character special file?
+When a character special file is used for device I/O, data is transferred one character at a time. This type of access is called raw device access.
+
+2) What is a block special file?
+When a block special file is used for device I/O, data is transferred in large fixed-size blocks. This type of access is called block device access.
+
+3) What is metadata?
+Metadata summarizes basic information about data, which can make finding and working with particular instances of data easier. For example, author, date created
+ and date modified and file size are examples of very basic document metadata.
+
+4)  What is a FAT?  What is kept there?
+File Allocation Table (FAT) is a computer file system architecture and a family of industry-standard file systems utilizing it. The FAT file system is a legacy 
+file system which is simple and robust. It offers good performance even in light-weight implementations, but cannot deliver the same performance, reliability and
+scalability as some modern file systems. It is, however, supported for compatibility reasons by nearly all currently developed operating systems for personal computers
+and many mobile devices and embedded systems, and thus is a well-suited format for data exchange between computers and devices of almost any type and age from 1981 
+up to the present.
+The primary task of the File Alocation Tables are to keep track of the allocation status of clusters, or logical groupings of sectors, on the disk drive. There are
+four different possible FAT entries: allocated (along with the address of the next cluster associated with the file), unallocated, end of file, and bad sector.
+
+5)  What is an i-node?  What is kept there?
+In a Unix-style file system, the inode is a data structure used to represent a filesystem object, which can be one of various things including a file or a 
+directory. Each inode stores the attributes and disk block location(s) of the filesystem object's data.
+
+Page 325 – 1,   2,   3,   4,   5,   6,   7,   8
+Page  326  -  13,   17,   18,   21,   25,   26,   29.
+
+
+
+
+1. In early UNIX systems, executable files (a. out files) began with a very specific magic
+number, not one chosen at random. These files began with a header, followed by the
+text and data segments. Why do you think a very specific number was chosen for executable
+files, whereas other file types had a more-or-less random magic number as
+the first word?
+These systems loaded the program directly in memory and began executing at
+word 0, which was the magic number. To avoid trying to execute the header
+as code, the magic number was a BRANCH instruction with a target address
+just above the header. In this way it was possible to read the binary file directly
+into the new process’ address space and run it at 0, without even knowing
+how big the header was.
+
+
+2. In Fig. 4-4, one of the attributes is the record length. Why does the operating system
+ever care about this?
+The operating system cares about record length when files can be structured
+as records with keys at a specific position within each record and it is possible
+to ask for a record with a given key. In that case, the system has to know how
+big the records are so it can search each one for the key.
+
+
+3. Is the open system call in UNIX absolutely essential? What would the consequences
+be of not having it?
+To start with, if there were no open, on every read it would be necessary to
+ specify the name of the file to be opened. The system would then have to
+ fetch the i-node for it, although that could be cached. One issue that quickly
+arises is when to flush the i-node back to disk. It could time out, however. It
+would be a bit clumsy, but it might work.
+
+
+4. Systems that support sequential files always have an operation to rewind files. Do
+systems that support random access files need this too?
+ No. If you want to read the file again, just randomly access byte 0.
+
+
+
+5. Some operating systems provide a system call rename to give a file a new name. Is
+there any difference at all between using this call to rename a file and just copying the
+file to a new file with the new name, followed by deleting the old one?
+Yes. The rename call does not change the creation time or the time of last
+modification, but creating a new file causes it to get the current time as both
+the creation time and the time of last modification. Also, if the disk is full, the
+copy might fail.
+
+
+6. In some systems it is possible to map part of a file into memory. What restrictions
+must such systems impose? How is this partial mapping implemented?
+The mapped portion of the file must start at a page boundary and be an
+integral number of pages in length. Each mapped page uses the file itself as
+backing store. Unmapped memory uses a scratch file or partition as backing
+store.
+
+
+
+7. A simple operating system only supports a single directory but allows that directory to
+have arbitrarily many files with arbitrarily long file names. Can something approximating
+a hierarchical file system be simulated? How?
+Use file names such as /usr/ast/file. While it looks like a hierarchical path
+name, it is really just a single name containing embedded slashes.
+
+
+
+8. In UNIX and Windows, random access is done by having a special system call that
+moves the "current position" pointer associated with a file to a given byte in the file.
+Propose an alternative way to do random access without having this system call.
+ One way is to add an extra parameter to the read system call that tells what
+address to read from. In effect, every read then has a potential for doing a
+seek within the file. The disadvantages of this scheme are (1) an extra parameter
+in every read call, and (2) requiring the user to keep track of where the
+file pointer is.
+
+
+9. Consider the directory tree of Fig. 4-8. If /usrljim is the working directory, what is the
+absolute path name for the file whose relative path name is ../ast/x?
+The dotdot component moves the search to /usr, so ../ast puts it in /usr/ast.
+Thus ../ast/x is the same as /usr/ast/x.
+
+
+
+13. Some digital consumer devices need to store data, for example as files. Name a modem
+device that requires file storage and for which contiguous allocation would be a
+fine idea.
+ A digital still camera records some number of photographs in sequence on a
+ nonvolatile storage medium (e.g., flash memory). When the camera is reset,
+ the medium is emptied. Thereafter, pictures are recorded one at a time in sequence
+until the medium is full, at which time they are uploaded to a hard
+disk. For this application, a contiguous file system inside the camera (e.g., on
+the picture storage medium) is ideal.
+
+
+17. Two computer science students, Carolyn and Elinor, are having a discussion about inodes.
+Carolyn maintains that memories have gotten so large and so cheap that when a
+file is opened, it is simpler and faster just to fetch a new copy of the i-node into the inode
+table, rather than search the entire table to see if it is already there. Elinor
+disagrees. Who is right?
+Elinor is right. Having two copies of the i-node in the table at the same time
+is a disaster, unless both are read only. The worst case is when both are being
+updated simultaneously. When the i-nodes are written back to the disk,
+whichever one gets written last will erase the changes made by the other one,
+and disk blocks will be lost.
+
+
+
+18. Name one advantage of hard links over symbolic links and one advantage of symbolic
+links over hard links.
+Hard links do not require any extra disk space, just a counter in the i-node to
+keep track of how many there are. Symbolic links need space to store the
+name of the file pointed to. Symbolic links can point to files on other machines,
+even over the Internet. Hard links are restricted to pointing to files
+within their own partition.
+
+
+
+21. What would happen if the bitmap or free list containing the information about free
+disk blocks was completely lost due to a crash? Is there any way to recover from this
+disaster, or is it bye-bye disk? Discuss your answers for UNIX and the FAT-1 6 file
+system separately.
+It is not a serious problem at all. Repair is straightforward; it just takes time.
+The recovery algorithm is to make a list of all the blocks in all the files and
+take the complement as the new free list. In UNIX this can be done by scanning
+all the i-nodes. In the FAT file system, the problem cannot occur because
+there is no free list. But even if there were, all that would have to be
+done to recover it is to scan the FAT looking for free entries.
+
+
+
+25. It has been suggested that the first part of each UNIX file be kept in the same disk
+block as its i-node. What good would this do?
+Many UNIX files are short. If the entire file fits in the same block as the inode,
+only one disk access would be needed to read the file, instead of two, as
+is presently the case. Even for longer files there would be a gain, since one
+fewer disk accesses would be needed.
+
+
+
+26. Consider Fig. 4-27. Is it possible that for some particular block number the counters
+in both lists have the value 2? How should this problem be corrected?
+
+It should not happen, but due to a bug somewhere it could happen. It means
+that some block occurs in two files and also twice in the free list. The first
+step in repairing the error is to remove both copies from the free list. Next a
+free block has to be acquired and the contents of the sick block copied there.
+ Finally, the occurrence of the block in one of the files should be changed to
+refer to the newly acquired copy of the block. At this point the system is once
+again consistent.
+
+
+
+29. A certain file system uses 2-K.B disk blocks. The median file size is 1 KB. If all files
+were exactly 1 KB, what fraction of the disk space would be wasted? Do you think
+the wastage for a real file system will be higher than this number or lower than it?
+Explain your answer.
+If all files were 1 KB, then each 2-KB block would contain one file and 1 KB
+of wasted space. Trying to put two files in a block is not allowed because the
+ unit used to keep track of data is the block, not the semiblock. This leads to
+50% wasted space. In practice, every file system has large files as well as
+many small ones, and these files use the disk much more efficiently. For example,
+a 32,769-byte file would use 17 disk blocks for storage, given a space
+efficiency of 32768/34816, which is about 94%.
+
+

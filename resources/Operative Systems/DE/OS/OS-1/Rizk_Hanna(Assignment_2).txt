@@ -1,0 +1,20 @@
+Rizk Hanna
+
+23- Yes, the busy waiting using turn variable will still works.
+
+25- In an operating system that can disable interrupts, In the down operation, the system reads the value of the semaphore and see, if the value is greater than zero, it decrements the value and just continue, if the value is zero, the process is put to sleep immediately. 
+In up operation, if one or more processes were sleeping, the operating system will choose and wake up one of them, and if there were no sleeping processes, the system will increment the value and continue.  
+
+27- Barriers are being used when some applications are divided into phases and have the rule that no process may proceed into the next phase until the other processes are ready to proceed to the next phase. so in this situation, barrier should be used. 
+
+28- If threads are implemented by the kernel, they can synchronize using semaphore, as when a thread block on a semaphore, the kernel can select some other thread in the same process. but if the threads are implemented in user space, the whole process will block when one thread blocks on a semaphore, consequently the process will block forever.
+
+29- It is not efficient according to implementation wise, because checking and evaluating the predicate each time to decide if the process should be unblocked is more expensive than using the signal primitive. 
+
+30- In this architecture, they use message passing technique for interprocess communication.
+
+31- No race condition will happen, because no messages will be lost.
+
+32- As there is no overhead switching between processes, the total time is nT sec.
+
+33- Yes, the source code can determine whether a process is likely to be CPU bound or I/O bound. This can be determined at run time if we can compare the total execution time with the CPU consumption time.  

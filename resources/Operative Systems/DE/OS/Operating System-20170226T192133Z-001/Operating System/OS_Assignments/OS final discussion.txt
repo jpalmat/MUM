@@ -1,0 +1,235 @@
+Orifhon: Hi Professor, I think we didn't cover Distributed Systems in lectures (as a separate topic), but it's included in final exam notes.
+
+Paras Mukadam: you can skip multi-computers
+
+Pijush: apprarently two quiz in two different name 
+
+Pradip Adhikari: Professor, will you be able to provide the answers of the previous assignments?
+
+Paras Mukadam: Ok, let's start from beginning. Everyone clear on file systems topics?
+
+Khanh Le: yes
+
+Subramanian Ramanathan: @ Orifhon , also Ethernet, Internet, Protocol was not part of the reading but is mentioned in exam notes
+
+Paras Mukadam: @Pradip, yes right after this session
+
+Akram Malkawe: Yes
+
+Dhruba Adhikari: I was not able to login from the url provided in the site, sorry for delay professor
+
+Dhruba Adhikari: Komal Asraf send me url, finally that worked
+
+Paras Mukadam: ok
+
+Paras Mukadam: so no questions on File Systems ... let's move to I/O
+
+Khanh Le: yes, let move to IO
+
+Paras Mukadam: I am referring to final exam notes in Sakai
+
+Dhruba Adhikari: Ok
+
+Paras Mukadam: understand different types of I/O
+
+Paras Mukadam: DMA is also internesting
+
+Paras Mukadam: @interesting
+
+Paras Mukadam: skip clocks, device drivers, interruput handlers
+
+Komal: Professor if interrupts is not coming then should we also skip precise and imprecise interrupts?
+
+Paras Mukadam: Interrupts is there, just skip handlers section
+
+Komal: it is mentioned in notes + Interrupts - SKIP, as already covered in 1st term
+
+Khanh Le: I saw "Device Driver - INTRO", not it is skipped ?
+
+Paras Mukadam: you can skip that
+
+Khanh Le: ok
+
+Arbindra Shrestha: Prof you mention few subtopic as INTRO that means just general knowledge is enough
+
+Subramanian Ramanathan: @Komal, yes the same is in the notes, interrupts is skipped
+
+Paras Mukadam: yes, like SCI
+
+Akram Malkawe: Professor, nothing if the notes mentions pre-midterm material, can we skip that for the final?
+
+Dipesh: Professor, Are the topics not marked as aything more important than "INTRO" and less important than "IMP"?
+
+Komal: Professor i am confused here  a lot .... i guess we should discuss topic by topic
+
+Paras Mukadam: @Dipesh - yes
+
+Paras Mukadam: @Komal - clarify your doubts
+
+Komal: Professor as mentioned in the notes interupts are not the part of the exam then we can also skip precide and imprecise interrupts. right?
+
+Roya Yahyapour: I think the best way is that professor edit the notes please
+
+Paras Mukadam: in this term we looked at I/O driven by interrupts, polling, etc. Concentrate on that. Interrupt details can be skipped
+
+Nafiseh Abolmaali: I am agree with Roya, if we have one source , all doublt would be gone
+
+Halieb: Prof do you mean we have to skip Interrupt handlers's in I/O Software Layer's
+
+Altanshagai: same idea with Halib?
+
+Arup: yes updated notes would eliminate confusion certainly
+
+Dhruba Adhikari 2: How Important is SCI ? how much weight does it carries ?
+
+Paras Mukadam: ok, please refer to updated exam notes. Hope it clears confusion
+
+Halieb: great, thanks
+
+Shailendra: Thank you Professor.
+
+Rajendra: Thank you professor
+
+Roya Yahyapour: Thank you professor
+
+Ahmadreza Tabibi: Thank you Professor
+
+Paras Mukadam: @Dhruba - SCI is basis of any course at MUM. It is imp ... and most easy to score points
+
+saroj s khatri: Thanks prof
+
+Nafiseh Abolmaali: thank you prof
+
+Ferdous Ara Mostofa: if there is question like disscuss different types of I/O can u please give a hint how should we approach?
+
+Roya Yahyapour: yes please
+
+Dhruba Adhikari 2: Ok
+
+Ferdous Ara Mostofa: like this can be answerd from different angle
+
+Paras Mukadam: i usually won't ask vague questions
+
+Mohamed Abdelrazik: in I/O skip that part on keyboards ?
+
+Dhruba Adhikari 2: Are there programming or writing algorithm type questions ?
+
+Bikram: prof. how important is time sharing and space sharing
+
+Paras Mukadam: also, there is no single answer for description questions. 2 answers may get same points long as I am conviced that you have understood the topic
+
+Ferdous Ara Mostofa: ok professor...
+
+Paras Mukadam: @Mohamed, skim thru your notes. I hope this is not the first time you are reading about I/O :-)
+
+Dhruba Adhikari 2: :D
+
+Ferdous Ara Mostofa: still like regarding i/o there is discussion on chapter which discussed various ways of doing I/O
+
+Paras Mukadam: On, on to deadlock
+
+Miriam Nessim: what do you mean by "INTRO"  in exam notes?
+
+Ferdous Ara Mostofa: and in I/O chapter like interrupt driven polling
+
+Paras Mukadam: this is another important and practically relevant topic in OS
+
+Paras Mukadam: "INTRO" is skim details just get the gist
+
+Ferdous Ara Mostofa: so are these all can be included as different types of I/O?
+
+Mohamed Abdelrazik: thanks :)
+
+Ferdous Ara Mostofa: * chapter 1
+
+Paras Mukadam: pay good attention to deadlocks, various detection & recovery options
+
+Paras Mukadam: all clear on this topic?
+
+James: I'd like to highlight Dhruba's question. Are we going to have coding and numerical kind of questions? It was a surprise to me in the midterm that we had around 20 marks question related to code and numericals.
+
+Akram Malkawe: yes
+
+Paras Mukadam: @James, yes we are in MS level course. So expect coding related questions. I do not test your language skills, but yes, pseudo code is a must
+
+Altanshagai: Prof for example on which part of topic?
+
+Subramanian Ramanathan: is the format going same as Midterm, like trueor false, brief notes and problem solving and programming?
+
+Paras Mukadam: @Subramanian, yes it will be similar to midterm
+
+Paras Mukadam: @Altanshagai, you may get coding/analytical on deadlocks, file systems
+
+Lei Zhang: prof, is there any sample questions like you provided as midterm exam?
+
+Paras Mukadam: on on Multi Processors, RPc is most imp topic
+
+Subramanian Ramanathan: Thanks Professor
+
+James: I agree. But we never had that kind of questions in the assignments. So I hadn't expected it. 
+
+Bikram: How about scheduling, time sharing, space sharing and multicomputer scheduling, are these imp. topic for final?
+
+Paras Mukadam: you can skim thru rest of the topics
+
+Paras Mukadam: no
+
+Ferdous Ara Mostofa: do we need to memorize figures? like related to structure of any systems?
+
+Bikram: ok thanks, Distribted Sytems?
+
+Dhruba Adhikari 2: Right James, I too agree on that
+
+James: Prof, can you please suggest what we can expect for numerical calculations in the finals?
+
+Paras Mukadam: no, if a figure is required for answering any question, it will be provided
+
+Ferdous Ara Mostofa: thanks
+
+Paras Mukadam: @James, refer to assignments
+
+Paras Mukadam: ok lastly, Distributed Systems
+
+Arbindra Shrestha: can you provide the sample related to coding/analytical on deadlocks, file systems?
+
+Halieb: Prof, what about Memmory Virtualization, I/O Virtualization and Appliances
+
+Khanh Le: no memory or I/O virtulization I think
+
+Paras Mukadam: @Halieb . skim thru details, but understand in general. Refer to ur notes
+
+Paras Mukadam: @Khanh, yes
+
+Subramanian Ramanathan: on middleware, do we need to know about all the types of middleware, like document based, file system based, co-ordination based, object based?
+
+Paras Mukadam: yes, good to understand their basics
+
+Paras Mukadam: u should be able to write 1 sentence about each
+
+Bikram: ok thanks
+
+Paras Mukadam: Ok, that concludes it
+
+Paras Mukadam: if anyone has more doubt, post on forums, or send me directmessage
+
+Rajendra: Thank you professor
+
+Khanh Le: thank you professor
+
+Paras Mukadam: as usual, will post transcript on sakao
+
+Prabal: Thank You Professor!
+
+Prakriti Khanal: Thank you professor
+
+Ahmadreza Tabibi: Thank you Prof
+
+Ahmad Alzamer: thanks
+
+Lincoln Datta: Thank you Professor
+
+Miriam Nessim: Thank you
+
+Halieb: Thanks Prof
+
+Akram Malkawe: Thank you Professor

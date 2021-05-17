@@ -1,0 +1,70 @@
+Page 326 
+
+13. Some digital consumer devices need to store data, for example as files. Name a modem 
+    device that requires file storage and for which contiguous allocation would be a 
+    fine idea. 
+=>  The simplest allocatin scheme is to store each file as a contiguous run of disk blocks. 
+    Contiguous allocation is still used in CD-ROM today because here the size of file is known ahead. 
+    It can be a good idea to use in any devices that uses Read Only memory. It is more convinient for ROM devices. 
+    
+
+17. Two computer science students, Carolyn and Elinor, are having a discussion about inodes. 
+    Carolyn maintains that memories have gotten so large and so cheap that when a 
+    file is opened, it is simpler and faster just to fetch a new copy of the i-node into the inode 
+    table, rather than search the entire table to see if it is already there. Elinor 
+    disagrees. Who is right? 
+=>  Elinor is right. Because, Having two copies of the same i-node in the OS open i-nodes table could easily lead to inconsistencies. 
+
+
+
+
+18. Name one advantage of hard links over symbolic links and one advantage of symbolic 
+    links over hard links. 
+=>  Hard links do not require any extra disk space, just a counter in the i-node to keep track of how many there are. Symbolic links need space to store the name of the file pointed to. 
+    Symbolic links can point to files on other machines, even over the Internet. Hard links are restricted to pointing to files within their own partition. 
+
+
+
+
+21. What would happen if the bitmap or free list containing the information about free 
+    disk blocks was completely lost due to a crash? Is there any way to recover from this 
+    disaster, or is it bye-bye disk? Discuss your answers for UNIX and the FAT-16 file 
+    system separately. 
+=>  It is not a serious problem at all. The recovery algorithm is to make a list of all the blocks in all the files and take the complement as the new free list. 
+    In UNIX this can be done by scanning all the i-nodes. 
+    In the FAT file system, the problem cannot occur because there is no free list. 
+    But even if there were, all that would have to be done to recover it is to scan the FAT looking for free entries. 
+
+
+
+
+25. It has been suggested that the first part of each UNIX file be kept in the same disk 
+    block as its i-node. What good would this do? 
+=>  Often, les are short. If the entire le t in the same block as the inode, only one 
+    disk access would be needed to read the le, instead of two, as is presently the case. Even 
+    for longer les there would be a gain, since one fewer disk accesses would be needed. 
+
+
+
+
+26. Consider Fig. 4-27. Is it possible that for some particular block number the counters 
+    in both lists have the value 2? How should this problem be corrected? 
+=>  The worst thing that can happen is that the same data block is present in two or 
+    more files, as shown in Fig. 4-27(d) with block 5. If either of these files is removed, 
+    block 5 will be put on the free list, leading to a situation in which the same 
+    block is both in use and free at the same time. If both files are removed, the block 
+    will be put onto the free list twice. 
+    The appropriate action for the file-system checker to take is to allocate a free 
+    block, copy the contents of block 5 into it, and insert the copy into one of the files. 
+    In this way, the information content of the files is unchanged 
+
+
+
+
+29. A certain file system uses 2-K.B disk blocks. The median file size is 1 KB. If all files 
+    were exactly 1 KB, what fraction of the disk space would be wasted? Do you think 
+    the wastage for a real file system will be higher than this number or lower than it? 
+    Explain your answer. 
+=>  If all files were 1 KB, then each 2-KB block would contain one file and 1 KB of wasted space. 
+    Trying to put two files in a block is not allowed because the unit used to keep track of data is the block, not the semiblock. 
+    This leads to 50% wasted space. In practice, every file system has large files as well as many small ones, and these files use the disk much more efficiently. 

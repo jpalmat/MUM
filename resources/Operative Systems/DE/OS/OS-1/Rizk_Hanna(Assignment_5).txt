@@ -1,0 +1,53 @@
+Rizk Hanna
+
+A)
+
+
+1- Files that are used to model serial I/O devices like printers
+
+2- Files that are used to save data on disks (Hard disk)
+
+3- File related information, for instance owner, creation date, etc. The Operating system adds those meta data to each file for later usage.
+
+4- File Allocation Table, Is a technique to implement files in operating system to avoid the overhead of saving the word pointers in the disk. FAT is maintaing a table in the memory of all the physical blocks numbers and each entry contains the following block number which related to the same file.
+
+
+5- Index-node is another technique to keep track of which blocks belong to which file. It gathers the attributes and disk addresses of file's block in a data structure. The advantage of using I-node over FAT is there is there is i-node is loaded into memory only if the corresponding file is opened.
+
+
+
+
+B)
+
+
+1- To avoid executing the header as code, and to notify the OS that the file is a binary file.
+
+2- Record length stores the number of bytes in a record, i think it is useful if the OS has to make a search.
+
+3- It is essential for system performance, because it loads the file attributes, and disk addresses into the main memory for rapid access, otherwise the OS would have to do a disk visit to read each block.
+
+4- Rewind sets the file position to the beginning of the file, and it is essential in sequential file system to reset the file pointer, but in random access file system, there is no need for this function since it achievable by using seek function with "0" position.
+
+5- The substantial difference is, by renaming the file, only the file name will be altered. but in the second way, the OS will create a new file attributes with new creation and modification date.
+
+6- File attributes can not be partially mapped, so in order to partially map a file, the OS has to load all the file attributes followed by the number and the length of the desired file section.
+
+7- Yes, by using slashes in file names, eg: root/group1/file
+
+8- By specifing the disk address to read from.
+
+13- A video camera maybe a good example as the video is a sequence of bytes in a contiguous order.
+
+17- Elinor is right, because which one will be updated when the file get updated, a version consistency will occurs.
+
+18- 
+* Hard link over symbolic: Doesn't require disk space, only the counter will be incremented, however in symbolic, a link file should be created.
+* Symbolic over Hard: Can link a file anywhere, however in hard link, the file should be exit within the same system.
+
+21- In Unix, scanning the I-node and maintaing a list of free/occupied block would help in this area, In FAT-16 file system, this problem can not take place because FAT system doesn't maintain a free block list.
+
+25- To reduce disk access and increase the performance.
+
+26- It happens when a block is assigned to two files and also in the free list. The system should remove them from the free list, Then the OS search for a free block to copy the content of the repeated block there, and finally one of the files should be updated to refer to the newly acquired copy.
+
+29- Half the block would be wasted. It depends on the file system, if FAT is using, then yes the wastage will be the same number, but if a linked list, part of the wasting space would be used to store the pointer information.

@@ -1,0 +1,41 @@
+Dear Professor,
+
+Please find answers to given questions as assignment:
+
+23. Does the busy waiting solution using the turn variable (Fig. 2-23) work when the two processes are running on a shared-memory multiprocessor, that is, two CPUs sharing a common memory?
+=> Yes, the busy-waiting solution using the turn variable will work in a multiprocessor environment with a shared memory. In the given example, the 'turn' variable is used to control access to a critical region by two processes. In a multiprocessor,  the difference is that the two processes are running on different CPU's. The only condition is that 'turn' itself should be a variable in shared memory.
+ 
+25. Give a sketch of how an operating system that can disable interrupts could implement semaphores.
+=> To do a semaphore operation, the OS will first disable interrupts. Then it can read the value of the semaphore. If it is doing a wait and the semaphore is equal to zero, it puts the calling process on a list of blocked processes associated with the semaphore. If doing an post, it must first check to see if there are processes blocked in the semaphore. If there are, one of them is removed from the list and made runnable. When all these operations have been completed, interrupts can be enabled again. 
+ 
+27. If a system has only two processes, does it make sense to use a barrier to synchronize them? Why
+or why not?
+=> If the program operates in phases and neither process may enter the next phase until both are finished with the current phase, it makes perfect sense to use a barrier. If the system hosts two process in producer/consumer relationship, then a barrier does not make sense; a semaphore is sufficient.
+ 
+28. Can two threads in the same process synchronize using a kernel semaphore if the threads are implemented by the kernel? What if they are implemented in user space? Assume that no threads in any other processes have access to the semaphore. Discuss your answers.
+=> With kernel threads, a thread can block on a semaphore and the kernel can run some other thread in the same process. Consequently, there is no problem using semaphores. With user-level threads, when one thread blocks on a semaphore, the kernel thinks the entire process is blocked and does not run it ever again. Consequently, the process fails. 
+ 
+29. Synchronization within monitors uses condition variables and two special operations, WAIT and SIGNAL. A more general form of synchronization would be to have a single primitive, WAITUNTIL, that had an arbitrary Boolean predicate as parameter. Thus, one could say, for example, WAITUNTIL x < 0 or y + z < n The SIGNAL primitive would no longer be needed. This scheme is clearly more general than that of Hoare or Brinch Hansen, but it is not used. Why not? (Hint: think about the implementation.)
+=> Eliminating the signal operation by using a Boolean predicate as a parameter to a waituntil operation is not recommended becuase it is expensive to the system.  This is because the waituntil operation will constantly check the Boolean condition rather than waiting for a signal from the currently running process.  With the Hoare and Hansen method, processess can only be awakened by signals, which is more efficient for the system. 
+
+30. A fast food restaurant has four kinds of employees: (1) order takers, who take customer's orders; (2) cooks, who prepare the food; (3) packaging specialists, who stuff the food into bags; and (4) cashiers, who give the bags to customers and take their money. Each employee can be regarded as a communicating sequential process. What form of interprocess communication do they use? Relate this model to processes in MINIX 3.
+=> Both direct communication(send(P,message),receive(id,message)) and indiect communication(send(A,message),receive(A,message)) can be used in the interprocess communication. Related UNIX processes(system calls): 
+simplest communication: using pipes 
+direct communication related system calls: msgget(), msgctl(),msgsnd() and msgrcv(); 
+indirect commnunication related system calls: shmget();shmat();shmdt();shmctl(); 
+Semorphore related: semget();semctl();semop();
+ 
+31. Suppose that we have a message-passing system using mailboxes. When sending to a full mailbox or trying to receive from an empty one, a process does not block. Instead, it gets an error code back. The process responds to the error code by just trying again, over and over, until it succeeds. Does this scheme lead to race conditions?
+=> The message-passing system itself will not lead to race conditions, in the worst case it will lead the process starvation. You can argue about what the system does with messages once they are placed in the mailbox, but that is a different part of the problem.
+ 
+32. The CDC 6600 computers could handle up to 10 I/O processes simultaneously using an interesting form of round-robin scheduling called processor sharing. A process switch occurred after each instruction, so instruction 1 came from process 1, instruction 2 came from process 2, etc. The process switching was done by special hardware, and the overhead was zero. If a process needed T sec to complete in the absence of competition, how much time would it need if processor sharing was used with n processes?
+=> It will need NT seconds.
+Common minor errors (-2 points) included (N-1)T, and anything else that only changed the answer by a constant factor. All other values were given 0 points.
+ 
+33. Can a measure of whether a process is likely to be CPU bound or I/O bound be determined by analyzing source code? How can this be determined at run time?
+=> To some extent, but it depends on the code, and on the IO device or devices being serviced. Usual IO method is via interrupt, and there is no way of knowing, without more information, if that interrupt occurs once per 10 seconds, or once every microsecond. In the first case, if is probably not IO bound, and in the second it may well be. 
+
+Regards,
+
+Ram Chaulagai
+(MUM ID : 984125)

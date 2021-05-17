@@ -1,0 +1,36 @@
+Rizk Hanna
+
+A)
+
+
+1- A signal send over an assigned bus, this signal is detected by the interrupt controller which then decides what to do, Interrupts have two types: 
+	a- Precise interrupt: All the instructions up to the program counter have completed and none of those beyond it have started.
+	b- Imprecise interrupt: Instructions up to the program counter were partially executed, and instructions beyond the program counter has been executed
+
+
+2- Interrupt Vector is 
+an array of devices numbers located at the bottom of the main memory and used by the interrupt handler to tell which I/O device should response to the current interrupt. 
+
+
+B)
+
+
+2- The scanner scans at 400 KB/Sec, The results get buffered, and then the 802.11g adapter transfer it at full speed.
+
+3- It is the same idea of having a snooping device on the memory bus to pass all addresses to I/O devices, the problem is this schema will downgrade the speed as the memory bus speed is faster than the I/O bus.
+
+7- It suppose to be acknowledged at the beginning to give a chance for other interrupts to happen immediately. Maybe because the service procedure has a very short code, the text book did that at the end of the procedure.
+
+8- Yes, because the PC points to the next instruction to be fetched, and all the prior instructions have been executed.
+
+10- By introducing the Uniform Interfacing for Device Drivers concept. The way it works is the concrete implementation for each function is pointed through a pointer in a table which define all the possible functionality for the device.
+
+11-
+	a- Device Driver.
+	b- Device Driver.
+	c- Device Independant software.
+	d- User-Level I/O software.
+
+13- Printers are dedicated devices, and a process may tie it up for long time, while the other processes are waiting, To avoid this situation, a file should be created and placed inside the spooling directory, then the daemon would take care of it.
+
+23- If the OS doesn't provide uniform interfacing for disks, then the OS definitely would fail to boot up. otherwise, The disk driver should be updated with these changes in order to give correct responses to the device independent software requests.

@@ -1,0 +1,43 @@
+rV18dzSr
+admin
+
+NTFS vs FAT32 vs exFAT – Comparison
+FAT32:
+
+Compatibility: Windows, Mac, Linux, gaming consoles, practically any device with a USB port.
+
+Pros: Cross-platform compatibility, lightweight.
+
+Cons: Limited file size (upto 4GB) and partition size (upto 16TB)
+
+Usage: Removable storage devices.
+
+NTFS:
+
+Compatibility: Windows, Mac (Read-only), Linux (read-only for some distributions), Microsoft Xbox One.
+
+Pros: Inexhaustible limits for file and partition size.
+
+Cons: Limited cross-platform compatibility.
+
+Usage: Best for internal hard drives. Use it for Windows system drive and any other system partition which may be used to install software.
+
+exFAT:
+
+Compatibility: Windows XP and later versions, Mac OSX 10.6.5 and above, Linux (using FUSE), Android.
+
+Pros: Behaves as a fusion between FAT32 and NTFS by providing practically unlimited file size and partition size.
+
+Cons: Microsoft restricts its usage by license obligations.
+
+Usage: Use with external hard drives or flash drives of you want to transfer files larger than 4 GB. Always prefer exFAT over FAT32 if the operating supports it.S
+
+
+FAT stands for File Allocation Table and FAT32 is an extension which means that data is stored in chunks of 32 bits. These is an older type of file system that isn’t commonly used these days.
+NTFS stands for New Technology File System and this took over from FAT as the primary file system being used in Windows.
+
+Features:
+Fault Tolerance: NTFS maintains a log of disk changes and in case of power failure or abrupt errors it repairs the files and folders automatically without the user being notified anything. FAT32 maintains two different copies of the file allocation table and uses a back up mechanism if some damage occurs.
+Security: In FAT32 you will have to depend on share permissions for security. This means that they are good in the Network but locally they are vulnerable. On the other hand NTFS allows you to set permissions on local files and folders as well.
+Compression: FAT32 offers no compression feature whatsoever. While NTFS lets you compress files and folders individually so that you do not have to slow down the system by depending on partition compressions.
+Conversion: You may easily convert a FAT32 system to NTFS. But the reverse is not true because NTFS follows a secure protocol. So, the only option here is to backup your data and format the disk.

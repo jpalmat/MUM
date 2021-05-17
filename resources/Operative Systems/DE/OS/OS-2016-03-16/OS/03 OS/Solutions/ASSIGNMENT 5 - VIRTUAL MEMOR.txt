@@ -1,0 +1,62 @@
+ASSIGNMENT 5 :: VIRTUAL MEMORY
+
+PAGE  248 (Chapter 3) of TANENBAUM EDITION 3
+
+DO NOT COPY, SHARE OR REPRODUCE THIS MATERIAL AS IT CAN GET YOU EXPELLED FROM M.U.M.
+
+4) Consider a swapping system in which memory consists of the following hole sizes in memory order:
+10 KB, 4 KB, 20 KB, 18 KB, 7 KB, 9 KB, 12 KB, and 15 KB. Which hole is taken for successive segment
+requests of
+(a) 12 KB
+(b) 10 KB
+(c) 9 KB
+for first fit? Now repeat the question for best fit, worst fit, and next fit.
+A4. First fit takes 20 KB, 10 KB, 18 KB. Best fit takes 12 KB, 10 KB, and 9 KB.
+Worst fit takes 20 KB, 18 KB, and 15 KB. Next fit takes 20 KB, 18 KB, and 9
+KB.
+
+6) The Intel 8086 processor does not support virtual memory. Nevertheless, some companies
+previously sold systems that contained an unmodified 8086 CPU and do paging. Make an educated
+guess as to how they did it. (Hint: think about the logical location of the MMU.)
+A6. They built an MMU and inserted it between the 8086 and the bus. Thus all
+8086 physical addresses went into the MMU as virtual addresses. The MMU
+then mapped them onto physical addresses, which went to the bus.
+
+8) The amount of disk space that must be available for page storage is related to the maximum number
+of processes, n, the number of bytes in the virtual address space, v, and the number of bytes of RAM, r.
+Give an expression for the worst-case disk space requirements. How realistic is this amount?
+A8. The total virtual address space for all the processes combined is nv, so this
+much storage is needed for pages. However, an amount r can be in RAM, so
+the amount of disk storage required is only nv − r. This amount is far more
+than is ever needed in practice because rarely will there be n processes actually
+running and even more rarely will all of them need the maximum allowed
+virtual memory.
+
+11.a) Suppose that a machine has 38-bit virtual addresses and 32-bit physical addresses. What is the
+main advantage of a multilevel page table over a single-level one?
+A11. (a) A multilevel page table reduces the number of actual pages of the page
+table that need to be in memory because of its hierarchic structure. In fact,
+in a program with lots of instruction and data locality, we only need the
+top-level page table (one page), one instruction page and one data page.
+
+12) A computer with 32 bit address uses a two-level page table. Virtual addresses are split into a 9-bit
+top-level page table field, an 11-bit second-level page table field, and an offset. How large are the pages
+and how many are there in the address space?
+A12. Twenty bits are used for the virtual page numbers, leaving 12 over for the offset.
+This yields a 4-KB page. Twenty bits for the virtual page implies 220
+pages.
+
+
+16) The TLB on the VAX does not contain an R bit, why?
+A16. The R bit is never needed in the TLB. The mere presence of a page there
+means the page has been referenced; otherwise it would not be there. Thus the
+bit is completely redundant. When the entry is written back to memory, however,
+the R bit in the memory page table is set.
+
+
+18) A machine has 48-bit virtual addresses and 32-bit physical addresses. Pages are 8KB. How many 
+entries are needed for the page table?
+A18. With 8-KB pages and a 48-bit virtual address space, the number of virtual
+pages is 248 /213, which is 235 (about 34 billion).
+
+DO NOT COPY, SHARE OR REPRODUCE THIS MATERIAL AS IT CAN GET YOU EXPELLED FROM M.U.M.

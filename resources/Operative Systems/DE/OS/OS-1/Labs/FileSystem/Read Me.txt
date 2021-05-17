@@ -1,0 +1,8 @@
+Rizk Hanna
+
+1) 
+	a) only one, because the index node size is 64 bytes and the block size is 64 bytes.
+	b) Four directory entriesif we are using a 16 bytes directory entry size, but here we are using 32 bytes, so only 2 directory entries can fit.
+	c) The value of byte 64 is 1 meaning the block is allocated and contains few or initial data.
+	d) The value of byte 64 is changed to 3, meaning the block contains more data to refer to the directory that has just been created.
+	c) The maximum is 2 because one-block files or directories are created each directory entry requires 32 bytes and the maxinum is 64. 

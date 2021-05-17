@@ -1,0 +1,23 @@
+Rizk Hanna
+
+2- Depends on the connection, if the system is designed for sequential consistency, then no problem, otherwise, it depends on which CPU would use the bus first.
+
+8- I think locks on data structures are sufficient.
+
+13- Because the other processors were busy to serve another processes, and A is the only process that was selected to be served by processor 4
+
+20- In multiprocessor, only sending pointers are sufficient, however in multicomputers system, the actual content has to be transmitted and then reassembled in the buffer of the receiving process. Performance wise, multicomputers is slower.
+
+22- For instance, a system call on a remote machine to open a file that is exist only at the sender. This problem can be solved by sending those calls back to the sender, or asking the sender to transfer the file.
+
+25- One problem is if the process is using a file in which the other system does not have this file, and if it does, the I/O table in the kernel has to be updated as well.
+
+26- It doesn't matter how many partitions on the disk to build a virtual machine, The hypervisor can use only one partition to build many VMs.
+
+28- Some applications has a lot of code that is not necessary to be executed, like Microsoft Word, by opening it and write some text and close it again, so translating the entire program in advance would definitely affect the performance, On demand is better in this situation however translating a block at a time is also not efficient as at each time a start and stop procedures are involved.
+
+29- Yes, paravirtualization means modifying the OS source code to replace the sensitive operations with hypervisor calls.
+
+32- Because beside the hosting OS, the hypervisor itself need a memory to load its functionality and data structures needed to execute the host OS instructions. Shared code is a good idea if more than one VM using the same OS.
+
+38- Yes of course, www.google.com doesn't tell where the server is located.

@@ -1,0 +1,15 @@
+Rizk Hanna
+
+1) No deadlock in this case, because we have only one resource with two instances, one for each process.
+
+2) 
+	a) In this case we have two processes, two resources with one instance each, process 0 computes for 10 ms then asks 
+for resource 0, analogous for process 1, which asks for resource 1 instead. no problems so far. 
+after another 10 ms, process 0 asks for resource 1, however we have only one instance which is being used by process 1, so 
+process 0 waits for process 1 to release its resource, but before it happen, process 1 also asks for resource 0 which is 
+being hold by process 0, so process 1 waits as well. now we have two processes each one is waiting for an event that only 
+the other process can cause. which represent a deadlock situation.
+	
+	b) By adding another instance to resource 1, no deadlock arise, because when process 0 asks for resource 1, the OS grants the request immediately, at the same time, process 1 waits for process 0 to complete and release resource 0. When process 0 finishes its work, it releases the resources which allow process 1 to gain access to resource 0 and continue working till it finishes. 
+
+ 

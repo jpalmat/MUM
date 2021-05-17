@@ -1,0 +1,74 @@
+ 
+1. In Fig. 2-2 (pg 90), three process states are shown. In theory, with three states, there could be six transition, two out of each state. 
+However, only four transitions are shown. Are there any circumstances in which either or both of the missing transitions might occur?
+ The Transition from blocked to running is possible. Suppose that a process is blocked due to some reason. If the CPU is idle then the process 
+could go directly from blocked to running. The other missing transition i.e from ready to blocked is impossible as a ready process cannot perform any I/O or any
+operation that might blocked it. Only running process can be blocked.
+
+3. On all current computers, at least part of the interrupt handlers are written in assembly language. Why? 
+The hihg level language do not have access to CPU hardware which is required.When an interrupt handler required to enabled and 
+disable the interrupt service or to manipulate data within a process stack area, the assembly language
+can only access to registers and stacks.It is not easy to manipulate the stack pointer register outside assembly languages.Other reasons is that the interrupt handlers must be very fast, and since the interrupt
+routines are very short, they can be hand-crafted to be much faster than anything a compiler
+generates.
+
+4. When an interrupt or a system call transfers control to the operating system, a kernel stack area separate from the stack of the 
+interrupted process is generally used. Why?
+There are two reasons for using a separate stack for the kernel. 
+A.Firstly, if we don't want to crash the operating system because of a bad user program  does not allow for enough space.
+B.if the kernel leaves stack data in a user program’s memory space upon return from a system call, a malicious use
+
+ 
+6. in the text it was stated that the model of fig 2-11(a) was not suite to a file server using a cache in memory. why not? could each 
+process have its own cache?
+It would be difficult, to keep the file system consistent. For example 
+when a client process sends a request to server process 1 to update a file.
+This process updates the cache entry in its memory.
+ At the same time another client process sends a request to server 2 to read that file. 
+Unfortunately, if the file is also cached there, server 2, in its innocence, will return old
+data. If the first process writes the file through to the disk after caching it,
+and server 2 checks the disk on every read to see if its cached copy is up-todate,
+the system can be made to work, but it is precisely all these disk accesses
+that the caching system is trying to avoid.
+ 
+7. If a multithreaded process forks, a problem occurs if the child gets copies of all the parent¡¯s threads. Suppose that one of the 
+original threads was waiting for keyboard input. Now two threads are waiting for keyboard input, one in each process. Does this problem 
+ever occur in single-threaded processes?
+ No. If a single-threaded process is blocked on the keyboard, it cannot fork.
+
+
+8. In fig 2-8 (pg 98), a multithreaded web server is shown. If the only way to read from a file is the normal blocking read system call, 
+do you think user-level threads or kernel-level threads are being used for the web server?why?
+A worker thread will block when it has to read a Web page from the disk. If user-level threads are being used, this action will block the entire process,
+destroying the value of multithreading. Thus it is essential that kernel threads are used to permit some threads to block without affecting the others.
+ 
+9. In the text, we described a multithreaded web server, showing why it is better than a single-threaded server and a finite-state 
+machine server. Are there any circumstances in which a single-threaded sever might be better? give an example.
+Yes. If the server is entirely CPU bound, there is no need to have multiple threads. It just adds unnecessary complexity. As an example, consider a telephone directory assistance number (like 888-1010) for an area with 1 million people. If each (name, telephone number) record is, say, 64 characters, the
+entire database takes 64 megabytes, and can easily be kept in the server’s memory to provide fast lookup
+
+10. In fig 2-12 (pg 102), the register set is listed as a per-thread rather than a per-process item, why? after all, the machine has only 
+one set of registers.
+When a thread is stopped, it has its own values in the registers and that must be saved. Similarly when they process is stopped hte registers must be saved.
+Multiprogramming threads is no different than multiprogramming process, so each thread needs its own register save area.
+
+ 
+11. Why would a thread ever voluntarily give up the CPU by calling thread_yield? After all, since there is no periodic clock interrupt, 
+it may never get the CPU back. 
+Threads in a process cooperate. They are not hostile to one another. If yielding is needed for the good of the application, then a thread will yield. After
+all, it is usually the same programmer who writes the code for all of them.
+ 
+14. What is the biggest advantage of implementing threads in user space? what is the biggest disadvantage?
+The biggest advantage of implementing threads is the efficiency. No traps to the kernel are needed to switch threads. The biggest disadvantage is that if one thread blocks, the entire
+process blocks.
+
+15. In fig 2-15 (pg 106) the thread creations and messages printed by the threads are interleaved at random. Is there a way to force the order 
+to be strictly thread 1 created, thread 1 prints message, thread 1 exits, thread 2 created, thread 2 prints message, thread 2 exists, 
+and so on? If so, how? If not, why not?
+Yes, it can be done. After each call to pthreadcreate, the main program could do a pthreadjoin
+to wait until the thread just created has exited before creating the next thread.
+ 
+21. In a system with threads, is there one stack per thread or one stack per process when user-level threads are used? What about when 
+kernel-level threads are used? Explain
+Each thread calls procedures on its own, so it must have its own stack for the local variables, return addresses etc. This is same for user-level
+threads and kernel-level threads too.
