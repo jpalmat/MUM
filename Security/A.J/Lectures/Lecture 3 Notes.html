@@ -1,0 +1,351 @@
+
+<!-- saved from url=(0066)https://www.cs.mum.edu/courses/de/cs466/LectureNotes/lecture03.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>Lecture 3 Notes</title>
+	</head>
+	<body>
+<pre><h3>Lecture 3 Security Policies in general, Bell-LaPadula model</h3>
+This lecture covers Chapters 4, 5
+
+<h3>Executive Summary</h3>
+1. A security policy defines what is secure
+
+2. A security mechanism implements a security policy
+
+3. For research purposes think of two different types of security policies: those
+dealing with confidentiality and those dealing with integrity.
+
+4. However, real world security policies deal with confidentiality, integrity and availability
+
+5. The Bell-LaPadula model is a confidentiality policy. Subject and objects are assigned
+security levels. A security level includes a security clearance (top secret, secret, etc.) and
+some categories (e.g., EUR, NUC, GER) indicating need to know within the security clearance.
+
+6. Security clearances are mandatory access controls. Bell-LaPadula also allows for 
+discretionary access controls like we looked at in the previous lecture, but these are
+checked only after the security clearances are checked.
+
+6. A "lower" security level cannot read from a "higher" security level. (no read up)
+
+7. A "higher" security level cannot write to a "lower" security level (no write down)
+
+<a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/mainpoints03.htm">Main points</a>
+
+<h3>Chapter 4 Security Policies</h3>
+A good overview of what has be be considered when creating a security policy is at
+<a href="http://www.faqs.org/rfcs/rfc2196.html">http://www.faqs.org/rfcs/rfc2196.html</a>
+
+Definition 4-1 A <i>security policy</i> is a statement that partitions the states of the
+system into a set of <i>authorized</i>, or <i>secure</i> states and a set of
+<i>unauthorized</i>, or <i>non-secure</i> states.
+
+Definition 4-2 A <i>secure</i> system is a system that starts in an authorized state and
+cannot enter an unauthorized state.
+
+Definition 4-3 A <i>breach of security</i> occurs when a system enters an unauthorized state.
+
+Definition 4-4 Let X be a set of entities and let I be some information. Then I has the
+property of <i>confidentiality</i> with respect to X if no member of X can obtain information
+about I.
+
+Definition 4-5 Let X be a set of entities and let I be some information. Then I has the
+property of <i>integrity</i> with respect to X if all members of X trust I.
+
+If I is data, this is data integrity
+If I is the origin of something, this is origin integrity (or authentication)
+If I is a resource, then this is assurance that the resource operates according to its spec.
+
+Definition 4-6 Let X be a set of entities and let I be a resource. Then I has the property
+of <i>availability</i> with respect to X if all members of X can access I.
+
+"access" is relative (1 hour delay okay for amazon, not okay for medical data)
+
+Definition 4-7 A <i>security mechanism</i> is an entity or procedure that enforces some part
+of the security policy.
+
+Distinction between security policy and security mechanism is important
+
+Example: Student A copies a file of student B because B did not read protect it. The 
+security policy forbids copying so A has violated the policy. Had B used the mechanism of
+setting the file permission then student A could not have copied. However, B is not in
+violation of the security policy.
+
+Example - Security policy must specify procedures to handle backups of confidential data.
+
+<h4>Types of Security Policies</h4>
+
+Definition 4-9 A <i>military security policy</i> (also called a <i>governmental security policy</i>
+is a security policy developed primarily to provide confidentiality.
+
+Integrity and availability are also important, but confidentiality is the most important for
+the military.
+
+Confidentiality is a major part of <i>privacy</i>, but privacy also restricts what information 
+the government can ask of an individual.
+
+The following distinction between confidentiality and privacy is from <a href="http://www.library.cmu.edu/ethics2.html">http://www.library.cmu.edu/ethics2.html</a>
+<div style="color:red">
+Privacy "denotes a zone of inaccessibility" of mind or body, the right to be left alone and 
+to maintain individual autonomy, solitude, intimacy, and <span class="red">control over information about oneself.</span> 
+
+Confidentiality "concerns the communication of <span class="red">private</span> and personal information from one person
+to another." The key ingredients of confidentiality are trust and loyalty. Professionals rely 
+on the promise of confidentiality to inspire trust in their clients and patients. In the case 
+of lawyers, psychiatrists, and clergy, communications are legally designated "privileged."
+</div>
+
+Definition 4-10 A <i>commercial security policy</i> is a security policy developed primarily
+to provide integrity.
+
+Example: Banks can't afford to have accounts altered incorrectly.
+
+Transactions (as in database transactions) are important to many integrity policies.
+
+Note that trust plays a major role here, i.e., the concern here is about the accuracy of
+an object. This contrasts with a confidentiality policy whose focus is restricting access to 
+an object; it "officially" doesn't care whether the object is accurate or not.
+
+However, commercial organizations are also interested in confidentiality, e.g., they would
+like to control who looks at:
+  personnel data
+  marketing plans
+  formulas
+  manufacturing and development techniques
+
+Definition 4-11 A <i>confidentiality policy</i> is a security policy dealing only with
+confidentiality
+
+Definition 4-12 An <i>integrity policy</i> is a security policy dealing only with integrity.
+
+<h4>The Role of Trust</h4>
+The role of trust is crucial to understanding the nature of computer security. Any theory or
+mechanism rests on certain assumptions. The accuracy of those assumptions affects the trust
+we have in the system.
+
+Example: Assumptions in effect when applying a security patch (e.g. an update to Windows)
+1. Assume patch originated from Microsoft and that it wasn't modified in transit.
+
+2. Assume that Microsoft tested the patch thoroughly.
+
+3. Assume that Microsoft's test environment corresponds to the environment to which the
+patch was applied. (e.g., same previous patches are in effect) 
+
+4. Assume that patch is installed correctly.
+
+Example: What assumptions in effect for a formally verified program S?
+1. The formal verification of S is correct.
+
+2. The assumptions made in the formal verification of S are correct.
+
+3. S is compiled correctly
+
+4. Hardware that runs compiled version of S is functioning correctly.
+
+<h4>Types of Access Control</h4>
+
+Definition 4-13 If an individual user can set an access control mechanism to allow or deny
+access to an object, that mechanism is a <i>discretionary access control</i>(DAC), also called
+an <i>identity-based access control</i> (IBAC).
+
+Example: Access control in Windows is discretionary.
+
+Definition 4-14 When a system mechanism controls access to an object and an individual user
+cannot alter that access, the control is a <i>mandatory access control</i> (MAC),
+occasionally called a <i>rule-based access control</i>.
+
+Example: The military might use an OS that sets the access rights of a document based on
+the security clearance of the person who created the object. The person who created the 
+document cannot change the access rights.
+
+Example: The law allows a court to access driving records <i>without the owner's permission.</i>
+
+Definition 4-15 An originator controlled access control (ORCON or ORGCON) bases access on the
+creator of the object (or the information it contains).
+
+Example: <a href="http://en.wikipedia.org/wiki/Digital_rights_management">Digital Rights Management</a>
+
+Example: Contractor signs a NDA (non-disclosure agreement) which requires him to get permission
+before giving certain information to somebody else.
+
+See the <a href="http://www.etext.org/CuD/Papers/company-email">Electronic Mail Association's</a> white paper
+for things to consider when creating a email policy.	 
+
+We will now look at an example of a confidentiality policy (Bell-LaPadula) and an 
+integrity policy (Biba)
+
+<h4>Goals of Confidentiality Policies</h4>
+A confidentiality policy, also called an <i>information flow policy</i>, prevents the
+unauthorized disclosure of information. It is not concerned with the integrity or 
+availability of the information.
+
+Military: Enemy must not know battle plans.
+
+Government: The U.S. Privacy Act requires that certain personal data, e.g., income tax returns, 
+be kept confidential.
+
+<h4> The Bell-LaPadula Model</h4>
+Corresponds to military style classifications. It has influenced much of the development
+of computer security technologies.
+
+<h4>Informal Description</h4>
+The simplest type of confidentiality classification is a set of <i>security clearances</i>
+arranged in a linear (total) ordering.
+
+A total ordering is defined as follows:
+
+For all a, b and c in a set X (in this case the set of security clearances/classifications):
+
+if a R b and b R a then a = b (antisymmetry) 
+if a R b and b R c then a R c (transitivity) 
+a R b or b R a (totality or completeness) 
+
+Let X = {top secret, secret, confidential, unclassified}
+Let R =
+{
+ {unclassified, top secret},
+ {unclassified, secret},
+ {unclassified, confidential},
+ {confidential, top secret},
+ {confidential, secret},
+ {secret, top secret} 
+}
+Then R defines a total ordering on X
+Read a R b as a has a lower security clearance than b.
+
+A subject has a security clearance
+An object has a security classification
+
+The goal of the Bell-LaPadula model is to prevent read access to objects at a 
+security classification higher than the subject's clearance.
+
+<table border="1">
+	<tbody><tr><td>Clearance/Classification</td><td>Subject(s)</td><td>Object(s)</td></tr>
+	<tr><td>TOP SECRET(TS)</td><td>Tamara, Thomas</td><td>Personnel Files</td></tr>
+	<tr><td>SECRET(S)</td><td>Sally, Samuel  </td><td>Electronic Mail Files</td></tr>
+	<tr><td>CONFIDENTIAL(C)</td><td>Claire, Clarence</td><td>Activity Log Files</td></tr>
+	<tr><td>UNCLASSIFIED(UC)</td><td>Utaley, Thomas</td><td>Telephone List Files</td></tr>
+</tbody></table>
+
+So Clarence cannot read Electronic Mail or Personnel files.
+
+The Bell-LaPadula security model combines mandatory and discretionary access controls. The
+mandatory controls dominate; the discretionary controls in the access control matrix are
+applied only if the mandatory controls indicate that the subject can access the object.
+
+Let L(S) = l<sub>s</sub> be the security clearance of subject S
+Let L(O) = l<sub>o</sub> be the security classification of object O
+
+<b>Simple Security Condition, Preliminary Version</b>
+S can read O if and only if l<sub>o</sub> &lt;= l<sub>s</sub> 
+and S has discretionary read access to O.
+
+But need to prevent somebody from copying a high security file into a lower security file.
+
+<b>*-Property, Preliminary Version</b>
+S can write O if and only if l<sub>s</sub> &lt;= l<sub>o</sub> 
+and S has discretionary write access to O.
+
+This means that somebody with a UNCLASSIFIED clearance can write to a TOP SECRET file
+assuming the have write access to the file.
+
+Theorem 5-1 Basic Security Theorem(summarized). If a system starts out secure and each
+state transition respects the two above conditions, then the system is secure.
+
+Expand the model by adding categories to each security clearance/classification.
+Each category describes a kind of information. This models "need to know". A subject can
+only read/write objects in categories associated with the subject.
+
+Each security clearance/classification and category form a <i>security level</i>.
+
+Example
+If Clarence has a security clearance of (CONFIDENTIAL, {EUR, US}) then he can read CONFIDENTIAL documents about
+EUR (Europe) or US (U.S.). See below for other documents that he has access to.
+
+Definition 5-1 The security level (L, C) <i>dominates</i> the security level (L', C')
+if and only if L' &lt;= L and C' subset of C
+
+Example, if
+George is cleared into security level (SECRET, {NUC, EUR})
+DocA is classified as (CONFIDENTIAL, {NUC})
+DocB is classified as (SECRET, {EUR, US})
+DocC is classified as (SECRET, {EUR})
+
+then
+George <i>dom</i> DocA
+George !<i>dom</i> DocB (George doesn't have need to know about US information)
+George <i>dom</i> DocC
+
+Now use categories to improve on the preliminary security conditions given above.
+<b>Simple Security Condition</b>
+S can read O if and only if S <i>dom</i> O and S has discretionary read access to O.
+
+<b>*-Property</b>
+S can write to O if and only if O dom S and S has discretionary write access to O.
+
+So if S is cleared into (UNCLASSIFIED, {}), S can write to a (TOP SECRET, {NUC}) file
+(assuming that S has write access to the file).
+
+Theorem 5-2 Basic Security Theorem(summarized). If a system starts out secure and each
+state transition respects the two above conditions, then the system is secure.
+
+A subject S has a <i>maximum security level</i> and a <i>current security level</i>. The
+maximum security level must dominate the current security level. S may effectively 
+decrease its security level from the maximum in order to communicate with subjects at
+lower security levels.
+
+Bell-LaPadula is an abstract model and can be adapted to various environments
+
+"read" conventionally means "allowing information to flow from the object being read to
+the subject reading". Thus "read" usually includes "execute" because the subject could monitor
+the instructions in the object.
+
+"write" conventionally means "allowing subject writing to the object written". "write" normally
+includes "appends".
+
+<!--
+<p>[#.#]Here are some DTDs that describe lab2. Add information needed by Bell-LaPadula to the one that describes the DTD you used in lab 2.
+</p>
+<pre>
+&lt;!DOCTYPE acm [
+&lt;!ELEMENT acm(object+)>
+&lt;!ELEMENT object (subject+)>
+&lt;!ATTLIST object name CDATA #REQUIRED>
+&lt;!ELEMENT subject (permission+)>
+&lt;!ATTLIST subject name CDATA #REQUIRED>
+&lt;!ELEMENT permission (#PCDATA)>
+]>
+
+
+&lt;!DOCTYPE acm [
+&lt;!ELEMENT acm(subject+)>
+&lt;!ELEMENT subject (object+)>
+&lt;!ATTLIST subject name CDATA #REQUIRED>
+&lt;!ELEMENT object (permission+)>
+&lt;!ATTLIST object name CDATA #REQUIRED>
+&lt;!ELEMENT permission (#PCDATA)>
+]>
+-->
+
+<h4>19 Deadly Sins of Software Security</h4>
+Same sin as <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture01.htm#19sins">Lecture 1</a>
+
+[Aamir]
+ACM gives you the in depth &amp; detailed view of the rights of the objects 
+and subjects , SCI is a complete knowledge that gives you the complete 
+insight of your potential.
+
+Object and subject are the key fields of ACM. zRest and activity are the 
+steps of progress,
+
+[Mahlet]
+The Java sandbox restricts applets from performing many activities.
+
+An invincible nervous system, built as a result of constant meditation, 
+restricts stresses from making us stressed. 
+
+
+
+
+</pre>
+	
+</body></html>

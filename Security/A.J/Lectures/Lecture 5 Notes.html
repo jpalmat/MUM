@@ -1,0 +1,690 @@
+
+<!-- saved from url=(0066)https://www.cs.mum.edu/courses/de/cs466/LectureNotes/lecture05.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>Lecture 5 Notes</title>
+		<style>
+			.red {color:red}
+		</style>
+	</head>
+	<body>
+<pre><h4>Lecture 5</h4>
+This lecture is based on Chapter 7
+
+<h4>Executive Summary</h4>
+
+1. We look at four other policy models that deal with both confidentiality and integrity.
+
+2. The Chinese Wall model is appropriate for investment counselers. It increases the trust
+   of their clients in their advice. Trust means integrity.
+<img src="./Lecture 5 Notes_files/COIclasses.JPG">
+   
+3. Clinical Information Systems Security Policy
+Patients want their medical records to be confidential. But records must not be changed
+inappropriately, e.g., doctor changes record because of a malpractice suit.
+
+4. Originator Controlled Access Control
+Control how your work is disseminated and also control its integrity (somebody can't modify
+your work and attribute it to you.
+
+5. Role-Based Access Control
+Based on the roles we looked at in Lecture 2. Can restrict read access, that is confidentiality.
+But can also restrict access based on separation of duty which is an integrity concern.
+
+<a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/mainpoints05.htm">Main points</a>
+
+<h4>Chinese Wall Model</h4>
+
+It is a model of a security policy that refers equally to confidentiality and integrity, and
+deals with conflict of interest.
+
+Definition 7-1/7.2 A <i>company dataset</i> (CD) contains objects (items of information) related to
+a single company
+
+Definition 7-3 A <i>conflict of interest</i> (COI) class contains the datasets of companies
+in competition.
+
+Let COI(O) represent the COI class that contains object O.
+Let CD(O) be the company dataset that contains object O.
+Let PR(S) be the set of objects that S has read.
+
+The model assumes that each object belongs to exactly one COI class.
+
+<img src="./Lecture 5 Notes_files/COIclasses.JPG">
+
+<b>CW-Simple Security Condition Preliminary Version</b>
+S can read O if and only if <b>either</b> of the following is true
+
+1. There is an object O' such that S has accessed O' and CD(O') = CD(O)
+
+2. For all objects O', O' in PR(S) implies that COI(O) != COI(O').
+
+<b>CW-Simple Security Condition</b>
+S can read O if and only if any of the following holds.
+
+1. There is an object O' such that S has accessed O' and CD(O') = CD(O)
+
+2. For all objects O', O' in PR(S) implies that COI(O) != COI(O').
+
+3. O is a sanitized object
+
+So a subject can read unsanitized objects from only one CD of a COI.
+
+Now consider the following situation:
+Anthony and Susan work in the same trading house. Anthony can read BankCOI.BankOfAmerica
+and Susan can read BankCOI.Citibank. Both can read GasCompanyCOI.ARCO. If Anthony can also
+write to GasCompanyCOI.ARCO, then he can read information from BankCOI.BankOfAmerica and
+write it to GasCompanyCOI.ARCO, and then Susan can read that information.
+
+The following prevents this from happening
+
+<b>CW-*-Property</b>
+A subject S may write an unsanitized object O if and only if <b>both</b> of the following 
+conditions hold.
+
+1. The CW-simple security condition permits S to read O
+
+2. For all <b>unsanitized</b> objects O', S can read O' implies that CD(O')=CD(O).
+
+This means that you can only write objects back to the CDs that you read them from.
+Futhermore, if you read from more than one CD then you can't write to any CD.
+
+<!--
+<h4>A Comparison of the Bell-LaPadula and Chinese Wall Models</h4>
+Bell-LaPadula cannot emulate Chinese Wall for the following reasons:
+
+1. Bell-LaPadula does not retain the history needed to handle changes over time.
+
+2. Intial state of Bell-LaPadula constrains the set of object a subject can access, but in the
+initial state of the Chinese Wall model, a subject can access any object.
+
+However, the Chinese Wall model can emulate the Bell-LaPadula model.
+
+<h4>A Comparison of the Clark-Wilson and Chinese Wall Models</h4>
+
+Chinese Wall deals exclusively with access control, not with validation and verification (like
+Clark-Wilson does).
+-->
+
+
+<h4>Clinical Information Systems Security Policy</h4>
+Survey showed that most patients are unwilling to share their personal health information
+with administrators (patient confidentiality)
+
+Integrity concerns:
+1. Doctor changing record because of malpractice suit
+2. Less confidentiality will increase integrity problems, e.g., if health records used
+in hiring, then desire to modify them will increase.
+3. If patients cease to believe that their clinical confidences will be respected, they
+will suppress relevant information, leading not just to inaccurate records but to poor
+treatment of individual patients and to an increased risk to others.
+4. What if a patient walks in and says he is somebody else.
+
+
+"As usual with policy models, we will attempt to translate the application requirements
+into a set of rules that say which <b>subject</b> can access which <b>object</b>. Here a subject may be
+a computer user (such as a doctor, health administrator or outside hacker) or a computer
+program acting on behalf of a user; the objects are the information held in the system, and
+may include programs and data; and access may include the ability to read, write and 
+execute objects"
+
+One assumption is that each record is about only one person (not necessarily the case
+with obstetrics, pediatric, psychiatric or pediatric records.)
+
+Principle 1: Each identifiable clinical record shall be marked with an <b>access control
+list</b> naming the people or groups of people who may read it and append data to it.
+The system shall prevent anyone not on the access control list from accessing the record
+in any way.
+
+Principle 2: The access control list on a new record is as follows. A clinician may open 
+a record with herself and the patient on the access control list. Where a patient has been 
+referred, she may open a record with herself, the patient and the referring clinician(s) on
+the access control list.
+
+Principle 3: One of the clinicians on the access control list must be marked as being 
+responsible. Only she may alter the access control list, and she may only add other health
+care professionals to it.
+
+Principle 4: The responsible clinician must notify the patient of the names on his
+record’s access control list when it is opened, of all subsequent additions, and whenever 
+responsibility is transferred. His consent must also be obtained, except in emergency or in
+the case of <a href="http://www.rcfp.org/foiact/ex3.html">statutory exemptions</a>.
+<i>Note: this also helps detect identity theft</i>
+
+Principle 5: No one shall have the ability to delete clinical information until the 
+appropriate time period has expired.
+<i>Note: appropriate varies based on the nature of the records. Keeping records may help
+a doctor delay with relapses of a disease. Append rather than delete.</i>
+
+Principle 6: All accesses to clinical records shall be marked on the record with the subject’s
+name, as well as the date and time. An audit trail must also be kept of all deletions.
+
+Principle 7: Information derived from record A may be appended to record B if and only if B’s 
+access control list is contained in A’s.
+
+Principle 8: There shall be effective measures to prevent the aggregation of personal
+health information. In particular, patients must receive special notification if any person
+whom it is proposed to add to their access control list already has access to personal
+health information on a large number of people.
+<i>Show me the records of all females aged 35 with two daughters aged 13 and 15 who both
+suffer from eczema</i>
+<i>In the form you filled out yesterday you were asked to write your entry date. What if you
+were the only person in the room who entered at that date?</i>
+
+Principle 9: Computer systems that handle personal health information shall have a
+subsystem that enforces the above principles in an effective way. Its effectiveness shall
+be subject to evaluation by independent experts. (assurance)
+<i>"The system should be able to be managed by a clinician whose computer literacy and
+administrative tidiness are less than average" (psychological acceptibility)</i>
+<!--
+Bell-LaPadula not adequate to represent this because
+1. This model maintains state about how many objects a subject has accessed
+2. There is a notification component
+
+Clark-Wilson is adequate:
+1. CDIs are the medical records
+2. TPs are functions that update the medical records and their ACLs
+3. IVPs are:
+  a. A person identified as a clinician is a clinician
+  b. A clinician validates, or has validated information in the medical record.
+  c. Notifications happen as required
+  d. When someone must give consent, the operation cannot proceed until the consent is obtained.
+4. Auditting requirement is met because all records are append-only.
+5. What about UDIs? (is responsible person supposed to convert them to CDIs?
+-->
+
+<h4>Originator Controlled Access Control</h4>
+
+There are situations where the originators of documents retain control over them even after
+those documents are disseminated. In ORCON ("Originator Controlled"), a subject can give
+another subject rights to an object only with the approval of the creator of that object.
+
+Combine features of mandatory and discretionary access controls:
+1. (Mandatory) The owner of an object cannot change the access controls of the object.
+2. (Mandatory) When an object is copied, the access control restrictions of that source are 
+copied and bound to the target of the copy
+3. (Discretionary) The creator (originator) can alter the access control restrictions on a 
+per-subject and per-object basis.
+
+Thin copyright - enough protection to encourage creativity but not restricting too strongly 
+the availability of the works to the public
+
+Thick copyright - maximize profits
+
+DRM - use of technological controls to protect digital works
+
+Copying a book is prohibited by copyright law but that just makes people feel guilty. The
+reason they don't copy the book is because it is inconvenient and costs money.
+
+Easy to make a multiple copies of a digital book at no cost.
+
+Encryption does not prevent copying, it prevents access
+
+Encryption options
+1. Encrypt and give purchaser the key. Hah!
+
+2. Use a voucher. When digital media is downloaded, an encrypted key is also downloaded and
+stored as a hidden file on the computer. The program that reads the media knows how to find
+the encrypted key and use it to decipher the media. May work with naive users but not with
+users who know about the two files. This violates the principle of open design.
+
+3. Have voucher contain unique information about the machine that is used to download the
+media. Media player reads the voucher and compares information about machine with the actual
+machine information. If different then don't play file. What if user gets new machine? The
+violates the principle of psychological acceptibility.
+
+Adobe Acrobat has digital protection. Open a PDF file and chose File/Properties
+Microsoft Reader uses a scheme like option 3 above.
+Disallow text to speech because some technologists fear that the text-to-speech could be fed 
+back into a voice recognition program, thus reproducing the written text. (Analog hole)
+
+Rights Expression Language
+Renato Ianella's Open Digital Rights Language (ODRL)
+<table border="1" align="center">
+<tbody><tr align="center" valign="top"><th align="center">Rights</th><th>Constraints</th><th>Payments</th></tr>
+<tr valign="top">
+    <td>excerpt&nbsp;<br>
+      execute<br>
+      give&nbsp;<br>
+      install<br>
+      lease&nbsp;<br>
+      lend&nbsp;<br>
+      modify&nbsp;<br>
+      move&nbsp;<br>
+      play <br>
+      print <br>
+      printer <br>
+      remark <br>
+      restore <br>
+      sell <br>
+      transferPerm<br>
+uninstall </td>
+    <td>fixedamount<br>
+      hardware&nbsp;<br>
+      interval<br>
+      network<br>
+      percentage <br>
+      peruse <br>
+      range <br>
+      screen <br>
+      uid <br>
+      version <br>
+unit </td>
+    <td> feeType<br>
+      payment<br>
+      postpay<br>
+      prepay <br>
+      transaction<br>
+
+</td></tr>
+</tbody></table>
+
+ORDL is rendered in XML
+&lt;permission&gt;
+  &lt;display&gt;
+    &lt;constraint&gt;
+      &lt;unit type="NumberOfPages"&gt;
+        &lt;constraint&gt;
+          &lt;range&gt;
+            &lt;min&gt;1&lt;/min&gt;
+            &lt;max&gt;5&lt;/max&gt;
+          &lt;/range&gt;
+        &lt;/constraint&gt;
+      &lt;/unit&gt;
+    &lt;/constraint&gt;
+	&lt;/display&gt;
+&lt;/permission&gt;
+
+<h4>Trusted Systems</h4>
+A rights expression language just expresses, it has no enforcement abilities of its own.
+
+How can seller of digital media trust that your computer will not circumvent controls. E.G.
+if you rent a book with the agreement that you have two weeks to read it (like renting a DVD)
+and you can reset your clock, then your computer is not trusted. OS has to get involved. 
+Microsoft is working on this.
+
+"Trusted computing means that content owners can trust that the computer will obey the DRM 
+instead of you, the computer's owner."
+
+The above is excerpted from <a href="http://www.kcoyle.net/drm_basics1.html">here</a>
+
+Some more links on DRM:
+<a href="http://en.wikipedia.org/wiki/Digital_rights_management">Digital Rights Management</a> is a form of ORCON that is attracting a lot of 
+attention today (<a href="http://www.apple.com/hotnews/thoughtsonmusic/">Steve Jobs</a>)
+
+
+<h4>Role-Based Access Control</h4>
+<a href="http://csrc.nist.gov/groups/SNS/rbac/documents/design_implementation/Intro_role_based_access.htm">An introduction to Role-Based Access Control</a>
+also
+http://csrc.nist.gov/groups/SNS/rbac/documents/design_implementation/Intro_role_based_access.htm
+
+Users cannot pass access permissions on to other users at their discretions. This is a 
+fundamental difference between Discretionary Access Control and RBAC
+
+RBAC is a form of MAC, but it is not based on multilevel security requirements.
+
+Role-Based access control in many applications is concerned more with access to functions
+<b>and</b> information rather than just access to information.
+
+For example, 
+
+&lt;os&gt;
+  &lt;roles&gt;
+    &lt;role name='student'&gt;
+      &lt;operation object='file1' rights='r'/&gt;
+      &lt;operation object='file2' rights='a'/&gt;
+      &lt;operation object='file4' rights='rw'/&gt;
+    &lt;/role&gt;
+    
+    &lt;role name='intern'/&gt;
+      &lt;operation object='file1' rights='w'/&gt;
+      &lt;operation object='file3' rights='rwe'/&gt;
+    &lt;/role&gt;    
+  &lt;/roles&gt;
+  
+  &lt;users&gt;
+    &lt;user subject='joe'&gt;
+      &lt;role&gt;student&lt;/role&gt;
+      &lt;role&gt;intern&lt;/role&gt;
+    &lt;/user&gt;
+    &lt;user subject='jack'&gt;
+      &lt;role&gt;student&lt;/role&gt;
+    &lt;/user&gt;
+    &lt;user subject='pat'&gt;
+      &lt;role&gt;student&lt;/role&gt;
+    &lt;/user&gt;
+    &lt;user subject='kathy'&gt;
+      &lt;role&gt;student&lt;/role&gt;
+    &lt;/user&gt;
+    &lt;user subject='rene'&gt;
+      &lt;role&gt;student&lt;/role&gt;
+    &lt;/user&gt;
+  &lt;/users&gt;
+&lt;/os&gt;
+
+Within a role-based system, the principle concern is with protecting the integrity of
+information, "who can perform what acts on what information".
+
+
+The ability or need, to access information may depend on one's job function
+
+Definition 7-7. A role is a collection of job functions. Each role r is authorized to perform 
+one or more transactions (actions in support of a job function). The set of authorized 
+transactions for r is written trans(r).
+
+Definition 7-8. The active role of a subject s, written actr(s), is the role that s is 
+currently performing.
+
+Definition 7-9. The authorized roles of a subject s, written authr(s), is the set of roles 
+that s is authorized to assume.
+
+Definition 7-10. The predicate canexec(s, t) is true if and only if the subject s can 
+execute the transaction t at the current time.
+
+Definition 7-11. Let r be a role, and let s be a subject such that r is in authr(s).
+Then the predicate mutex(r) is the set of roles that s cannot assume because of the separation
+of duty requirement. This restricts authr(s).
+
+Three rules reflect the ability of a subject to execute a transaction
+1. If a subject can execute <i>any</i> transaction, then subject has an active role
+
+2. The subject must be authorize to assume its active role
+
+3. A subject cannot execute a transaction for which its current role is not authorized.
+
+These rules indicate that RBAC is a form of mandatory access control. DAC may further restrict
+transactions.
+
+
+
+
+This is richer that using groups in Windows XP
+
+programming sins
+
+<h4>19 Deadly Sins of Software Security</h4>
+In early 2004, Amit Yoran, then the director of the National Cyber Security Division at the
+U.S. Department of Homeland Security, announced that about 95 percent of software security bugs
+came from 19 "common, well-understood" programming mistakes. 
+
+The book <a href="http://www.amazon.com/Deadly-Sins-Software-Security-One-off/dp/0072260858">19 Deadly Sins of Software Security</a> by Howard, LeBlanc and Viega
+documents these 19 programming flaws. They are:
+<ol>
+<li>Failing to store and protect data securely <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture01.htm#19sins">Lecture 1</a></li> 
+<li><span class="red">Information leakage</span> <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture05.htm#19sinsLeakage">Lecture 5</a></li>
+<li><span class="red">SQL injection </span><a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture05.htm#19sinsSQL">Lecture 5</a></li>
+<li>Race conditions (improper thread programming) <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture07.htm#19sins">Lecture 7</a></li>
+<li>Failing to use cryptographically strong random numbers <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture08.htm#19sins">Lecture 8</a></li>
+<li>Failing to protect network traffic <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture09.htm#19sinsSniffer">Lecture 9</a></li> 	
+<li>Unauthenticated key exchange <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture09.htm#19sinsUnauthenticated">Lecture 9</a></li> 
+<li>Improper use of SSL <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture09.htm#19sinsSSL">Lecture 9</a></li>
+<li>Use of weak password-based systems <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture10.htm#19sins">Lecture 10</a></li>
+<li>Use of "magic" URLs and hidden form fields <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture11.htm#19sins">Lecture 11</a></li>
+<li>Command injection <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture12.htm#19sins">Lecture 12</a></li>
+<li>Buffer Overflows <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture13.htm#19sinsOverflow">Lecture 13</a></li>
+<li>Failure to handle errors <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture13.htm#19sinsErrors">Lecture 13</a></li>
+<li>Format String problems <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture14.htm#19sinsFormat">Lecture 14</a></li>
+<li>Integer range errors <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture14.htm#19sinsInteger">Lecture 14</a></li>
+<li>Trusting network address information <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture15.htm#19sins">Lecture 15</a></li>		
+<li>Improper file access <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture16.htm#19sins">Lecture 16</a></li>
+<li>Cross-site scripting <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture17.htm#19sinsCross">Lecture 17</a></li>
+<li>Poor usability <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture17.htm#19sinsUsability">Lecture 17</a></li>
+</ol>
+
+All of these could happen in a managed environment, although a buffer overflow would have
+to happen inside the virtual machine (JVM or CLR).
+
+<a id="19sinsLeakage">
+<h3>Information Leakage</h3>
+
+<b>1. On the login page don't let the attacker know whether it was the username or password that
+caused the login to fail.</b> Recall from lecture 1 where I talked about SQL injection, that the
+username and password are used to form an SQL query against the database. Let's say that you
+modified what I gave in Lecture 1 to something like this:
+
+boolean validateLogin(String name, String password, StringBuilder msg)
+{
+  <b>// For brevity I have omitted try/catch/finally and closing the connection!</b>
+  Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+  conn = DriverManager.getConnection("... name of ODBC database ...");
+  Statement stmt = conn.createStatement();
+  String sql = "select password from student where name=?",
+  PreparedStatement ps = conn.prepareStatement(sql);
+  ps.setString(1, name);  // replace first ? with name
+  ResultSet rs = ps.executeQuery();
+  if (rs.next())	// if this is true then user is in the database)
+  {
+<span style="color:red">
+    String actualPassword = rs.getString("password");  // get password stored in database
+    if (!actualPassword.equals(password))
+    {
+      msg.append("Illegal password");
+    	return false;  // login failed because of bad password
+    }
+    else
+      return true;   // login succeeded
+  }
+  else
+  {
+    msg.append("Illegal user name");
+    return false;	   // login failed because of bad user name
+  }
+</span>  
+}
+
+With the above code, if the user entered john and flower, he would discover that "john" was
+an illegal user name and he could then try other user names and not worry about the password.
+Once he got the "Illegal password" message, he would know that the user name was correct and
+he could begin trying to guess the password.
+
+Too minimize this information, it is important to use a neutral message, like
+"Login failed, please try again" which doesn't indicate whether it is the user name or the
+password that is wrong.
+
+There is a trade-off between the principle of psychological acceptibility (the user would like
+to know as much as possible about why the login failed) and the principle of least privilege
+(don't give the user anything that they don't need to know).
+
+<b>2. Application information </b>
+If you catch a Java exception, you can call the getStackTrace() and getMessage() methods
+to discover information about what caused the exception. For example
+try
+{
+  ...
+}
+catch (Exception ex)
+{
+	String dump = ex.getStackTrace();
+	...
+}
+
+This is very useful if you are debugging, but you should never display this information to the 
+user of the program. There are two reasons why you shouldn't do this:
+
+a. It will confuse a normal user who won't understand what is being reported in the stack
+trace. It is much better to display a message such as, "System error occurred. We are working
+on it. Please try again later." You can then save information about the error in a database log 
+file out of view of the user or even email the system administration the error information.
+
+b. It will <span style="color:red">not</span> confuse an attacker. He will be able to study
+the stack trace and possible learn things about your program that will allow him to attack it.
+I have seen error messages that contain the name of the database, the user name, and once a 
+password.
+
+So be careful what you include in an error message!
+
+<b>3. Avoid giving detailed version information</b>
+When you contact a web server (e.g., amazon.com) using the HTTP protocol, it can send information
+back about itself, e.g., its type (Apache, IIS) and version number. This is now considered to
+be information leakage because an attacker can lookup the known vulnerabilities of that version
+and exploit them. It is best to keep this information to a minimum. For example, www.amazon.com
+identifies its server as:
+
+Server: Server
+
+This reveals nothing about the type of version of the web server used by amazon.com.
+
+Google, identifies its webserver as:
+
+Server: gws
+
+This also reveals nothing.
+
+My server returns
+
+Server: Microsoft-IIS/6.0
+
+which gives some information, but it does not reveal which patches have been applied.
+
+Another server that I use for Java returns this information:
+
+Server: Apache-Coyote/1.1
+
+The web server can be configure to return any description of itself. The book claims that
+some people run IIS/6.0 but return Apache-Coyote/1.1 as the server. This will surely slow
+down an attacker who then tries Apache vulnerabilities against IIS.
+
+<b>4. Don't provide detailed Host Network Information.</b>
+We will see later in the course (see section 23.3.2 Analysis of Network infrastructure), that
+it is possible to hide information about the actual IP address of a client machine. An attacker
+has to go through a gateway which hides this information. The less that an attacker knows about
+your network, the better.
+
+I hope you see the point here. Always be aware of what information about your system you are
+sending to the users of your system. 
+
+
+</a><a id="19sinsSQL">
+<h3>SQL injection</h3>
+When you log onto the course web site, you are asked for a user name and password. If my web 
+application finds your name and password in the database, you are allowed to log on. 
+Otherwise, you have to try again. Here is how this is done.
+
+I have a database table named student (not its real name) which contains the following 
+information
+
+<table border="1">
+	<tbody><tr>
+		<th>SID</th>
+		<th>name</th>
+		<th>password</th>
+	</tr>
+	<tr>
+		<td>123</td>
+		<td>bob</td>
+		<td>flower</td>
+	</tr>
+	<tr>
+		<td>456</td>
+		<td>jill</td>
+		<td>apple</td>
+	</tr>
+</tbody></table>
+
+When you click submit, your name and password is sent to my application which passes them
+to a method validateLogin(String name, String password).
+
+A flawed version of validateLogin is:
+
+boolean validateLogin(String name, String password)
+{
+  <b>// For brevity I have omitted try/catch/finally and closing the connection!</b>
+  Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+  conn = DriverManager.getConnection("... name of ODBC database ...");
+  Statement stmt = conn.createStatement();
+	
+  <span style="color:red">String sql = String.format("select SID from student where name='%s' and password='%s'",
+	                          name, password);	</span>
+  ResultSet rs = stmt.executeQuery(sql);
+  if (rs.next())	// if this is true then user is in the database)
+    return true;
+  else
+    return false;	
+}
+
+If the user entered username "bob" and password "flower", the statement in red would create
+the following SQL statement
+
+select SID from student where name='bob' and password='flower'
+
+When this is executed against the above database, 123 will be returned and rs.next() will be
+true.
+
+But what if the user entered "xyz' or 1=1 --" as the password. In this case, the constructed
+SQL statement would be
+
+select SID from student where name='bob' and password='<span class="red">xyz' or 1=1 --</span>'
+
+Since 1=1 is always true, this query will return all rows and rs.next() will be true and the
+program will assume that the user has entered a valid password, even though "xyz" is <b>not</b>
+a valid password. Note that -- is treated as a comment by SQL so the last ' is considered
+to be part of the comment and will not cause a syntax error.
+
+A version of validateLogin that doesn't have this security vulnerability follows:
+boolean validateLogin(String name, String password)
+{
+  <b>// For brevity I have omitted try/catch/finally and closing the connection!</b>
+  Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+  conn = DriverManager.getConnection("... name of ODBC database ...");
+  Statement stmt = conn.createStatement();
+	<span style="color:red">
+  String sql = "select SID from student where name=? and password=?",
+  PreparedStatement ps = conn.prepareStatement(sql);
+  ps.setString(1, name);  // replace first ? with name
+  ps.setString(2, password); // replace second ? with password
+  ResultSet rs = ps.executeQuery();
+	</span>
+  if (rs.next())	// if this is true then user is in the database)
+    return true;
+  else
+    return false;	
+}
+
+The PreparedStatement in the above code would create the following SQL if the user entered
+the password "xyz' or 1=1 --"
+
+select SID from student where name='bob' and password='xyz<span style="color:red">''</span> or 1=1 --'
+
+Notice that the ' entered by the user has been escaped to '' so that it no longer terminates the
+password and the "or" is now considered to be part of the password string and not part of
+the SQL statement. 
+
+If you have followed what I have said, you will understand where the name "SQL Injection"
+comes from. The user is attempting to inject his own SQL (e.g.' or 1=1) into the query that you
+are building.
+
+The moral of this story is to always use a PreparedStatement in Java when building an SQL
+query from user input. Remember,
+<div style="color:red; font-size:24">
+	All user input is evil
+</div>
+
+<h3>XPath Injection</h3>
+    public void AddCDI(string tp, string cdi)
+    {
+      string xpath = String.Format("/TPs/TP[name='{0}']/CDIs", tp);
+      XmlNode cdisElement = doc.SelectSingleNode(xpath);
+      if (cdisElement == null)
+        throw new Exception("TP doesn't exist");
+      else
+      {
+        XmlElement cdiElement = doc.CreateElement("CDI");
+        cdiElement.InnerText = cdi;
+        cdisElement.AppendChild(cdiElement);
+      }
+    }
+    
+Let's say name names of TPs were a secret. Here is how someone
+could insert a CDI into the first TP.
+
+allowed.AddCDI("TP10' or '1'='1", "CDI18");
+
+This will produce the XPath expression
+/TPs/TP[name='TP10' or '1'='1']/CDIs
+
+Command window in the debugger
+http://msdn.microsoft.com/en-us/library/c3a0kd3x(VS.80).aspx
+    
+
+</a></pre><a id="19sinsSQL">
+	
+</a></body></html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0066)https://www.cs.mum.edu/courses/de/cs466/LectureNotes/lecture06.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Lecture 6 Notes</title>
+  <style>
+			.red {color:red;}
+			.blue {color:blue;}
+			.bkgray {background:gray;}
+		</style>
+</head>
+<body>
+<pre><h4>Lecture 6 Classical Cryptography</h4>
+This lecture is based on Chap 8 (97-113)
+
+<h4>Executive Summary</h4>
+1. WKLVOHFWXUHLVDQLQWURGXFWLRQWRFUBSWRJUDSKB  (ciphertext)
+
+2. THISLECTUREISANINTRODUCTIONTOCRYPTOGRAPHY  (plaintext)
+
+3. A key was used with an enciphering function to encipher 
+the plaintext.
+
+4. The <span class="red">same</span> key was used with a deciphering function to decipher the<br>ciphertext.<br><br>5. Cryptanalysis <br>  a. ciphertext only<br>  b. known plaintext<br>  c. chosen plaintext<br><br>6. Two fundamental types of ciphers<br>  a. Substitution<br>  b. Transposition <br>  <br>7. We will look at the following ciphers<br>  a. Caesar<br>  b. Rail fence<br>  c. Vigenere   <br>	d. One-time pad<br>	e. DES<br><br><a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/mainpoints06.htm">Main points</a>
+	
+<h4>What is Cryptography?</h4>		<br>There are five components to a <i>cryptosystem</i>
+1. (M) A set of <i>plaintexts</i> (messages in plain English)<br>2. (C) A set of <i>ciphertexts</i> (plaintexts that have been enciphered)<br>3. (K) A set of <i>keys</i> (used to encipher plaintexts and decipher cryptotexts)<br>4. (E) A set of <i>enciphering functions</i> (use the keys to encipher plaintext)<br>5. (D) A set of <i>deciphering functions</i> (use the keys to decipher ciphertext)<br><br>An attacker may use three types of attacks<br>1. Ciphertext only (have only the ciphertext)<br>2. Known plaintext (have the ciphertext for a known plaintext)<br>3. Chosen plaintext (can generate ciphertext for any plaintext)<br><br><h4>Substitution Cipher<br><br>A <i style="font-weight: normal;">substitution cipher</i><span style="font-weight: normal;"> changes characters in plaintext to produce the ciphertext. Can <br>be cracked by comparing character frequencies with a model of the language.</span><br></h4><br>A <i>Caesar cipher</i> shifts the letters of the plaintext right k characters with wraparound<br><br>For example, if k = 4<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br> B            O        X    (plaintext)<br> B   F            S         (ciphertext)<br><br>  static public void caesar()<br>  {<br>    String m = "abcdefghijklmnopqrstuvwxyz";      // m is a member of M<br>    int k = 3;                                    // k is a member of K<br>    String <span class="red">c</span> = e(m, k);                           // e is a member of E, c is a member of C<br>    String r = d(<span class="red">c</span>, k);                           // d is a member of D<br>  }<br>  <br>  <b>// e is an encryption function</b>
+  static String e(String m, int k)
+  {
+    StringBuilder sb = new StringBuilder();
+    m = m.toUpperCase();
+    for (int i=0; i&lt;m.length(); i++)
+    {
+      int n = m.charAt(i) - 'A';   // convert to 0..26
+      n = (n + k) % 26;            // shift right with wraparound
+      sb.append((char)('A' + n));  // convert back to ASCII
+    }
+    
+    return sb.toString();
+  }
+  
+  <b>// d is a decryption function</b>
+  static String d(String c, int k)
+  {
+    StringBuilder sb = new StringBuilder();
+    
+    for (int i=0; i&lt;c.length(); i++)
+    {
+      int n = c.charAt(i) - 'A';   // convert to 0..26
+      n = (26 + n - k) % 26;       // shift left with wraparound (add 26 to prevent neg #)
+      sb.append((char)('A' + n));  // convert back to ASCII
+    }
+    
+    return sb.toString();
+  }
+
+<b>C# version</b>
+
+  static public void Caesar()
+  {
+    String m = "abcdefghijklmnopqrstuvwxyz";      // m is a member of M
+    int k = 3;                                    // k is a member of K
+    String c = E(m, k);                           // e is a member of E, c is a member of C
+    String r = D(c, k);                           // d is a member of D
+    Console.WriteLine(c);
+    Console.WriteLine(r);
+  }
+
+  // e is an encryption function
+  static String E(String m, int k)
+  {
+    StringBuilder sb = new StringBuilder();
+    m = m.ToUpper();
+    foreach (char ch in m)
+    {
+      int n = ch - 'A';   // convert to 0..26
+      n = (n + k) % 26;            // shift right with wraparound
+      sb.Append((char)('A' + n));  // convert back to ASCII
+    }
+
+    return sb.ToString();
+  }
+
+  // d is a decryption function
+  static String D(String c, int k)
+  {
+    StringBuilder sb = new StringBuilder();
+
+    foreach (char ch in c)
+    {
+      int n = ch - 'A';            // convert to 0..26
+      n = (26 + n - k) % 26;       // shift left with wraparound (add 26 to prevent neg #)
+      sb.Append((char)('A' + n));  // convert back to ASCII
+    }
+
+    return sb.ToString();
+  }
+
+
+<h4>Transposition Cipher	<br></h4>A <i>transposition cipher</i> rearranges the characters in the plaintext to form the<br>cipher text. The letters are not changed. Can be cracked by using a table of n-gram<br>frequencies to identify common n-grams.<br><br>A <i>rail fence</i> cipher is composed by writing the plaintext in two rows, proceeding down,<br>then across, and reading the ciphertext across, then down.<br><br>Example Encrypt FAMILY<br><br>FML<br>AIY<br><br>to get FMLAIY<br><br><br><br style="font-weight: bold;"><span style="font-weight: bold;">Vigenere Cipher</span><br style="font-weight: bold;">Uses a key to map characters of plaintext to cipher text. Key<br>repeats as necessary. The key mapping is represented as a tableaux (see below). The <span class="red">red</span> letters are <br>characters of the key, and the <span class="blue">blue</span> letters are characters of the plaintext. The <b>black</b>
+letters are characters of ciphertext. The length of the key is called the period of the cipher.
+
+<table border="1">
+	<tbody><tr class="red"><td>&nbsp;</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
+	<tr class="bkgray"><td class="blue">A</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
+	<tr><td class="blue">B</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td></tr>
+	<tr class="bkgray"><td class="blue">C</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td></tr>
+	<tr><td class="blue">D</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>J</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td></tr>
+	<tr class="bkgray"><td class="blue">E</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td></tr>
+	<tr><td class="blue">F</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td></tr>
+	<tr class="bkgray"><td class="blue">G</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr>
+	<tr><td class="blue">H</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td></tr>
+	<tr class="bkgray"><td class="blue">I</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td></tr>
+	<tr><td class="blue">J</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td></tr>
+	<tr class="bkgray"><td class="blue">K</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td></tr>
+	<tr><td class="blue">L</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td></tr>
+	<tr class="bkgray"><td class="blue">M</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td></tr>
+	<tr><td class="blue">N</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td></tr>
+	<tr class="bkgray"><td class="blue">O</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td></tr>
+	<tr><td class="blue">P</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td></tr>
+	<tr class="bkgray"><td class="blue">Q</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td></tr>
+	<tr><td class="blue">R</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td></tr>
+	<tr class="bkgray"><td class="blue">S</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td></tr>
+	<tr><td class="blue">T</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td></tr>
+	<tr class="bkgray"><td class="blue">U</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td></tr>
+	<tr><td class="blue">V</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td></tr>
+	<tr class="bkgray"><td class="blue">W</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td></tr>
+	<tr><td class="blue">X</td><td>X</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td></tr>
+	<tr class="bkgray"><td class="blue">Y</td><td>Y</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td></tr>
+	<tr><td class="blue">Z</td><td>Z</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td></tr>
+</tbody></table>
+
+For example, here is how to encrypt ABACUS using the key CPU
+Key:        <span class="red">CPUCPU</span>
+Plaintext:  <span class="blue">ABACUS</span>
+Ciphertext: <b>CQUEJM</b>
+
+This is because
+column <span class="red">C</span>, row <span class="blue">A</span> is <b>C</b>
+column <span class="red">P</span>, row <span class="blue">B</span> is <b>Q</b>
+column <span class="red">U</span>, row <span class="blue">A</span> is <b>U</b>
+column <span class="red">C</span>, row <span class="blue">C</span> is <b>E</b> <br>column <span class="red">P</span>, row <span class="blue">U</span> is <b>J</b> <br>column <span class="red">U</span>, row <span class="blue">S</span> is <b>M</b> <br><br>To decrypt <b>CQUEJM</b> you can either use the above tableau and search each column for the<br>ciphertext character and then look to the left to see what the plaintext character is, or<br>you could create an inverse tableaux.<br>For example, here is how to decrypt <b>CQUEJM</b> using the key CPU<br>Key:        <span class="red">CPUCPU</span>
+Ciphertext: <b>CQUEJM</b>
+Plaintext:  <span class="blue">ABACUS<br><br></span>Search in<br>column <span class="red">C</span> for ciphertext letter C<span class="blue"></span>, the row is for plaintext <span class="blue">A</span><br>column <span class="red">P</span> for ciphertext letter Q<span class="blue"></span>, the row is for plaintext <span class="blue">B</span><br>column <span class="red">U</span> for ciphertext letter U<span class="blue"></span>, the row is for plaintext <span class="blue">A<br></span>column <span class="red">C</span> for ciphertext letter E<span class="blue"></span>, the row is for plaintext <span class="blue">C</span> <br>column <span class="red">P</span> for ciphertext letter J<span class="blue"></span>, the row is for plaintext <span class="blue">U</span> <br>column <span class="red">U</span> for ciphertext letter M<span class="blue"></span>, the row is for plaintext <span class="blue">S</span> &nbsp;<br><br>For many years the Vigenere cipher was considered unbreakable. But then it was noticed<br>that repetitions occur when characters of a key appear over the same characters in the<br>ciphertext. The number of characters between the repetitions is a multiple of the period<br><br><br><h4>One-Time Pad</h4>
+Key is the same as length of message and is only used once.
+Consider the following tableaux which is binary rather than ASCII
+<table border="1">
+	<tbody><tr class="red"><td>&nbsp;</td><td>0</td><td>1</td></tr>
+	<tr><td class="blue">0</td><td>0</td><td>1</td></tr>
+	<tr><td class="blue">1</td><td>1</td><td>0</td></tr>
+</tbody></table>
+
+Let's say that someone wants to send an AYE (yes) or a NAY(no) indicating whether to buy
+some stock.
+
+It is first necessary to get the binary of the plaintext:
+
+AYE 41 59 45   01000001 01011001 01000101
+NAY 4E 41 59   01001101 01000001 01011001
+
+Do the following to send an "AYE"
+
+Key:        00110011 10010000 01100111  (Key 1 Random 1s and 0s)
+Plaintext:  01000001 01011001 01000101  (AYE)
+Ciphertext: 01110010 11001001 00100010  (Not ASCII)
+
+Let's say that an attacker gets the above ciphertext and randomly generates keys to decipher
+it. A key exists that will decipher the ciphertext to "NAY" and the attacker has now way of
+knowing that this is wrong since it is an English word.
+
+Key:        00111111 10001000 01111011  (Key 2 Random 1s and 0s)
+Ciphertext: 01110010 11001001 00100010  (ciphertext of AYE)
+Plaintext:  01001101 01000001 01011001  (NAY)
+
+This scheme is unbreakable since it is possible to generate a key that will convert a ciphertext
+to any given plaintext. Since key is only used once, it is not possible to try a key on more 
+than one ciphertext. And since the key is random and the same length as the message, there will 
+be no detectable patterns in the ciphertext.
+
+<h4>Data Encryption Standard<br><br><a style="font-weight: normal;" href="http://csrc.nist.gov/publications/fips/fips46-3/fips46-3.pdf">DES</a><span style="font-weight: normal;"> was designed<br>to encipher sensitive but unclassified data. Here is an overview of how it works</span><br></h4><br>1. It is a product cipher because it uses both transposition and substitution<br><br>2. It is binary (like the one-time pad)<br><br>3. It breaks the plaintext into 64 bit blocks and enciphers each block independently of the <br>others.<br><br>4. The encryption of a 64 bit input block produces a 64 bit output block<br><br>5. The output blocks are concatenated together to produce the ciphertext.<br><br>6. The key block used to encrypt a block is 64 bits long.<br><br>7. The cipher consists of 16 rounds (iterations). The output of one round is input to the<br>next round.<br><br>8. The key used by a round is generated from the key block.<br><br>9. In a round, each 64 bit block is processed as follows:<br><img src="./Lecture 6 Notes_files/Bishop_08-06.jpg">
+
+The f function looks something like this:
+<img src="./Lecture 6 Notes_files/Tanenbaum_08-06.jpg" width="900">
+(From Tanenbaum "Computer Networks, 4th edition)
+
+What was described above is Electronic Code Book (ECB) mode. Since each 64 bit block is
+encipher independently two identical 8 byte plaintext blocks will be encipher to the same
+ciphertext. This is essentially a glorified substitution cipher.
+
+An improvement on ECB is Cipher Block Chaining (CBC) mode in which the ciphertext of the
+previous block is used in the encipherment of the next block.
+
+However, DES can be cracked with a distributed attack and faster hardware. The successor to
+DES is the Advanced Encryption Standard (AES). AES can use keys of 128, 192, or 256 bits and
+operate on blocks of 128 bits.
+
+<h3>19 Deadly Sins of Software Security</h3>
+Same sin as <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture01.htm#19sins">Lecture 1</a>
+Failing to store and protect data securely (key in program allows crypto to be reverse
+engineered).
+
+</pre>
+
+
+</body></html>

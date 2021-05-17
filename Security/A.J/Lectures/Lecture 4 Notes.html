@@ -1,0 +1,308 @@
+
+<!-- saved from url=(0066)https://www.cs.mum.edu/courses/de/cs466/LectureNotes/lecture04.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>Lecture 4 Notes</title>
+	</head>
+	<body>
+<pre><h3>Lecture 4</h3>
+This lecture is based on Chapter 6.
+
+<h4>Executive Summary</h4>
+
+1. Integrity security policies deal with things like separation of duty, separation of 
+function and auditting. These are meant to minimize errors that would violate the integrity
+of the system, not its confidentiality.
+
+2. The Biba integrity model is the dual of the Bell-LaPadula model. In Biba, subjects and
+objects are assigned integrity levels and there is no write up or read down which is the
+opposite of Bell-LaPadula.
+
+3. The Clark-Wilson integrity model is based on transactions, separation of duty and auditing.
+It does not use labels like Bell-LaPadula and Biba.
+
+4. The Clark-Wilson model introduces the 5 certification rules and 4 enforcement rules.
+Certifiers are different from developers (separation of duty).
+
+<a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/mainpoints04.htm">Main points</a>
+
+<h4>Integrity Policies</h4>
+
+In an inventory control system integrity rather than confidentiality is the key concern.
+
+<h4>Goals</h4>
+
+Five requirements of an integrity policy
+1. Users will not write their own program, but will use existing production programs and
+databases.
+
+2. Programmers will develop and test programs on a nonproduction system; if they need
+access to actual data, they will be given production data via a special process, but
+will use it on their development system.
+
+3. A special process must be followed to install a program from the development system
+onto the production system.
+
+4. The special process in requirement 3 must be controlled and auditted.
+
+5. The managers and auditors must have access to both system state and the
+system logs that are generated.
+
+Three principles derivable from these requirements
+
+1. Separation of duty - if two or more steps are required to perform a critical function,
+at least two different people should perform the steps.
+
+Example - moving a program from development environment to production environment.
+Step 1. Programmer writes program and tests it.
+Step 2. Deployer tests program before deploying it.
+
+Example - approving a money order
+The teller and the bank manager must approve it
+
+2. Separation of function - machines have different functions
+Examples
+a. Developers do not develop new programs on production systems because of the potential
+threat to production data
+
+b. Developers do not process production data on the development system.
+
+c. The developers and testers may receive sanitized production data
+
+d. Although distinct systems, the development and production systems must be as similar as 
+possible.
+
+3. Auditing
+Auditing is the process of analyzing systems to determine what actions took place and who
+performed them. Logging is the basis of auditing.
+
+Auditing allows a company to keep track of who did what to which system.
+
+<h4>Biba Integrity Model</h4>
+In Biba's model a system consists of
+a set S of subjects
+a set O of objects
+a set I of integrity levels
+
+subjects and objects are assigned an integrity level.
+
+For processes (subjects), the higher the integrity level, the more confidence one has that the 
+process will execute correctly.
+
+For data (objects), the higher the integrity level, the more accurate the data is.
+
+A process at a higher level than an object is considered to be more trustworthy than the
+object.
+
+Biba's model is the dual of the Bell-LaPadula model (concepts from Biba can be mapped 1-1
+to concepts from Bell-LaPadula)
+1. A subject s can read an object o if and only if i(s)&lt;=i(o)
+<i>Bell-LaPadula: S can read O if and only if l<sub>o</sub> &lt;= l<sub>s</sub> and S has discretionary read access to O.</i>
+User space can read from the kernel but kernel cannot read directly from user space
+
+2. A subject s can write to an object o if and only if i(o)&lt;=i(s)
+<i>Bell-LaPadula: S can write O if and only if l<sub>s</sub> &lt;= l<sub>o</sub>  and S has discretionary write access to O.</i>
+Kernel can write directly to user space, but user space cannot write directly to the kernel
+
+3. A subject s1 can execute a subject s2 if and only if i(s2)&lt;=i(s1) (This is like a write)
+The idea here is that a trusted process needs to run in a trusted environment. If it is
+run by a process that is less trusted, the environment may not be appropriate for the trusted
+process to run in.
+
+In summary
+Bell-LaPadula: no write down, no read up
+Biba:          no read down,  no write up
+
+<h4>Clark-Wilson Integrity model</h4>
+<!--
+<b>Why not just use Bell-LaPadula?</b>
+The original paper on the Clark-Wilson model is available from <a href='http://crypto.stanford.edu/~ninghui/courses/Fall03/papers/clark_wilson.pdf'>here</a>.
+Commercial firms rarely grant access on the basis of "clearance" like military systems do; if
+a particular user needs to know specific information, he or she will be given it. While this
+can be modelled in Bell-LaPadula it requires a large number of categories and security levels,
+increasing the complexity of modelling. More difficult is the issue of controlling this 
+proliferation of categories and security levels, In a military environment, creation of
+security levels and categories is centralized. In commercial firms, this creation would 
+normally be decentralized. The former allows tight control on the number of compartments,
+whereas the latter allows no such control.
+
+However,
+Theodore M.P. Lee, "Using Mandatory Integrity to Enforce "Commercial" Security,"
+p. 140,  1988 IEEE Symposium on Security and Privacy,  1988
+-->
+1. Uses well-formed transactions as the basic operation.
+
+D + YB - W = TB
+where
+D is deposits made today
+W is withdrawals made today
+YB is yesterday's balance
+TB is today's balance
+
+A <i>well-formed transaction</i> is a series of operations that transition the system from
+one consistent state to another consistent state hiding any intermediate states that may be
+inconsisent.
+
+A well-formed transaction must be certified (i.e., test/proved correct). This is an 
+example of separation of duty (the certifiers and the implementors are different people)
+
+Some acronyms used by Clark-Wilson
+CDI constrained data item
+UDI unconstrained data item
+IVP integrity verification procedure
+TP  transformation procedure (a well-formed transaction)
+
+<b>Certification rule 1</b> (CR1) When any IVP is run, it must ensure that all CDIs are in a 
+valid state
+
+<b>Certification rule 2</b> (CR2) For some associated set of CDIs, a TP must transform those 
+CDIs that are in a valid state into a (possibly different) valid state. (A TP is only certified
+to work with a certain set of CDIs).
+
+Mathematically this CR2 can be expressed as a relation named <i>certified</i>, e.g.,
+certified = 
+{
+  &lt;TP<sub>1</sub>, CDI<sub>1</sub>&gt;
+  &lt;TP<sub>1</sub>, CDI<sub>2</sub>&gt;
+  &lt;TP<sub>2</sub>, CDI<sub>2</sub>&gt;
+  &lt;TP<sub>2</sub>, CDI<sub>3</sub>&gt;
+}
+The above says that TP<sub>1</sub> is certified to manipulate CDI<sub>1</sub> and CDI<sub>2</sub> and
+TP<sub>2</sub> is certified to manipulate CDI<sub>2</sub> and CDI<sub>3</sub>
+
+<b>Enforcement rule 1</b> (ER1) The system must maintain the certified relation, and must ensure
+that only TPs certified to run on a CDI manipulate that CDI.
+
+<b>Enforcement rule 2</b> (ER2) The system must associate a user with each TP and set of CDIs. 
+The TP may access those CDIs on behalf of the associated user. If the user is not associated 
+with a particular TP and CDI, then the TP cannot access that CDI on behalf of that user.
+
+The information needed by ER2 can be represented in the <i>allowed</i> relation as follows:
+allowed = 
+{
+  &lt;user, TP, {CDIs}&gt;
+  &lt;user, TP, {CDIs}&gt;
+  &lt;user, TP, {CDIs}&gt;
+...
+}
+
+This prevents a janitor from running a TP that makes a deposit.
+
+<b>Certification Rule 3</b> (CR3) The <i>allowed</i> relation must meet the requirements
+imposed by the principle of separation of duty.
+
+<b>Enforcement rule 3</b> (ER3) The system must authenticate each user attempting to execute a 
+TP.
+
+<b>Certification rule 4</b> (CR4) All TPs must append, to an append-only CD, enough information 
+to reconstruct the operation.
+
+The log is a CDI that no TP can overwrite.
+
+<b>Certification rule 5</b> (CR5) Any TP that takes as input a UDI may perform only valid
+transformations or no transformations, for all possible values of the UDI. The transformation
+either rejects the UDI or transforms it into a CDI
+
+All UDIs are evil.
+
+<b>Enforcement rule</b> (ER4) Only the certifier of a TP may change the list of entities
+associated with that TP. No certifier of a TP, or of an entity associated with that TP,
+may ever have execute permission with respect to that entity.
+
+<h4>Some examples of the use of certification and enforcement rules</h4>
+<b>Task: Add a new TP and its associated CDIs to the certified relation</b>
+(translation: add a new program and the tables it may access to a configuration file)
+To achieve this, the following certification rules must be verified:
+
+1. CR1: Verify that any IVPs that validate action of new TP work properly
+
+2. CR2: Verify that TP transform CDIs from a valid state to a valid state.
+
+3. CR4: Verify that the TP appends enough information to reconstruct the operation to
+a log file (called an append-only CDI)
+
+4. CR5: If the TP takes a UDI, make sure it transforms it into a CDI before using it.
+
+<b>Task: Add a user to the allowed relation</b>
+(translation: give a user permission to run a program)
+To achieve this, the following certification rule must be verified:
+
+CR3: Verify that the user is not already associated with a TP that
+violates the principle of separation of duty. If not, the add user and TP to the
+allowed relation.
+
+<b>Task: A user wants to run a TP on a CDI</b>
+To achieve this, the following enforcement rules must be carried out
+
+ER1: Verify that TP is associated with the CDI in the certifies relation
+
+ER2: Verify that the user who is running the TP is in the allowed relation.
+
+ER3: Authenticate the user before letting them run the TP (principle of separation of privilege).
+
+Finally, let user run TP on the CDI and log the transaction
+
+<b>Task: Change list of CDIs associated with a TP</b>
+To achieve this, the following enforcement rule must be carried out:
+
+ER4: Only person responsible for the certified relation can do this
+and that person must not be a user of the TP.
+
+
+The Clark-Wilson model contributed two new ideas to integrity models
+
+1. It captured the way that most commercial firms work with data. They enforce separation of
+duty and do not classify data using a multilevel scheme.
+
+2. The notion of certification is distinct from that of enforcement and each has its own
+set of rules.
+
+How are Lipner's goals satisfied:
+1.User's don't write programs but use existing programs.
+
+<i>Assuming that users are not allowed to perform certifications of TPs, then CR2 and ER4 enforce 
+this requirement. Any CDI can only be modified by a certified TP.</i>
+
+2.Developers don't use production system for development and testing
+
+<i>This requirement is largely procedural. Can be enforced by removing compilers from 
+production system and using a TP to sanitize or generate production data.</i>
+
+3. Installing a program on the production system is a special process (not done by a
+developer)
+
+<i>Use a TP to do the installation; only trusted personel are authorized to run the TP.</i>
+
+4. The special process in 3 must be controlled and audited
+
+<i>CR4 (auditing), ER3 (authenticating) assures that only trusted personel do this. New
+version is a UDI until it is validated by TP.</i>
+
+5. Managers and auditors must have access to logs.
+
+<i>A log is a CDI, management and auditors can be allowed access to it via a TP.</i>
+
+<!--
+<h4>Clark-Wilson assessment</h4>
+Too static 
+
+Too centralized: security-officer is God and nobody else can change any authorization 
+
+Has had a beneficial effect in convincing the mainstream security community that there is more 
+to integrity than Biba 
+ 
+<h4>Comparison of Clark-Wilson with Biba</h4>
+
+Clark-Wilson attaches two security levels to subjects (certified and not certified) 
+and two security levels to objects (CDI and UDI)
+
+Biba does not have certification rules
+
+Biba requires security officer to approve each elevation of a UDI to a CDI. Clark-Wilson 
+just requires the security officer to certify the method that converts a UDI to a CDI. This
+is more practical.
+-->
+<h4>19 Deadly Sins of Software Security</h4>
+Same sin as <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture01.htm#19sins">Lecture 1</a>
+</pre>				
+	
+</body></html>

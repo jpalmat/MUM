@@ -1,0 +1,505 @@
+
+<!-- saved from url=(0066)https://www.cs.mum.edu/courses/de/cs466/LectureNotes/lecture07.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>Lecture 7 Notes</title>
+		<style>
+			.red { color:red; }
+		</style>
+	</head>
+	<body>
+<pre><h4>Lecture 7 Public Key Cryptography</h4>
+This lecture is based on sections 8.3(p.113) and 8.4(p.116) of the textbook.
+
+<h4>Executive Summary</h4>
+
+1. Asymmetric cryptography uses one key to encipher and a different key to decipher.
+
+2. The key that is used to encipher is public, the one used to decipher is private.
+
+3. The RSA algorithm uses the product of two extremely large prime numbers to compute
+the public and private keys. If the product can be factored, the private key can be
+calculated from the public key.
+
+4. The RSA algorithm can also encipher using the private key and decipher using the public
+key. This is used for digital signatures (origin integrity)
+
+5. A cryptographic checksum is a one-way function that converts a message into a fixed
+length number (e.g., 128 bits). It can be used for data integrity.
+
+6. PGP (pretty good privacy) is a program used to send secure email. It nicely integrates the
+use of symmetric cryptography, asymmetric cryptography and cryptographic checksums.
+
+7. Finally, we look briefly at the sin of race conditions.
+
+<a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/mainpoints07.htm">main points</a>
+
+<p>
+In 1976 <a target="dh" href="http://www.cs.jhu.edu/~rubin/courses/sp03/papers/diffie.hellman.pdf">Diffie and Hillman</a> discovered asymmetric cryptography where the sender and receiver of a 
+cryptographic message can use different keys, a public key known by everybody and a secret key 
+known only to the receiver.
+</p>
+
+Public key cryptography solves the problem of how to get the key to the recipient without
+the hacker eavesdropping and seeing it also. Here is how you could send an encrypted message
+to me using public key cryptography.
+
+First of all I would mathematically generate two keys, a public key and a private key. The
+keys have the following properties
+1. Anything encrypted with the public key can be decrypted with the private key.
+
+2. Anything encrypted with the public key can <span class="red">not</span> be decrypted with the 
+   public key.
+   
+Given these properties, I could put my public key on my web page for all to see (including the
+attacker). I would keep my private key in a safe place that only I can access. If you want to 
+encrypt a message to me, use my public key to do it and send me the ciphertext in the 
+clear. You do not have to worry about the attacker decrypting it because all that the 
+attacker has is my public key which cannot be used to decrypt the message. When I receive the
+ciphertext from you, I retrieve my private key from its safe place and use it to decrypt the
+ciphertext. The private key is never, ever transmitted over the network so it is safe from the
+attacker.
+
+Let's look at public key cryptography in more detail.
+
+<b>A public key cryptosystem must meet the following three conditions:</b>
+
+1. It must be computationally easy to encrypt or decrypt a message given the appropriate key.
+
+2. It must be computationally infeasible to derive the private key from the public key.
+
+3. It must be computationally infeasible to determine the private key from a chosen 
+plaintext attack.
+
+<h4>RSA</h4>
+
+One popular algorithm for public key cryptography is RSA. It goes as follows:
+
+1. Choose two large primes, p and q (typically 1024 bits)
+
+2. Compute N = p * q
+
+3. Compute phi = (p-1) * (q-1)
+
+4. Choose a number relatively prime to phi and call it e
+<i>e</i> is relatively prime to phi iff <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">gcd</a>(e, phi) = 1
+So, 6, 35 are relatively prime (factor of 6 are 2*3, factors of 35 are 5*7), but
+10, 35 are not relatively prime, the gcd is 5.
+
+5. Find d such that (e * d) mod phi = 1 and d &lt; phi
+
+6. Public key is (e, N), private key is (d, N)
+
+7. If N is x bits long then message must be broken down into blocks of x bits so that when a
+block is viewed as a number it is less than N.
+<i>N</i> should be large, otherwise attacker might be able to rearrange ciphertext to get 
+meaningful plaintext. For example, if we choose p and q to be 512 bit numbers, then N will
+be a 1024 bit number. This means that the message will be broken down into 1024/8 = 128 byte 
+blocks.
+
+8. Encrypt a block P as follows : P<sup>e</sup>(mod N)
+
+9. Decrypt a block C as follows : C<sup>d</sup>(mod N)
+
+When RSA first came out its inventors offered $100 reward for the first person to decrypt
+a message encrypted with the their public key. It used a public key size of ~428 bits. It
+was decrypted by a group using 1600 computers over the Internet; it took 8 months.
+
+Recall that the public key (e, N) is available to the whole world, so attackers have the
+value of e and N. If they could find p and q such that p*q = N they could compute d and they
+would have the private key. But if N is large enough, it is computationally infeasible to
+find its prime factors. That is why public key cryptography is secure.
+
+<h4>Java program that implements RSA algorithm</h4>
+
+<span class="red">Begin Java program</span>
+// Please read the comments in the following code.
+
+import java.io.*;
+
+// Based on a javascript program at http://www.codeproject.com/jscript/JscriptRSA.asp
+public class RSA
+{
+  // <span class="red">for this demo, the prime numbers are small enough so that N needs only 8 bits.
+// This is not very secure at all, it is essentially a glorified Caesar cipher</span>
+  int p = 7;
+  int q = 29;
+
+  public RSA()
+  {
+    String plainText = "sold";  // text to encrypt
+    int N = p * q;
+    int phi = (p-1)*(q-1);
+    int e = relPrime(phi);       // (e, N) is the public key
+    int d = calculate_d(phi, e); // (d, N) is the private key
+    char[] blocks = getBlocks(plainText); // convert plaintext into blocks
+    
+    System.out.println("****************");
+    
+    // Encrypt with public key, decrypt with private key.
+    for (char block : blocks)  // in this case each block is 8 bits long
+    {
+      int c = encrypt(e, N, block);  // encrypt the block using public key
+      int x = decrypt(d, N, c);  // decrypt the result using private key
+      System.out.format("%c-&gt;%d-&gt;%c\r\n", block, c, x); // prove it works.
+    }
+
+    System.out.println("****************");
+    
+    // RSA has the interesting property that the private key can be used to encrypt and
+    // the public key can be used to decrypt:
+    for (char block : blocks)  // in this case each block is 8 bits long
+    {
+      int c = encrypt(d, N, block);  // encrypt the block using private key
+      int x = decrypt(e, N, c);  // decrypt the result using public key
+      System.out.format("%c-&gt;%d-&gt;%c\r\n", block, c, x); // prove it works.
+    }
+  }
+
+  // Each block is 8 bits long. In the real world each block would be at least 1024 bits long.
+  public char[] getBlocks(String text)
+  {
+      return text.toCharArray();
+  }
+
+ 
+  public static void main(String[] args)
+  {
+    new RSA();    
+  }
+  
+  int gcd(int a, int b)
+  {
+    int r;
+    while (b&gt;0)
+    {
+      r=a%b;
+      a=b;
+      b=r;
+    }
+    return a;
+  }
+  
+  int relPrime(int phi)
+  {
+    int rel=3;
+    
+    while (gcd(phi,rel)!=1)
+      rel++;
+    return rel;
+  }
+  
+  int power(int n, int exp)
+  {
+    int temp=1, i;
+    for(i=1;i&lt;=exp;i++)
+      temp*=n;
+    return temp;
+  }
+  
+  // encrypts block M using public key (e, N)
+  int encrypt(int e, int N, int M)
+  {
+    int r,i=0,prod=1,rem_mod=0;
+    while (e&gt;0)
+    {
+      r = e % 2;
+      if (i++ == 0)
+        rem_mod = M % N;
+      else
+        rem_mod = power(rem_mod,2) % N;
+      if (r==1)
+      {
+        prod*=rem_mod;
+        prod=prod % N;
+      }
+      e= e/2;
+    }
+    return prod;
+  }
+  
+  int calculate_d(int phi, int e)
+  {
+    int x,y,x1,x2,y1,y2,temp,r,orig_phi;
+    orig_phi = phi;
+    x2=1;x1=0;y2=0;y1=1;
+    while (e&gt;0)
+    {
+      temp = phi / e;
+      r = phi-temp*e;
+      x = x2-temp*x1;
+      y = y2-temp*y1;
+      phi = e;
+      e = r;
+      x2 = x1;
+      x1 = x;
+      y2 = y1;
+      y1 = y;
+      if (phi==1)
+      {
+        y2 += orig_phi;
+        break;
+      }
+    }
+    return y2;
+  }
+  
+  // Decrypt ciphertext c using private key (d, N)
+  int decrypt(int d, int N, int c)
+  {
+    int r, i = 0, prod = 1, rem_mod = 0;
+    while (d&gt;0)
+    {
+      r = d % 2;
+      if (i++ == 0)
+        rem_mod = c % N;
+      else
+        rem_mod = power(rem_mod,2) % N;
+      if (r == 1)
+      {
+        prod *= rem_mod;
+        prod = prod % N;
+      }
+      d = d / 2;
+    }
+    return prod;
+  }
+}
+
+<span class="red">End Java program</span>
+
+<h4>Digital signatures</h4>
+The above program demonstated that, in RSA, the encryption and decryption functions are 
+inverses of each other. So a person could encrypt with their private key. This, of course, 
+would be a very stupid way to encrypt a secret message since everybody has the public key and 
+can decrypt it. However it is a good way for a sender to assure the receiver that he sent the 
+message.
+
+Here is a way that A could send an encrypted, signed message to B
+
+1. A encrypts the message M with his private key to get M<sub>1</sub>
+<span class="red">See PGP discussion below for a way to avoid enciphering large messages using
+a private or public key</span>
+2. A encrypts M<sub>1</sub> with B's public key to get M<sub>2</sub>
+3. A sends M<sub>2</sub> to B
+4. B decrypts M<sub>2</sub> with his private key to get M<sub>1</sub>
+5. B uses A's public key to decrypt M<sub>1</sub> to get M. If M is intelligible then
+B is confident that A sent it because only A knows the secret key that was used to 
+create M<sub>1</sub>
+
+Note that if the message is not confidential then it would not be necessary to encrypt it with
+Bob's public key. The sender, A, would just encrypt it with his/her private key. It wouldn't
+matter that the whole world could decrypt it. All that matters is that the receiver would know 
+that A must have encrypted it, nobody else could do it, because only A has the private key. 
+This is origin integrity.
+
+The integrity issue for public keys is how to reliably get the recipient's public key. We will go 
+into the details in <a target="l9">Lecture09.htm</a>
+
+<h4>Cryptographic Checksums</h4>
+A <a href="http://en.wikipedia.org/wiki/Checksum">checksum</a> is an established way to allow a
+receiver to verify the integrity of a received message and is used instead of encrypting
+the entire message with the sender's private key as we did above. Instead, the checksum 
+of the message is encrypted with the sender's private key. See the section on PGP below 
+for an example of system that uses this technique.
+
+Definition 8-2 A <i>cryptographic checksum function</i> (also called a <i>strong hash function</i>
+or a <i>strong one-way function</i>) h:A--&gt;B is a function that has the following properties:
+
+1. For any x in A, h(x) is easy to compute.
+
+2. For any y in B, it is computationally infeasible to find x in A such that h(x)=y.
+
+3. Given any x in A, it is computationally infeasible to find another x<sup>'</sup> in A
+such that x != x<sup>'</sup> and h(x<sup>'</sup>)=h(x).
+
+One result of these properties is that checksums of messages that differ very little (e.g., 
+only one bit is different) are radically different.
+
+Make sure that you use use md5sum to check that the downloaded file is not hacked.
+In a linux console you can type the following and compare the number to that from the home page:
+md5sum logging-log4j-1.2.14.zip 
+There are md5sum tools for windows as well. For Firefox you can install the 
+md hash tool extension and check directly from the download windows.
+https://addons.mozilla.org/en-US/firefox/addon/8404
+
+
+Given that the checksum contains fewer bits than the message, more than one message must
+product the same checksum. This is an application of the pigeonhole principle which states
+
+<b>
+If there are n containers for n+1 objects, at least one container will hold two objects.
+</b>
+<!--
+Definition 8-4 A <i>keyed</i> cryptographic checksum function requires a cryptographic
+key as part of the computation. A <i>keyless</i> cryptographic checksum does not.
+-->
+<h4>PGP</h4>
+
+A program that demonstrates many of the cryptographic concepts that we have learned so far
+is PGP (Pretty Good Privacy). PGP is often used for signing and encrypting emails. Here is 
+an overview of the process (the diagram is from "Computer Networks, fourth edition", by 
+Andrew S. Tanenbaum):
+<img width="900" src="./Lecture 7 Notes_files/Tannebaum_8-44.jpg">
+
+Step by step here is what is going on:
+
+0. Alice (A) want to send plaintext P to Bob(B). She wants to encrypt it and digitally sign
+it so that Bob knows that its from her.
+
+1. Alice computes the cryptographic checksum of P using the MD5 algorithm
+
+2. She then digitally signs the cryptographic checksum using her private key and appends
+the signed checksum to the end of P.
+
+3. She zips the digitally signed P. Note that P has not been encrypted yet.
+
+4. She creates a random session key (more on this next week) using IDEA which is a 
+classical crypographic system (i.e., the sender and receiver use the same key).
+
+5. She uses the random session key to encrypt the zip of the digitally signed P.
+
+6. She encrypts the random session key using Bob's public key. In this way only Bob can
+decrypt it.
+
+7. She appends the encrypted random session key to the end of the encrypted zip of P.
+
+8. She converts the result to Base64 so that it can be transmitted over the Internet without
+having any bits dropped.
+
+9. Bob receives the message and converts it from Base64.
+
+10. He uses his private key to decrypt the random session key and then uses the random session
+key to decrypt the zip of P. 
+
+11. He unzips it. He now has the digitally signed P.
+
+12. He uses Alice's public key to decrypt the digital signature.
+
+13. He then applies that same MD5 cryptographic checksum to P and compares the result to what
+he got in step 12. If they are the same, then Bob is confident that Alice sent the message.
+
+More information on PGP is available at <a href="http://en.wikipedia.org/wiki/Pretty_Good_Privacy">http://en.wikipedia.org/wiki/Pretty_Good_Privacy</a>
+
+Just because cryptography is used does not mean that the system is secure. See
+<a href="http://www.cl.cam.ac.uk/~rja14/wcf.html">http://www.cl.cam.ac.uk/~rja14/wcf.html</a> for some examples.
+
+<h4>19 Deadly Sins of Software Security</h4>
+In early 2004, Amit Yoran, then the director of the National Cyber Security Division at the
+U.S. Department of Homeland Security, announced that about 95 percent of software security bugs
+came from 19 "common, well-understood" programming mistakes. 
+
+The book <a href="http://www.amazon.com/Deadly-Sins-Software-Security-One-off/dp/0072260858">19 Deadly Sins of Software Security</a> by Howard, LeBlanc and Viega
+documents these 19 programming flaws. They are:
+<ol>
+<li>Failing to store and protect data securely <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture01.htm#19sins">Lecture 1</a></li> 
+<li>Information leakage <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture05.htm#19sinsLeakage">Lecture 5</a></li>
+<li>SQL injection <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture05.htm#19sinsSQL">Lecture 5</a></li>
+<li><span class="red">Race conditions (improper thread programming)</span> <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture07.htm#19sins">Lecture 7</a></li>
+<li>Failing to use cryptographically strong random numbers <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture08.htm#19sins">Lecture 8</a></li>
+<li>Failing to protect network traffic <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture09.htm#19sinsSniffer">Lecture 9</a></li> 	
+<li>Unauthenticated key exchange <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture09.htm#19sinsUnauthenticated">Lecture 9</a></li> 
+<li>Improper use of SSL <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture09.htm#19sinsSSL">Lecture 9</a></li>
+<li>Use of weak password-based systems <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture10.htm#19sins">Lecture 10</a></li>
+<li>Use of "magic" URLs and hidden form fields <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture11.htm#19sins">Lecture 11</a></li>
+<li>Command injection <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture12.htm#19sins">Lecture 12</a></li>
+<li>Buffer Overflows <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture13.htm#19sinsOverflow">Lecture 13</a></li>
+<li>Failure to handle errors <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture13.htm#19sinsErrors">Lecture 13</a></li>
+<li>Format String problems <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture14.htm#19sinsFormat">Lecture 14</a></li>
+<li>Integer range errors <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture14.htm#19sinsInteger">Lecture 14</a></li>
+<li>Trusting network address information <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture15.htm#19sins">Lecture 15</a></li>		
+<li>Improper file access <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture16.htm#19sins">Lecture 16</a></li>
+<li>Cross-site scripting <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture17.htm#19sinsCross">Lecture 17</a></li>
+<li>Poor usability <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture17.htm#19sinsUsability">Lecture 17</a></li>
+</ol>
+
+All of these could happen in a managed environment, although a buffer overflow would have
+to happen inside the virtual machine (JVM or CLR).
+
+<a id="19sins">
+<h4>Race conditions</h4>
+Race conditions are studied in a course on operating systems and will not be covered here. 
+However, I will demonstrate the lost update problem which is a classic race condition.
+
+For more information on race conditions see </a><a href="http://en.wikipedia.org/wiki/Race_condition">Wikipedia article</a> and scroll down 
+to the <b>Computing</b> section.
+
+To see the random effects of a race condition, run the following Java program. I ran it
+five times and got outputs of
+100,012
+101,455
+102,879
+101,518
+100,098
+
+If you uncomment the <span class="red">synchronized block</span>, the problem goes away.
+
+<b>
+class Race implements Runnable
+{
+  static int n = 0;   // shared by both threads
+  static Object sync = new Object();  // can be used to synchronize access to n
+	
+  public static void main(String[] args)
+  {
+    Thread t1 = new Thread(new Race());
+    Thread t2 = new Thread(new Race());
+    t1.start();
+    t2.start();
+    try
+    {
+      t1.join(); // wait for thread t1 to finish
+      t2.join(); // wait for thread t2 to finish
+    }
+    catch (Exception ex)
+    {
+    }
+		
+    System.out.println(n);		// should be 200,000 but it is not
+  }
+	
+  public void run()
+  {
+    boolean interrupted = false;
+    for (int i=0; i&lt;100000; i++)
+    {
+      <span class="red">//synchronized(sync)
+      //{</span>
+        int k = n;
+        double d = Math.random();
+        k++;
+        if (!interrupted &amp;&amp; d &gt; 0.9995)
+        {
+          interrupted = true;		// simulate the thread being preempted by the OS
+          try
+          {
+            Thread.sleep(1000);	// while this is sleeping other thread can be executing
+          }
+          catch (Exception ex)
+          {
+          }
+        }
+        n = k;		// maybe wipe out any progress made by the other thread
+      <span class="red">//}</span>
+    }
+  }
+}
+</b>
+
+A simple race condition in a multhreaded ping sweeper (a program that takes a range of
+IP addresses and pings them) once completely disabled an ISP for most of a day. An improperly
+guarded shared resource (like <b>int n</b> above) caused the application to repeatedly ping
+a single IP address at a very high rate. This adversely affected the available of the machine
+with that IP address!
+
+Race conditions are most likely to show up on fast machines with multiple CPUs. Tell your
+boss to get you one so you can test for race conditions.
+
+Web applications that use static or otherwise shared variables are also susceptible to race 
+conditions if care is not taken. This is because many users will be accessing the same static 
+variables.
+
+A race condition can crash a program (availability) or corrupt a database (integrity).
+
+</pre>		
+	
+</body></html>

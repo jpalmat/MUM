@@ -1,0 +1,335 @@
+
+<!-- saved from url=(0066)https://www.cs.mum.edu/courses/de/cs466/LectureNotes/lecture02.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>Lecture 2 Notes</title>
+	</head>
+	<body>
+<pre>
+This lecture covers Chapters 2 (pp 27-30) and 14
+<!--a style='color:red' href='test.wma'>Instructor comment</a-->
+
+<h3>Chapter 2 The Access Control Matrix model and its Implementations</h3>
+
+<h4>Executive summary</h4>
+1. An Access Control Matrix (ACM) is a way of specifying policy, 
+namely, what are the access permissions of the subjects of the system. 
+<table border="1">
+	<tbody><tr><td>&nbsp;</td><td>file1</td><td>file2</td><td>process1</td><td>process1</td></tr>
+	<tr><td>process1</td><td>read,write,own</td><td>read</td><td>read,write,execute,own</td><td>write</td></tr>
+	<tr><td>process2</td><td>append</td><td>read,own</td><td>read</td><td>read,write,execute,own</td></tr>
+</tbody></table>
+
+2. An ACM can be implemented (mechanism) in various ways.
+a. Access control list (focus on the columns of the ACM). 
+Groups and roles can make administration easier.
+
+b. Capability list (focus on the rows of the ACM).
+
+3. So far we have focused on controlling access to an object. 
+The initial creator of an object may also want to control all
+future accesses to copies of the information in the object.
+This kind of control can be achieved using a Propagated Access 
+Control List (PACL)
+
+4. ACM policy can also specify who assigns permissions. Three 
+possibilities, discretionary, mandatory, or originator-controlled.
+		
+<h4>Protection State</h4>
+The <i>state</i> of a system is the collection of the current values of 
+1. all memory locations
+2. all secondary storage
+3. all registers
+4. all other components
+
+The subset of the state of the system that deals with protection is called the 
+<i>protection state</i> of the system.
+
+Let P be the set of all possible protection states.
+Let Q be the set of authorized states. Q is clearly a subset of P.
+Whenever the system is in Q, the system is secure.
+And whenever the system is in P-Q, it is non-secure.
+A security policy characterizes the states in Q.
+A security mechanism prevents a system from entering a state in P-Q.
+
+<h4>Access Control Matrix Model</h4>
+Describes a protection system by characterizing the rights of each <i>subject</i> (active entity
+such as a process) with respect to every other entity.
+
+ACM is policy. The actual implementation (mechanism) can take many forms 
+(e.g., ACL, capability lists, roles, etc.) Below, we look at four ways that an ACM can 
+actually be implemented.
+
+Conceptually an OS consults the ACM to determine if an attempt to transition to 
+a new state is secure, i.e a process run by Bob changes its state from not having read
+a file to having read a file. If Bob is not allowed to read the file, this transition should
+be disallowed by the OS.
+
+Some examples of Access Control Matrices
+
+1. Unix file system
+S = {process1, process2}
+O = {file1, file2, process1, process2}
+R = {read, write, execute, append, own}
+
+<table border="1">
+	<tbody><tr><td>&nbsp;</td><td>file1</td><td>file2</td><td>process1</td><td>process1</td></tr>
+	<tr><td>process1</td><td>read,write,own</td><td>read</td><td>read,write,execute,own</td><td>write</td></tr>
+	<tr><td>process2</td><td>append</td><td>read,own</td><td>read</td><td>read,write,execute,own</td></tr>
+</tbody></table>
+
+2. Based on users rather than processes (a process runs on behalf of a user)
+S = {bob, jill, jack}
+O = {file1, file2, file3}
+R = {read, write, execute, append, own}
+
+<table border="1">
+	<tbody><tr><td>&nbsp;</td><td>file1</td><td>file2</td><td>file3</td></tr>
+	<tr><td>bob</td><td>read,write,own</td><td>read</td><td>read, write</td></tr>
+	<tr><td>jill</td><td>append</td><td>read,own</td><td>read, write</td></tr>
+	<tr><td>jack</td><td>&nbsp;</td><td>&nbsp;</td><td>read, write, own</td></tr>
+</tbody></table>
+
+3. Rights on a LAN
+
+S = {telegraph, nob, toadflax}
+O = {telegraph, nob, toadflax}
+R = {ftp, mail, nfs, own}
+<table border="1">
+	<tbody><tr><td>host names</td><td>telegraph</td><td>nob</td><td>toadflax</td></tr>
+	<tr><td>telegraph</td><td>own</td><td>ftp</td><td>ftp</td></tr>
+	<tr><td>nob</td><td>&nbsp;</td><td>ftp,nfs,mail,own</td><td>ftp,nfs,mail</td></tr>
+	<tr><td>toadflax</td><td>&nbsp;</td><td>ftp,mail</td><td>ftp,nfs,mail,own</td></tr>
+</tbody></table>
+
+4. Rights in a program
+
+S = {inc_ctr,dec_ctr, manager}
+O = {counter, inc_ctr,dec_ctr, manager}
+R = {+, -, call}
+<table border="1">
+	<tbody><tr><td>&nbsp;</td><td>counter</td><td>inc_ctr</td><td>dec_ctr</td><td>manager</td></tr>
+	<tr><td>inc_ctr</td><td>+</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr><td>dec_ctr</td><td>-</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr><td>manager</td><td>&nbsp;</td><td>call</td><td>call</td><td>call</td></tr>
+</tbody></table>
+
+Only allowed permissions are in the ACM. A blank square in the ACM means that the 
+associated process has no permissions on the associated object. This follows the
+principle of fail-safe defaults.
+
+An ACM is very abstract and is used to specify policy. Now lets looks at how to implement
+the policy. This is described in Chapter 14.
+
+<h3>Chapter 14 Access Control Mechanisms</h3>
+
+<h4>Access control list</h4>
+Each object has associated with it <subject, permissions=""> pairs which describes the subjects
+that can access the object with what permissions. An implementation of each column of the ACM 
+is associated with the object.
+
+File1
+  &lt;bob, {read, write, own}&gt;
+  &lt;jill, {append}&gt;
+
+Subjects with no permissions are not listed.
+
+It is often the case that a group of users all have the same permissions on an object, e.g.,
+File1
+  &lt;bob, {read, write, own}&gt;
+  &lt;jill, {read}&gt;
+  &lt;jack, {read}&gt;
+  &lt;joan, {read}&gt;
+
+To save space and administrative effort, a group is created and the group is added to the
+ACL, e.g.,
+students = {jill, jack, joan}
+File1
+  &lt;bob, {read, write, own}&gt;
+  &lt;students, {read}&gt;
+
+But if students have access to many objects then the administrator would have to add the
+group <i>students</i> to each object with the associated permissions. It would be easier
+to define <i>student</i> as a role rather than a group. A role is a collection of objects and
+operations on those objects, e.g.,
+
+student 
+&lt;file1, {read}&gt;, 
+&lt;file2, {read, write}&gt;
+&lt;file3, {append}&gt;
+	...
+	
+When a student logged into the system he/she would be assigned the role of student. Any access
+to an object that doesn't explicitly mention the student (e.g., Jill) would require the OS
+to check the roles assigned to the student to see if the access is allowed.
+
+<h4>Capabilities</h4>
+
+A capability list is like a row in the ACM. Each subject is associated with the objects it
+can access and the permissions it has on these objects.
+
+Since a process can pass capabilities to child processes, capabilities must be protected
+from tampering. There are three ways to do this:
+
+1. Tagged architecture
+Each memory location has a tag bit that tells whether the memory contains a capability.
+Only the kernel can modify a memory location that contains a capability.
+
+2. Keep the capability list inside the OS. Unix does this with file descriptors
+int fd = open(...);
+write(fd, ...);  // only the OS has access to what the fd points to.
+
+3. Keep the capability list in user space but encrypt them so that the users cannot
+tamper with them. Such a capability looks like this:
+<table border="1">
+	<tbody><tr>
+		<td>Object</td>
+		<td>Rights</td>
+		<td>f(Object, Rights, Check)</td>
+		<td></td>
+	</tr>
+</tbody></table>
+f is a cryptographically secure 1-way function and Check is a long random number generated
+by the OS and known only to the kernel.
+
+Capabilities solve the problem of sandboxing mobile code very elegantly. When a foreign
+program is started it is given a capability list containing only the capabilities that
+the machine owner wants to give it.
+
+Revoking access to an object is difficult because all capabilities that mention that object
+have to be found. This is not a problem with an ACL.
+
+<h4>Propagated Access Control Lists (PACL)</h4>
+So far, anybody who can read an object can copy it and give other people access to it. The
+original creator of the object cannot control this. With PACL, the creator of a file has
+control over who can access it.
+
+The OS would store with the file, the creator and a list of those people who the creator wishes to 
+give access to the file.
+
+Here is the PACL associated with Ann
+&lt;subject name='Ann'&gt;
+  &lt;access&gt;
+    &lt;pacl creator='Ann'&gt;
+      &lt;entry subject='Ann' permissions='r'/&gt;
+      &lt;entry subject='Betty' permissions='r'/&gt;
+      &lt;entry subject='Dorothy' permissions='rw'/&gt;
+      &lt;entry subject='Elisabeth' permissions='r'/&gt;
+    &lt;/pacl&gt;
+  &lt;/access&gt;
+&lt;/subject&gt; 
+
+When Ann creates a file named "dates" it gets Ann's PACL:
+&lt;object name='dates'&gt;
+  &lt;pacl creator='Ann'&gt;
+    &lt;entry subject='Ann' permissions='r'/&gt;
+    &lt;entry subject='Betty' permissions='r'/&gt;
+    &lt;entry subject='Dorothy' permissions='rw'/&gt;
+    &lt;entry subject='Elisabeth' permissions='r'/&gt;
+  &lt;/pacl&gt;
+&lt;/object&gt;
+
+Here is Betty's PACL before reading the file "dates"
+&lt;subject name='Betty'&gt;
+  &lt;access&gt;
+    &lt;pacl creator='Betty'&gt;
+      &lt;entry subject='Betty' permissions='r'/&gt;
+      &lt;entry subject='Cherisse' permissions='r'/&gt;
+      &lt;entry subject='Dorothy' permissions='r'/&gt;
+    &lt;/pacl&gt;
+  &lt;/access&gt;
+&lt;/subject&gt;
+
+When Betty reads the file "dates" her PACL changes to
+&lt;subject name='Betty'&gt;
+  &lt;access&gt;
+    &lt;intersection&gt;
+      &lt;pacl creator='Betty'&gt;
+        &lt;entry subject='Betty' permissions='r'/&gt;
+        &lt;entry subject='Cherisse' permissions='r'/&gt;
+        &lt;entry subject='Dorothy' permissions='r'/&gt;
+      &lt;/pacl&gt;
+  
+      &lt;pacl creator='Ann'&gt;  &lt;!-- This is PACL of file dates --&gt;
+        &lt;entry subject='Ann' permissions='r'/&gt;
+        &lt;entry subject='Betty' permissions='r'/&gt;
+        &lt;entry subject='Dorothy' permissions='rw'/&gt;
+        &lt;entry subject='Elisabeth' permissions='r'/&gt;
+      &lt;/pacl&gt;
+    &lt;/intersection&gt;
+  &lt;/access&gt;
+&lt;/subject&gt;
+
+When Betty writes the file "datescopy", its PACL becomes:
+&lt;object name='datescopy'&gt;
+  &lt;pacl creator='Betty'&gt; &lt;!-- this is intersection of Betty and Ann's PACLs --&gt;
+    &lt;entry subject='Betty' permissions='r'/&gt;
+    &lt;entry subject='Dorothy' permissions='r'/&gt; &lt;!-- Note that Dorothy lost write permission--&gt;
+  &lt;/pacl&gt;  
+&lt;/object&gt;
+
+A PACL is associated with data independant of the object that it is currently residing in.
+An ACL is just associated with an object.
+
+<h4>Types of Access Control</h4>
+
+Discretionary access control (DAC): an individual user can set an access control mechanism to allow
+or deny access to an object.
+
+Mandatory access control (MAC): a system mechanism controls access to an object and an
+individual user cannot alter that access.
+
+Originator controlled access control (ORCON) bases access on the creator of an object (or
+information that it contains)
+
+<h4>19 Deadly Sins of Software Security</h4>
+Same sin as <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture01.htm#19sins">Lecture 1</a>
+
+<h4>Brief Intro to XML</h4>
+Elements and attributes, content model
+
+Let's start with HTML
+&lt;table border='1'&gt;
+  &lt;tr&gt;
+    &lt;td&gt;hello&lt;/td&gt;
+    &lt;td&gt;goodbye&lt;/td&gt;
+  &lt;tr&gt;
+&lt;/table&gt;
+
+which is rendered as follows:
+
+<table border="1">
+	<tbody><tr>
+		<td>hello</td>
+		<td>goodbye</td>
+	</tr><tr>
+</tr></tbody></table>
+
+1. table is an element. 
+2. An element has a start tag and an end tag.		
+3. Attributes can appear in the start tag of an element
+4. border is an attribute
+5. The content model of table is complex, it contains 
+   child elements
+6. tr is an element that is in the content model of table.
+7. td is an element that is in the content model of tr
+8. td can have a complex content model, but in this example 
+   it is simple, just a string
+9. A child has a semantic relationship with its parent.
+10. Similarly, an attribute has a semantic relationship
+    with the element whose start tag contains it.
+
+XML generalizes HTML and allows a user to invent their own
+language. 
+
+XML is a syntax that represents a tree.
+
+XPath expressions are a way of identifying nodes in the
+tree associated with the XML document.
+
+A useful subset of XPath expressions look like DOS paths and
+represent all nodes that can be reached following that path
+in the tree.
+
+</subject,></pre>	
+	
+</body></html>

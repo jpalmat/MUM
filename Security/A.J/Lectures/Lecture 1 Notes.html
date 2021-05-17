@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0066)https://www.cs.mum.edu/courses/de/cs466/LectureNotes/lecture01.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Lecture 1 Notes</title>
+  <style>
+			.red {color:red}
+		</style>
+</head>
+<body>
+<h3>Lecture 1</h3>
+<pre><h4>Course Goals</h4>
+<ol>
+	<li>Learn the 8 basic principles of computer security</li>
+	<li>Learn the 19 sins of software security</li>
+	<li>Learn the various ways of controlling access to resources</li>
+	<li>Learn key exchange protocols</li>
+	<li>Learn public key cryptography including the Public Key Infrastructure</li>
+	<li>Learn what software assurance is</li>
+	<li>Learn how viruses work</li>
+	<li>Learn models used for intrusion detection and vulnerability detection</li>
+	<li>Become familiar with a secure system based on principles learned in during the course</li>
+	<li>Understand the intelligence embodied in this course in terms of SCI</li>
+</ol>
+
+This course could be the introduction to four other courses or seminars
+1. Cryptography
+2. Secure Programming (<a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/19sins.htm">19 deadly sins</a>)<br>3. Intrusion detection techniques<br>4. Penetration testing<br><br>Conversely, material from this course could (and probably should) be included in the<br>following courses taught at M.U.M.<br>1. CS465 Operating Systems (Secure kernel, race conditions)<br>2. CS450 Computer Networks (TCP/IP stack vulnerabilities)<br>3. CS545 Distributed Computing (Web application vulnerabilities)<br>4. CS425 Software Engineering (Fuzz testing, malicious, not just error and mischance)<br><br>The National Security Agency has a CAEIAE (National Centers of Academic Excellence in <br>Information Assurance Education) program that certifies undergraduate and graduate <br>programs in computer security.<br>www.nsa.gov/ia/academia/caeiae.cfm<br><br>For example:<br>Information Security Masters Program, James Madison University<br>http://www.infosec.jmu.edu/cohorts/cohort2008.php<br><ol>
+<li>Operating Systems</li>
+<li>Networks and Network Security</li>
+<li>Distributed Computing and Security</li>
+<li>Secure Software Engineering</li>
+<li>Formal Methods for Information Security</li>
+<li>Ethics, Law and Policy in Cyberspace</li>
+<li>Software Assurance</li>
+<li>Cryptography: Algorithms and Applications</li>
+<li>Computer Forensics<br><i>
+	which is the art and science of applying computer science to aid the legal process. 
+	Although plenty of science is attributable to computer forensics, most successful 
+	investigators possess a nose for investigations and for solving puzzles, which is 
+	where the art comes in.
+</i></li>
+<li>Secure Operations</li>
+</ol>
+
+Organizations that provide update information on known computer security vulnerabilities
+<a href="http://www.cve.mitre.org/">Common Vulnerabilities and Exposures (CVE)</a>
+<a href="http://www.securityfocus.com/">BugTraq</a>
+<a href="http://www.osvdb.org/">Open Source Vulnerability Database</a>
+
+These sites are monitored by <a href="http://www.sans.org/">SANS</a> (<b>S</b>ysAdmin, <b>A</b>udit, <b>N</b>etwork, <b>S</b>ecurity) which<br>delivers a weekly report of major vulnerabilites reported in the last week. <br><br>To get the newsletter, pull down the resources menu, choose newsletters and then<br><b>@RISK: The Consensus Security Alert</b>.<br><br>Some common sense security tips are available from<br><a href="http://www.sans.org/tip_of_the_day.php?utm_source=web-sans&amp;utm_medium=ImageReplace&amp;utm_content=TipofDay_BigExPoint&amp;utm_campaign=HomePage&amp;ref=3626">here</a>.<br><br><h4>Executive Summary</h4>
+1. Computer security is based on confidentiality, integrity and availability
+
+2. Threats are what an attacker wants. If there are no threats, there is no security problems.
+
+3. Vulnerabilities are weaknesses in the system that allow an attacker to carry out a threat.
+
+4. Risk = Assets * Threats * Vulnerabilities
+
+5. Security policies define what is secure and what is not secure. 
+
+6. Security mechanisms implement security policies.
+
+7. Assurance is convincing yourself that the security mechanisms accurately implement the
+   security policy and are trustworthy (i.e., bug free).
+   
+8. There are 8 well understood design principles that underlie the design and implementation
+   of mechanisms for security policies. We will revisit these over and over again during the
+   course.
+
+9. We will cover 19 sins of secure programming during the course.
+
+<a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/mainpoints01.htm">Main points</a>
+
+<h3>-----------------------------------------------------------<br></h3><h3>Introduction to Computer Security</h3>
+Computer security rests on confidentiality, integrity and availability.<br>
+<h4 style="text-decoration: underline;">Confidentiality</h4>Confidentiality is the concealment of information or resources.
+Achieved via access-control mechanisms (file permissions) and crytography
+Example: sending credit card number using SSL
+Example: saving exam in a directory which students do not have permission to access.
+
+Generally, there are three instances in which information is vulnerable to disclosure: 
+1. when the information is stored on a computer system, 
+
+2. when the information is in transit to another system (on the network)
+
+3. when the information is stored on backup tapes.
+
+Other examples
+Example: don't let hackers know what server or OS you are using.
+Example: conceal the mere existence of data
+
+Your confidence in the confidentiality mechanisms is ultimately based on <b>trust</b> in the OS<br>that supports them.<br><br><h4 style="text-decoration: underline;">Integrity</h4>Integrity refers to the trustworthiness of data or resources, and is usually phrased in terms
+of preventing improper or unauthorized change.
+data integrity - content of the information
+source integrity - source of the information
+
+Two types of integrity mechanisms: prevention mechanisms and detection mechanisms
+
+Prevention mechanisms attempt to block
+a. unauthorized changes to data (hacker changing data)
+b. changes to data in unauthorized ways (accountant embezzling data)
+
+Detection mechanisms do not try to prevent violations of integrity, they report when
+data has been modified.
+Example: detect that Internet order was modified between the client and the server
+Example: detect that a system file has been modified by a virus.
+
+Confidentiality trusts in OS, but integrity also relies on assumptions about the source
+of the data and about trust in the source.
+
+<h4 style="text-decoration: underline;">Availability</h4><a href="http://www.cnn.com/2007/US/09/27/power.at.risk/index.html">Power generator explosion</a>
+An attacker might swamp a server with requests, thereby making it unavailable to 
+legitimate users. Called a denial of service attack (DoS)
+
+How to know if increase in activity is malicious?
+Example: If CNN mentions a web site, its activity will increase, perhaps to a point where it
+crashes. Whether deliberate or not, it is still a security problem.
+
+<h4>Threats</h4>A threat is a <i>potential</i> violation of security. An action that could cause a threat<br>to be realized is called an <b>attack</b>. The perpetrator of an attack is called an attacker.<br>Example:<br>If I have a beat-up old bicycle that nobody wants there is no threat that somebody will<br>steal it. However, there is a threat that somebody will steal a laptop computer.<br><br>Confidentiality, integrity and availability counter threats to the security of a system<br><br>Four classes of threats:<br>disclosure - unauthorized access to information (confidentiality)<br>deception - acceptance of false data (integrity)<br>disruption - interruption or prevention of correct operation (availability)<br>usurpation - unauthorized control of some part of a system (integrity, availability)<br><br>Some common threats<br>1. Snooping (disclosure)<br>   Example: Ethereal<br>   <br>2. Modification or alteration (deception, disruption, usurpation)<br>   Example: man in the middle<br>   <br>3. Masquerading or spoofing (deception, usurpation)<br>   Example: phishing, stealing password<br><br>4. Repudiation of origin (deception)<br>   Example: customer denies having ordered a product<br><br>5. Denial of receipt (deception)<br>   Example: vendor ships product, but customer denies getting it.<br><br>6. Delay (availability)<br>   Example: delay primary server to force request to secondary server which is controlled by<br>   the attacker.<br>   <br>7. Denial of service (availability), essentially an infinite delay<br>   Example: A SYN flood attack<br><br>-----------------------------------------------------------------------<br><h4>Security and mechanism</h4>Definition 1-1 A <b>security policy</b> is a statement of what is, and what is not<br>allowed.<br><br>Definition 1-2 A <b>security mechanism</b> is a method, tool, or procedure for enforcing<br>a security policy. Note that the procedure may be non-technical, e.g. presenting a driver's<br>license when changing a password.<br><br>Example: M.U.M. has a no-copy security policy. The mechanism used is to set file permissions<br>of each student's directory so that only that student can read and write files to it.<br><br>Example, the following topics might be covered in a security policy for a company<br>1. Web surfing<br>2. Virus precautions<br>3. Personal email<br>4. Software installation<br>5. The firewall (must not bypass firewall)<br>6. Encryption (must encrypt files using a specific encrypting system)<br>7. The law (Computer Misuse Act 1990)<br>8. Logging and Surveillance <br>9. Passwords (how strong they are)<br>10. Laptops<br><br><h4>Goals of Security</h4>The security policy defines what is secure and non-secure. It is implied that secure items 
+have a threat associated with them. Three strategies can be employed to handle attacks against
+secure items
+
+1. Prevention - the attack will fail, e.g., firewall discards request
+
+2. Detection - accept that an attack will occur but detect it as soon as possible, e.g.,
+<a href="http://en.wikipedia.org/wiki/Open_Source_Tripwire">Tripwire</a>.<br><br>3. Recovery <br>a. Stop the attack, possibly disrupting the system and assess and repair any damage<br>b. System continues to function normally while attack is underway.<br><br><h3>Assumptions and Trust</h3>How do we determine if a security policy describes the required level and type of security
+for a site?
+
+Example - At M.U.M. locks are assumed to be secure against lock picking. But in a prison
+that assumption may not be valid. Assumption is still valid if lock picker is trustworthy.
+
+Designers of security policies always make two assumptions
+1. the policy correctly and unambiguously partitions the set of system states into
+"secure" and "non-secure" states
+2. the security mechanisms prevent the system from entering a "non-secure" state
+
+Two things can go wrong here.
+1. The policy is does not describe what a "secure" system is.
+2. The mechanisms do not carry out the policy.
+
+The security methods are <b>trusted</b> because they are critical to the security of the system.<br>The security methods must be show to be shown to be <b>trustworthy</b>. This is software<br>assurance.<br> <br>Example<br>Consider a policy that describes who has keys to faculty offices and that it is not possible<br>for a student to enter a faculty office without the faculty member's knowledge. An<br>"non-secure" state would arise if a student managed to get into a faculty member's office<br>without permission. If all faculty office start out locked and empty then system starts out<br>in a secure state. The security mechanism here is the locks and the rules for who gets keys<br>to faculty offices.<br><br><span style="font-weight: bold; text-decoration: underline;">Security mechanisms are either secure, precise or broad</span><br></pre>
+<table border="1">
+  <tbody>
+    <tr>
+      <td>&nbsp; </td>
+      <td>Secure</td>
+      <td>Precise</td>
+      <td>Broad</td>
+    </tr>
+    <tr>
+      <td>non-secure state can be entered</td>
+      <td>No </td>
+      <td>No </td>
+      <td>Yes </td>
+    </tr>
+    <tr>
+      <td>some secure state unenterable </td>
+      <td>Yes </td>
+      <td>No </td>
+      <td>Maybe </td>
+    </tr>
+  </tbody>
+</table>
+<pre>Trusting that the mechanisms work requires several assumptions<br>1. Each mechanism is designed to implement one or more parts of the security policy<br>2. The union of the mechanisms implements all aspects of the security policy<br>3. The mechanisms are implemented correctly<br>4. The mechanisms are installed and implemented correctly.<br><br><h4>Assurance</h4>Trust/trustworthiness cannot be quantified precisely. System specification, design, and 
+implementation can help establish trust/trustworthiness. This aspect of trust is called 
+assurance which is an attempt to quantify trust/trustworthiness by evaluating the 
+specification, design and implementation of the system.
+
+<h4>Operational Issues</h4>Any useful policy and mechanism must balance the benefits of the protection against the
+cost of designing, implementing, and using the mechanism. This balance can be determined
+by analyzing the risks (cost) of a security breach and the liklihood of it occuring.
+
+Don't use a $l00 lock to protect a $50 bicycle.
+
+<h4>Cost-Benefit Analysis</h4>If data and resource being protected cost less than the security mechanisms to protect them,
+then protecting them is not cost-effective.
+
+<h4>Risk Analysis</h4>Risk = Assets * Threats * Vulnerabilities
+
+If an attack against a resource is unlikely, protecting against it has a lower priority than
+protecting against a likely one.
+
+1. Risk is a function of the environment (Internet more risky than intranet)
+2. Risks change with time (what if modems allowed on intranet)
+3. Some risks are quite remote but still exist (modems)
+4. Analysis paralysis (at some point you must act even though not completely sure)
+
+<h4>Laws and Customs</h4>Security system must not break any laws.
+Example: Restrictions on the export of cryptographic software
+Example: OK for system administrators to read files in the line of duty.
+Example: Cost of prosecuting attackers
+Example: How much search is appropriate at an airport
+
+<h4>Human Issues</h4>Security mechanisms must be configured and used correctly to be effective. Two ways this
+can fail
+
+<h4>Organizational Problems</h4>Security provides no direct financial rewards to the user (busy business man phenomenon)
+Management must be willing to allocate resources for security.
+Time must be taken to educate employees.
+
+<h4>People Problems</h4>Insider attacks (disgruntled employees)
+Untrained employees (open unknown email attachments)
+Overworked system administrators (don't notice attacks or misconfigure system)
+Social engineering (sweet talk)
+
+<a href="http://blogs.techrepublic.com.com/hiner/?p=548&amp;tag=nl.e112">
+Six consumer technologies that are destroying traditional IT</a>
+1. USB flash drives
+2. Rogue wireless access points
+3. Web mail with GB of storage
+4. BitTorrent and P2P
+5. Personal smartphones
+6. Instant messaging software
+
+<h4>Miscellaneous</h4>Received an email from a mailing list asking me to add my name to a petition. Here
+is the excerpt:
+<b>
+Clicking here will add your name to our statement:
+http://pol.moveon.org/fightback/o.pl?id=11267--uZNbuD&amp;t=4
+</b>
+
+<h4>Summary</h4>Threats determine policy; a policy is specified; a design is created from the specification;
+mechanisms are implemented from the design; the system is installed and must be operated and
+maintained on a daily basis. Feedback occurs in the opposite direction.
+
+<h4>Design Principles</h4>
+If I had a thousand sons... I would teach them ... to forswear thin potatoes, 
+and addict themselves to sack. (It was the beginning of a long alliance between 
+high art and bad wine.)
+
+Sack is probably a blend of various vintages and curious beverages, mostly Spanish.
+
+http://www.bbc.co.uk/dna/h2g2/A734915
+
+
+Chapter 12 introduces these, but we should have them in mind from day one.
+
+  1. Principle of Least Privilege (disallow the birth of an enemy)
+     Example: Faculty don't get administrator privileges
+     
+  2. Principle of Fail-Safe Defaults (spontaneous right action)
+     Example: Default settings maximize security. To open something up, user has to do it.
+     
+  3. Principle of Economy of Mechanism (do less and accomplish more)
+     Example: Simpler programs have fewer bugs that attackers can exploit
+     (However, an OS that didn't check passwords would be simpler but less secure and
+      the JVM which checks array bounds is more complex but more secure)
+     
+  4. Principle of Complete Mediation (infinity at a point)
+     Example: Assume nothing, always check security
+     
+  5. Principle of Open Design (all this is That)
+     Exampe: Don't assume that attacker can't reverse engineer a program.
+     
+  6. Principle of Separation of Privilege (sequential unfoldment)
+     Example: Packet has to pass through two firewalls to get to internal network
+     
+  7. Principle of Least Common Mechanism (cultural integrity)
+     Example: Reduce sharing; keep important stuff off the network if possible.
+  
+  8. Principle of Psychological Acceptibility (the nature of life is the expansion of happiness)
+     Example: Don't make a security feature too hard (or too annoying) or else user's will 
+     avoid it. See http://www.cnn.com/2008/TECH/04/14/microsoft.xp.ap/index.html
+     
+Seminal papers on computer security
+http://seclab.cs.ucdavis.edu/projects/history/
+
+<a id="19sins">     <br></a><h4><a id="19sins">19 Deadly Sins of Software Security</a></h4><a id="19sins">In early 2004, Amit Yoran, then the director of the National <br>Cyber Security Division at the U.S. Department of Homeland <br>Security, speculated that about 95 percent of software <br>security bugs came from 19 "common, well-understood" <br>programming mistakes. <br><br>The book </a><a href="http://www.amazon.com/Deadly-Sins-Software-Security-One-off/dp/0072260858">19 Deadly Sins of Software Security</a> <br>by Howard, LeBlanc and Viega, documents these 19 programming <br>flaws. They are:<br><ol>
+<li><span class="red">Failing to store and protect data securely <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture01.htm#19sins">Lecture 1</a></span></li> <br><li>Information leakage <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture05.htm#19sinsLeakage">Lecture 5</a></li>
+<li>SQL injection <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture05.htm#19sinsSQL">Lecture 5</a></li>
+<b>
+    static void Main(string[] args)
+    {
+      string login = "bob";
+      string password = "' or 1=1 --";
+
+      CheckLogin(login, password);
+
+    }
+
+    static void CheckLogin(string login, string password)
+    {
+      string format = @"select role
+from users
+login='{0}' and password='{1}'";
+      
+      string query = String.Format(format, login, password);
+      Console.WriteLine(query);
+    }
+
+Outputs:
+select role
+from users
+login='bob' and password='' or 1=1 --'
+
+rewriting with parentheses to show precedence:
+select role
+from users
+(login='bob' and password='') or 1=1 --'
+</b>
+
+<li>Race conditions (improper thread programming) <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture07.htm#19sins">Lecture 7</a></li>
+<li>Failing to use cryptographically strong random <br>numbers <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture08.htm#19sins">Lecture 8</a></li>
+<li>Failing to protect network traffic <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture09.htm#19sinsSniffer">Lecture 9</a></li> 	<br><li>Unauthenticated key exchange (Man in the middle (MITM)<br>attack) <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture09.htm#19sinsUnauthenticated">Lecture 9</a></li> <br><li>Improper use of SSL (not doing optional steps)<a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture09.htm#19sinsSSL">Lecture 9</a></li>
+<li>Use of weak password-based systems <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture10.htm#19sins">Lecture 10</a></li>
+<li>Use of "magic" URLs and hidden form fields <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture11.htm#19sins">Lecture 11</a></li>
+<li>Command injection <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture12.htm#19sins">Lecture 12</a></li>
+<li>Buffer Overflows <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture13.htm#19sinsOverflow">Lecture 13</a></li>
+<li>Failure to handle errors <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture13.htm#19sinsErrors">Lecture 13</a></li>
+<li>Format String problems <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture14.htm#19sinsFormat">Lecture 14</a></li>
+<li>Integer range errors <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture14.htm#19sinsInteger">Lecture 14</a></li>
+<li>Trusting network address information (DNS)<a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture15.htm#19sins">Lecture 15</a></li>		<br><li>Improper file access <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture16.htm#19sins">Lecture 16</a></li>
+<li>Cross-site scripting <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture17.htm#19sinsCross">Lecture 17</a></li>
+<li>Poor usability <a href="https://www.cs.mum.edu/courses/de/cs466/LectureNotes/Lecture17.htm#19sinsUsability">Lecture 17</a></li>
+</ol>
+
+All of these could happen in a managed environment, although 
+a buffer overflow would have to happen inside the virtual 
+machine (JVM or CLR).
+
+The book attempts to be cross-platform and cross-language.
+We will look at both .NET and Java code. I recommend getting
+familiar with .NET.
+
+
+<h3>Resources</h3>Please subscribe to @Risk: The Consensus Security Alert at 
+<a href="http://www.sans.org/newsletters/risk/">http://www.sans.org/newsletters/risk/</a>
+
+
+<a id="19sins">
+</a><h4><a id="19sins">Failing to store and protect data securely</a></h4>
+<a id="19sins"><b>1. Use operating system access controls to protect files.</b>
+When I teach courses on-campus each student has their own 
+directory on my server. Students submit labs to their 
+directory. Each student directory has permissions set so only 
+that student can write and read files in it. (Of course, I 
+have read/write permission also). The fact that only the 
+student can read the files in their directory protects the 
+confidentiality of their labs, no other student can copy 
+their labs and submit them as their own. The integrity
+of student labs is assured by the fact that only the student 
+can write to them. This prevents some other student from 
+making modifications that will lower the grade of a lab.
+
+<b>2. Do not store secret data in program, especially one <br>that is run on the client.</b> Here is an example of this <br>point. In distance education, I would love to have the midterm <br>and final be taken on the computer (instead of a paper exam). <br>I would also love for them to be proctored. I have the <br>ability to give an exam on the computer, that is how the <br>exams are given on campus. The hard part is proctoring the <br>exam. Proctoring is necessary because it is difficult for <br>some students to resist the temptation of getting help from <br>other students. A recent distance education midterm clearly <br>demonstrated this problem. Several students submitted answers <br>that were very, very similar to other students answers.<br><br>Here is a possible way to proctor a computer exam.<br><br>a. Each student must have a notebook computer (as the price <br>of notebook computers come down this will a reasonable <br>requirement to take a DE course).<br><br>b. The night before the exam, the student downloads and <br>encrypted version of the exam and a program that will decrypt <br>the exam when a password is entered. This program will also <br>display the exam and save the student's answers. The program <br>will also continuously monitor the network card to be sure <br>that the student is not using the Internet during the exam.<br><br>c. The proctor is mailed the password for the exam.<br><br>d. On the day of the exam, the student brings the notebook <br>computer with the encrypted exam and the exam viewing program <br>to the proctor who enters the PIN to decipher the exam.<br><br>e. The student takes the exam and when done, notifies the <br>proctor who then enters another PIN to encrypt and sign the <br>students answers (using a password that only the proctor <br>knows).<br><br>f. The student returns home with the notebook, connects to <br>the Internet and uploads the enciphered answers to my web <br>site.<br><br>This has been designed so that there is no need for the <br>proctor to have Internet access. And even if the proctor was <br>on the Internet, the student is not required to connect his <br>notebook to an untrusted network.<br><br>What can go wrong here? <br><br>a. The simplest way to implement this is to have the key that <br>decrypts the exam questions and encrypts the student answers <br>stored in the program along with the exam password. However, <br>doing this is an example of the sin of failing to protect <br>secret data. Secret data is stored unprotected in the program. <br>The students have at least 12 hours between the time they <br>download the program and the time they arrive at the proctor <br>to reverse engineer the program and get the keys. Googling <br>for "Java disassembler" or "C# disassembler" will show that <br>there is plenty of help available on the web for reverse <br>engineering managed code. There are also tools available for <br>reverse engineering non-managed code. Be careful about <br>downloading these tools. There is a saying that "there is no <br>honor amongst thieves".<br><br>An effective way to fix this is to remove the keys from the <br>program and use the password to generate the keys. The <br>password will not have to be checked by the program. If the <br>password is not entered correctly, the exam will not be <br>deciphered correctly and the answers will not be enciphered <br>correctly. If this happens, the student request to <br>enter the password again.<br><br>b. The program's monitoring of the Internet connection can <br>also be effectively turned off by running the program in a <br>virtual machine on the notebook and configure the virtual <br>machine to have no network interface. The student can switch <br>to the physical machine to use email or IMS and then switch <br>back to the virtual machine.<br><br>Okay, so let's say that the program can detect the presence <br>of a virtual machine and refuse to run if it finds one. This <br>does not solve the problem because the student can reverse <br>engineer the code and remove the check for the virtual <br>machine. If the program creates a hash code of itself and <br>rehashes itself to detect any changes, the student can modify <br>the hash code or remove the check.<br><br>One might object that this is a lot to do in 12 hours and <br>that most students do not have the experience (or inclination) <br>to do it. But all it takes is one student who knows how to do <br>it and who releases the sabotaged version to the class (this <br>is similar to what is done with a kiddie script).<br><br><b>3. Never stored private keys on any production server</b>
+Private keys should be locked away and used ideally in 
+special hardware that does the decrypting so the private key 
+never has to be in RAM of any PC. At the very least the 
+private key should be encrypted using a strong password that 
+is not stored anywhere on the computer. The encrypted 
+password file should be protected by appropriate access 
+controls also (the principle of separation of privilege).
+
+<b>4. Don't keep secrets in memory</b>
+Memory can be paged out by the OS or released and reassigned 
+to some other process. When done with the secret, zero out 
+the memory. Unfortunately, if you use a String in Java to 
+hold the secret, you can't zero it out because Strings are 
+immutable. .NET has a </a><a href="http://msdn2.microsoft.com/en-us/library/system.security.securestring.aspx">SecureString class</a>
+that addresses this problem.
+
+<b>5. Do not create your own secret encryption algorithms</b>
+There was one famous key exchange algorithm that was published
+in 1982 and a bug in it was not publicly announced until 
+10-12 years later. If experts in cryptography can make these 
+mistakes, I think common sense says that a programmer that 
+has read two chapters on the use of cryptography in an 
+introduction to computer security course will also be at risk.
+
+This discussion has really emphasized the difference between 
+normal software engineering which is interested in finding and 
+minimizing problems caused by error or mischance and secure 
+coding which is interested in preventing malicious users from 
+violating the integrity or confidentiality of the system. 
+Traditional software engineering does not worry about users 
+reverse engineering programs!!
+
+
+</pre>
+
+
+</body></html>

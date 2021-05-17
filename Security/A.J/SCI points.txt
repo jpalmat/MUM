@@ -1,0 +1,17 @@
+Viruses are continually evolving to avoid detection by anti-virus program. 
+It’s is the nature of life to evolve.
+
+A buffer overflow attack causes data to flow outside the boundaries of the memory
+reserved for it. Here breaking boundaries is bad. However, breaking boundaries to
+our thinking is good because it allows us to have access to the field of all
+possibilities. TM gives us access to this field.
+
+
+The DMZ is what is between the inner and outer firewalls. These two firewalls
+strictly control access to the DMZ both from the Internet and the internal net. The
+firewalls epitomize the discriminating and integrating nature of Creative Intelligence
+
+An intrusion detection system is a high tech equivalent of a burglar alarm. It is
+configured to monitor information gateways, hostile activities and known
+intruders. It is important to have your meditation checked regularly in the first
+year of meditating to detect the intrusion of effort into the practice.

@@ -1,0 +1,44 @@
+Malicous Logic
+What is it?
+Trojan horse.
+Computer viruses: how it works? pseudocode? types of viruses? differences between type of viruses?
+Worm: how it works?
+Rabbits, Bacteria: how it works? pseudocode?
+
+
+Vulnerability
+What is it?
+Formal Verification: what is it? how it works? when to use? example?
+Penetration Testing: what is it? how it works? when to use? example?
+Comparison between formal verificatoin and penetration testing.
+Buffer Overflow: what is it? how it works? how to protect? identify buffer overflow.
+Goals of Penetration Testing.
+Layering of Tests.
+Information Gathering -> Flaw Hypothesis -> Flaw Testing -> Flaw Generalization: know the steps, what to do in each steps, given a scenario identify which step
+
+
+Auditing and IDS
+Auditing: what is it? why we need? when to do it? what do you log? what do you audit?
+Anatomy of Auditing System: Know each elements function.
+Principles of Intrusion Detection
+Basic Intrusion Detection and Detection
+Goals of Intrusion Detection System (IDS)
+Models of Intrusion Detection: what is ???, is ???, difference? example?
+Intrusion Handling
+Counterattacking
+
+
+Network Security
+Three Internal Organizations
+Security Policy Goals
+Data Classes
+Nature of Information Flow
+Access Control Matrix for Policy: create a table
+Type of Policy
+Security Policy Goals
+DMZ: why? diagram? elements?
+8 Computer Security Design Principles: understand each one, identify design principles in a case scenario
+
+
+System Security
+DMZ Web Server vs. Devnet

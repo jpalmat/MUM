@@ -1,0 +1,32 @@
+You should understand the followings to prepare for midterm exam:
+- Confidentiality, Integrity, Availability
+You need to understand what those are and the difference
+ 
+- Threat, Attack, Attacker, Risk, Asset, Vulnerability
+- Four Classes of Threats
+- Security vs. Mechanism
+You need to understand what those are and the difference
+ 
+- Access Control Matrix Model
+You need to understand what it is, what it is for, the principle and how to create it
+ 
+- DAC, MAC, RBAC
+- ACL and PACL
+- Policy vs Mechanism
+- Security Policy: Confidentiality vs Integrity
+- Bell–LaPadula Model, Biba Model, Clark-Wilson Model, Chinese Wall
+You need to understand what it is, what it is for, the principle and how to create it
+Be sure to understand about "no read up, no write down" and when to implement which model.
+ 
+ 
+- Classic Cryptosystem vs Public Key Cryptography
+- Needham-Schroeder Protocol vs Denning and Sacco Protocol
+- Kerberos
+- PGP
+- Digital Signature
+You need to understand what it is, what it is for and the principle.
+
+Go through all the Lecture Notes since those will help you for the exam. The points above are things that you should understand and the midterm exam will not be limited to those.
+ 
+Another thing that you should have good understanding is about what model covers which part of security principles (Confidentiality, Integrity, Availability).
+For example Cryptography covers Confidentiality, etc.
