@@ -1,0 +1,338 @@
+RESUME WEEK3
+-typescript
+open source, add additional features like static type, class, module, etc, and has ideas from ES6 (class, modules)
+-install
+npm install -g typescript
+tsc -v
+-tsconfig.jsonThe tsconfig.json file corresponds to the configuration of the TypeScript compiler (tsc).
+Here are some hints:
+target: the language used for the compiled output
+module: the module manager used in the compiled output. system is for SystemJS, commonjs for CommonJS.
+moduleResolution: the strategy used to resolve module declaration files (.d.ts files). With the node approach, they are loaded from the node_modules folder like a module (require('module-name'))
+sourceMap: generate or not source map files to debug directly your application TypeScript files in the browser,
+emitDecoratorMetadata: emit or not design-type metadata for decorated declarations in source,
+experimentalDecorators: enables or not experimental support for ES7 decorators,
+removeComments: remove comments or not
+noImplicitAny: allow or not the use of variables / parameters without types (implicit)
+-optional type annotation
+JavaScript is not a typed language. It means we cannot specify the type of a variable such as number, string, boolean etc. However, TypeScript is a typed language, where we can specify the type of the variables, function parameters and object properties.
+It is optional
+typescript tries to infer the type
+-basic types
+primitive(number are floating point values, boolean, string, null, undefined), array, enum, tuple, any, void, never, object
+-type inference
+option1: let msg: string "test"
+option2: let msg: string; //value = undefined
+option3: let msg = "test";//type is any but the type is infered based in the value
+option4: let msg; //type any and value undefined
+--array
+let list1: number[]=[1, 2];
+let list2: Array<number> = [1, 2];
+--enum
+enums allow us to declare a set of named constants
+--any
+when we do not know the type of the variable
+-function
+allows build up layers of abstraction, mimicking classes, information hiding and modules
+functions play the key role in describing how to do things
+add new capabilities.- type annotation for parameter and return type, optional and default parameter, rest parameter, function overloads
+--class
+A class can include the following: Constructor, Properties, Methods and events to provide interactions between classes.
+-inheritance
+typescript supports inheritance of class through extends word
+-module
+are executed within their own scope
+are declarative, it means the relationships between modules are specified in exports and imports
+ecmascript 2015
+a file without import or export, is treated as script in the global scope
+-interface
+you can use it for inheritance and to so the structure type checking (Duck-Typing)
+Duck-Typing is a method/rule used to check the type compatibility for more complex variable types.
+-optional properties
+we use "?" for example: color?: string
+-decorators
+are like annotation in java, aditinal procesing
+are experimental
+-class decoration
+is applied to the construct of the class and can be used to observe, mofify or replace
+every decoration is a function
+-method decorator
+no parameters should have (target, propertykey, descriptor)
+-parameter decorator
+target, propertykey
+--angular
+is a framework that will provide us flexibility and power when building out app
+takes advantage of ES6
+web components
+framework for all types of apps
+speed improvements
+is written in typescript
+-angular enhances html
+angular has ser of directives to display dymanic content at html page 
+extendes html node capabilities for a web
+data binding and dependency injection
+follows MVC architecture
+-installatin
+npm install -g @angular/cli 
+ng -version
+ng new my-app //create new project
+angular cli has its own server
+ng server
+localhost:4200
+-angular module
+has its own modularity system called ngModules, it has components, directives, pipes and services
+-execute flow 
+executes main.ts, it is configure to use app.module.ts that defines application module, application display index.html, it bootstraps root component from app.component.ts
+-app.module.ts
+it contains mapping of application elements: components, service, pipe, etc
+--component
+one component is created for one view page
+an application will always have root component that contains all other components
+--root Component
+application has one app.component.ts
+@component decorator is used to define components
+-data binding
+one-way.- where data change in controller is reflected in view (interpolation and property binding)
+two-way.- where data changes are reflected in both directions, controller and view
+-interpolation
+is donde by directive {{}} with attributes defined in controller
+--property binding
+it uses []
+-attribute binding
+-class binding
+-style binding
+-event binding
+-templatw variables
+is a reference to a DOM element within a template.
+-two-way data binding
+share data between a component class and its template
+it sets a specific element property and it listens for an element change event
+uses [()]
+-pipes
+takes in data as input and transforms it to a desired output
+aysnc, currency, date, decimal, json, lowercase, percent, slice and uppercase
+{{course.title | uppercase}}
+-custom pipes
+should be declared in the declarations [] at app.module.ts
+use @Pipe decorator to a class or ng g p miPipe
+-components
+components and services are classes with decorator 
+each component defines a class that contains data, logiv and html.
+.component.ts, .html, .css, .component.spec.ts (unit testcase)
+-component interaction
+@input.- data flows into a component from parent component
+@output.- data flows out from child to parent
+-styles
+use bootstrap 4 
+-view encapsulation
+none.- all elements are leaked
+emulated.-  defualt setting
+shadowdom.- use shadow dom and will allous to apply scoped styles to a elementwithout affecting other elements
+-ng-component
+used to create configurable components and known as content projections
+-directives
+used to manipulate dom.
+component.- directives with a template.any component is a directive.
+structural directives.- change the dom layout adding or remoming dom elements. ngif, ngfor
+attribute directives.- change the appearance, ngclass
+-ngclass
+adds and remives css
+-ngstyle
+updates styles for the html
+-custom directive
+ng generate directive name options 
+ng g directive name options 
+-change detection
+process of updating the view when the data has changed
+caused by: events, XHR(REMOTE SERVER), tasks. all of these are asynchronous. when the asynchronous task finish, the application state change
+-zone
+provides an execution contextbpersist async task 
+-execution context.- abstract concept that holds information about environment within the current code being executed
+-zones notifies angular abiut changes
+zone execute the given handler and knows to which component it belongs because it's monkey-patched and notify angular when the turn is done.
+it execute a tick() function
+-change detection strategies
+default.- ChangeDetectionStrategy.Default, it check all the modules.
+onPush.-if the input is inmutable, we need to tell angular skip change detection if its input hasn't chanched.
+it uses immutables or observables 
+-lifecyle hooks
+ngOnChanges, ngOnInit, ngDoCheck, ngAfterContentInit, ngAfterContentChecked, ngAfterViewInit, ngAfterViewChecked, ngOnDestroy
+-angular form 
+formControl.- it tracks the value and validation status of the individual form control.
+formGroup.- it tracks the same values and status for the collection of form control.
+formArray.- it tracks the same values and status for the array of the form control.
+controlValueAccessor.- it created a bridge between angular formControl instances and native DOM
+-two types of form
+template driven form.- created by directive, good for simple forms, simple validation, unit untestable, in formsModule
+use directives ngmodel, nfModelGroup ngform in FormModule(it sholuld go in imports at app.module.ts)
+
+reactive forms.- created in component, more flexible, more complex scenarios, more control over validation, unit testable, in reactiveFormModule
+abstractControl, formControl, formgroup and formBuilder from reactiveFormsModule
+-dependency injection
+coding pattern in which a class asks for dependencies from external sources rather than creating.
+-angular services
+for separating the business logic of your app from the rendering logic in components.
+for saring the data between multiple components in your angular app
+for easing testing and debugging
+for writing re-usable code
+-dependency injection parts 
+the provider maps a token to a list of dependencies.
+the injector that holds a set of binding and is responsible for resolving dependencies and injecting them when creating objects.
+the dependency/inyectable that is what's being injected
+
+
+-routing
+split the app into different areas usually based on rules that are derived from the current URL
+advantage.- separte different areas, maintain the state in the app, protect areas of the app based on rules.
+-client-side vs server-side
+in servr side servr accepts a request and routes to a controller and this runs a specific action.
+in client side not necesary makes a request to the server on every url change. it is single page app SPA
+-changing url
+client side not necesary change the url, but with this you would not be able to refresh the page and keep your location, you would not be able to bookmark, you would not be able to share the url
+-angular routing components
+routes: describes the routes the application supports. Will be passed to RouterModule and imported in NgModule.
+routerOutlet: a placeholder component that get expanded to each content.
+routerLink: a directive which is used to link to routes to browser won't refresh when change routes.
+ 
+
+
+
+RESUME WEEK2
+- nosql characteristics
+no schema, no structure required, no data relations, no/ few connections 
+-differences sql - nosql
+uses schemas - no schemas
+relations - no / few relations
+data distributed multiple tables - data merged in collections
+horizontal scaling(dificult/ imposible), vertical(posible) - horizontal and vertical is posible
+limitations for lots of thousands reas and write querys or second - great performance for mass read and write  
+-mongodb
+store data in bson documents
+schemaless: two documents do not hava the same schema
+-bson
+binary json
+json and bson support rich documents (embebed documents and arrays inside other documents ans arrays)
+bson contains extentions support data types that are not suppoted in json
+- bson characteristics
+ligthweight, traversable, efficient
+- no relational characteristics
+scability and performance, depth of funcionality 
+-collections
+mongo store documents in collections
+- general rules
+field names are string
+the field _id is reserved
+the fields can not have $, dot(.), null and can not be duplicated
+bson size maximun 16 mb 
+-console.log prints string, console.dir prints navigable object tree 
+-projections
+good practice to save bandwidth and retrieve only we need
+-comands mongo
+show dbs .- show all databases
+db .- show current databases
+show collections.- current collections databases
+db.users.insertOne({"username": "jimmy", "email": "jtigasi@mum.edu"})
+db.users.find().limit(5)
+db.usera.find().skip(5)
+db.users.find().sort({username: 1})
+db.users.find({$and: [{"username": "jimmy"}, {"email": "jtigasi@mum.edu"}]})
+db.users.find({age: {$le: 10}})
+db.users.find({username: {$in: ["Jimmy", "Javier"]}})
+db.users.find({username:{$exists:true, $eq: "Jimmy"}})
+db.users.find({username: {$regex: "ˆj"}})
+db.users.find({username: { $not: { $regex: "^p.*" } } } )
+db.users.update({_id: 1}, {$set:{username: "Javier"}})//specific fields
+db.users.update({_id:1000}, {username: "Javier"}) //all the fields
+db.users.update({_id:1000}, {username: "Javier"}, {upsert: true}) //create the document if it does not exists
+db.products.update({sku: "abc123"}, {$inc: {quantity: -2, "metrics.orders": 1}})
+//Original Document { "_id" : 1, "a" : [1, 2, 3, 4] }
+db.testCol.update({_id:1}, { $set: { "a.2":5 } }) 
+// output: { "_id" : 1, "a" : [1, 2, 5, 4] }
+db.col.update({_id:1}, { $push : { "a": 6 } }) 
+// output: { "_id" : 1, "a" : [1, 2, 5, 4, 6] }
+db.col.update({_id:1}, { $pop: { "a": 1 } })
+// output: { "_id" : 1, "a" : [1, 2, 5, 4] }
+db.col.update({_id:1}, { $pop : { "a": -1 } })
+// output: { "_id" : 1, "a" : [2, 5, 4] }
+db.col.update({_id:1}, {$push: {a: {$each: [7,8,9]}}}) 
+// output: { "_id" : 1, "a" : [2, 5, 4, 7, 8, 9] }
+db.col.update({_id:1}, { $pull: { "a": [5] } })
+// output: { "_id" : 1, "a" : [2, 4, 7, 8, 9] }
+db.col.update({_id:1}, { $pullAll: { "a": [2, 4, 8] } }) 
+// output: { "_id" : 1, "a" : [7, 9] }
+db.col.update({_id:1}, { $addToSet: { "a": 5 } })
+// output: { "_id" : 1, "a" : [7, 9, 5] }
+db.col.update({_id:1}, { $addToSet: { "a": 5 } })
+// output: { "_id" : 1, "a" : [7, 9, 5] }
+// delete all documents - One by One
+db.col.delete({})
+// delete all students whose names start with N-Z
+db.col.delete({"student": {$gt: "M"}})
+// drop the collection - Faster than remove()
+db.col.drop() //it’s faster to use drop() but we will need to create the collection again
+
+-mongo schema
+use application-driven-schema, we design schema based in how we access de data
+-aggregation
+aggregation operations group values from multiple documents, and can perform a variety of operations on the grouped data to return a single result
+-ways to perform aggregation
+pipeline, map-reduce function, single purpose aggregation methods
+-pipeline
+@match, $sort, $limit, $skip, $group, $project, $unwind, $out, $lookup, $redact, $geoNear
+db.users.aggregate([{$match: {mail: {$regex: "gmail"}}}, {$group: {name: "username"}}])
+-pipeline aggregation expressions
+$sum, $avg, $min, $max, #push, $addToSet, $first, $last
+db.users.aggregate([{$group: {username: "username", ageAvg: {$avg: "age"}}])
+-aggregation limitations
+100 MB RAM limit, if you want to work with bigger data, use disk allowDiskUse: true
+it is not recommended to use MAP/reduce in mongodb, use aggre framework
+-compound indexes
+when a single index structure holds references to multiple fields within a collection's document
+db.users.createIndex({key1: 1, key2: -1})
+-mongoose
+is an object document modeling package for node that works like an ORM(hibernate)
+-typescript
+open source, add static type, class, module, interface, generics, 
+is javascript, so any js file can be ts file
+-config
+tsconfig.json
+-basic types
+primitive(number, boolean, string, null, undefined), array, enum, tuple, any, void, never, object
+-functions
+are the fundamental building block of any app in javascript
+allows build up layers of abstraction
+add capabilities to the standard javascript (type annotation, return type, optional and default parameter, rest parameter, function overloads)
+-optional & default parameter
+should have default value
+should be the last arguments in a function
+-class
+properties and field to store data
+methods to define behavior
+events to provide interaction between classes
+-class constructor
+uses constructor keyword
+public by default
+-access modifiers
+public and private
+-inheritance
+use extends word
+-module
+are executed within their own scope
+are declarative, it means the relationships between modules are specified in exports and imports
+ecmascript 2015
+a file without import or export, is treated as script in the global scope
+-interface
+you can use it for inheritance and to so the structure type checking (Duck-Typing)
+Duck-Typing is a method/rule used to check the type compatibility for more complex variable types.
+-optional properties
+we use "?" for example: color?: string
+-decorators
+are like annotation in java, aditinal procesing
+are experimental
+-class decoration
+is applied to the construct of the class and can be used to observe, mofify or replace
+every decoration is a function
+-method decorator
+no parameters should have (target, propertykey, descriptor)
+-parameter decorator
+target, propertykey
