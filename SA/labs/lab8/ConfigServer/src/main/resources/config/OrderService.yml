@@ -1,0 +1,14 @@
+logging:
+  level:
+    root: ERROR
+    org: ERROR
+
+customersURL: http://localhost:8092
+productsURL: http://localhost:8091
+
+spring:
+   data:
+    mongodb: 
+      host: localhost
+      port: 27017
+      database: testdb

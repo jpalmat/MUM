@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: CustomersService
-  cloud: 
-    config: 
-      url: http://localhost:8888
