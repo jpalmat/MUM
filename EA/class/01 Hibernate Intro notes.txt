@@ -1,0 +1,13 @@
+
+1- In which ways do the OO model and the Relational model conflict?
+	 
+	 - Inheritance (OO has it, Relational not)
+	 - Relationships / associations (OO has 7 types relational has foreign key) 
+	 - Identity (OO has built in / relational has primary key)
+	 - Hot to access (OO has associations / relational has foreign key)
+
+
+
+2- Why would it be good to use the show_sql hibernate configuration?
+
+	- To see what is going, debugging, optimization not being in the dark

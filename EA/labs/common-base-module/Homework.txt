@@ -1,0 +1,41 @@
+0) Download and build the following framework in your local eclipse/STS
+
+https://github.com/psalek/common-base-module
+
+1) Start by using your Spring Data JPA Example from yesterday
+
+2) Replace Spring Boot dependency with the following dependency:
+
+    <parent>
+        <groupId>edu.miu.common</groupId>
+        <artifactId>common-base-module</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+3) Change the list of dependencies in your POM file to:
+
+    <dependencies>
+        <dependency>
+            <groupId>edu.miu.common</groupId>
+            <artifactId>common-base-service</artifactId>
+        </dependency>
+    </dependencies>
+
+4) Start building your project by extending the following super types:
+
+BaseRepository
+
+BaseReadService
+
+BaseReadServiceImpl
+
+BaseController
+
+5) Remember that you need to add a response type which basically in the simplest form is a copy of your entity with all the JPA annotaions removed from it. Also , remember to "implement Serializable" in your response class.
+
+6) Write a mapper of type <Entity, EntityResponse> by extending from BaseMapper
+
+7) Add the following Component Scan to your project:
+
+@ComponentScan(basePackages = "edu.miu.common, edu.miu.cs.cs544")
