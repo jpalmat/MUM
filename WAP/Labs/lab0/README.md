@@ -1,1 +1,0 @@
-# jpalmat.github.io

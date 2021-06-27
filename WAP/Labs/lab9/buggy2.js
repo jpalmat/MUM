@@ -1,3 +1,0 @@
-function gogogo(){
-    alert("fixed")
-}
