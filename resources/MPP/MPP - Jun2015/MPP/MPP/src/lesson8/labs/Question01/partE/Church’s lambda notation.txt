@@ -1,3 +1,0 @@
-i) lambdax. x + 2 x * x
-ii) lambdaxy. y - x + x ^ y
-iii) lambdaxyz. z - (x + y)
