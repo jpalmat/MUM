@@ -1,0 +1,31 @@
+
+solution of question 1 in document Lambda and Mehtod Reference Exercies (resolved at class)
+Also you can see class Examples.java
+
+A.Employee::getName    Class:instance method, the first parameter is the receiver and no argument for the method
+
+B.Employee::setName
+
+C.String::compareTo      BiFunction<String, String,Integer> , {ClassName::instance method} same as a but 
+
+D.Math::pow     BiFunction<Integer, Integer, Double>
+
+E.   Function<Apple,Double> apple = Apple::getWeight           same as A
+
+F. Function<String, Integer> pare = Integer::parseInt
+
+G.  BiFunction<Employee,Employee,Integer> comp = comp::compare    note that comp is object (this is defferent from C)
+
+For G if we have:
+(EmployeeNameComparator comp, Employee e1, Employee e2) -> comp.compare(e1,e2)
+solution:   
+EmployeeNameComparator::compare
+
+or for EmployeeNameComparator::compare  , the reversed lambda is (EmployeeNameComparator comp, Employee e1, Employee e2) -> comp.compare(e1,e2)
+
+
+
+C & G (that use object) are most confusing ones: 
+
+in case C {ClassName::instance method} : the first parameter is the receiver (i.e. call the method from this parameter),
+the rest of parameters are the inputs to the method

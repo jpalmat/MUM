@@ -1,0 +1,46 @@
+Final Exam review
+Lesson 7
+1.	Default method, static method
+2.	API evolution
+3.	Enum
+    forEach
+4.	Nested Class
+5.	Default method Clash, Static Method Clash?
+6.	toString()
+7.	equals() : same-classes-strategy, instance-of-strategy (disadvantages and how to handle each case)
+8.	hashcode() -> what to do to use object as key in hash table
+9.	Immutable
+Lesson 8
+1.	Declarative vs imperative programming
+2.	Functions
+3.	How Java 7 approximate “Functions as First-Class Citizen”?
+4.	Lambda expressions
+5.	Free Variables
+6.	Closures
+7.	Functional Interface
+8.	Method References
+9.	Final/effectively final
+10.	High-order function/ Lambda Library
+Lesson 9
+1.	Stream/reuse stream
+2.	Creation: Stream.of(), Arrays.stream(), iterate(), generate(), etc
+3.	Intermediate operations: filter(), map(), limit(), skip(), concat(), flatmap(),etc
+4.	Terminal operations: collect(), reduce()
+5.	Constructor Reference:  Button::new, String::new, int[]::new
+6.	Stateless/stateful transformations: map, filter, limit / distinct, sort
+7.	Comparator
+8.	Optional
+9.	Primitive type stream
+10.	IntSummaryStatistics
+Lesson 10
+1.	How to test stream pipelines
+2.	Annotations
+3.	try-with-resources
+4.	Handling Exceptions Arising in Stream Pipelines
+5.	Concurrent Processing and Parallel Streams
+Lesson 11
+1.	Generic class, Generic interface, Generic method
+2.	Limitation/restriction of generic
+3.	Wildcard (?,  extends, super)
+4.	The Get and Put Principle for Bounded Wildcards (Two Exceptions to the Get and Put Rule)
+5.	Unbounded Wildcard, Wildcard Capture, Helper Methods
